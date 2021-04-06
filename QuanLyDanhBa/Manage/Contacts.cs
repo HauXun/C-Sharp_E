@@ -576,6 +576,9 @@ namespace Manage
 				daySub.Add(0);
 			foreach (var item in a)
 				daySub[item.ngaySinh.Day - 1]++;
+			//foreach (var item in daySub)
+			//	if (item != 0 && max < item)
+			//		max = item;
 			int max = daySub.Max();
 			for (int i = 0; i < 31; i++)
 				if (daySub[i] == max)
