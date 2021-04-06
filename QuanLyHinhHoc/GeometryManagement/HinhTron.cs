@@ -13,6 +13,7 @@ namespace GeometryManagement
 				banKinh = value;
 			}
 		}
+
 		public HinhTron()
 		{
 

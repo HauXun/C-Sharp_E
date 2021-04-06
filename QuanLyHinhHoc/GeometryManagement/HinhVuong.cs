@@ -5,7 +5,6 @@ namespace GeometryManagement
 	class HinhVuong : HinhHoc
 	{
 		float canh;
-
 		public float Canh
 		{
 			get => canh;

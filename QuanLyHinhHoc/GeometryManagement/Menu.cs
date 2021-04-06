@@ -6,7 +6,8 @@ namespace GeometryManagement
 	{
 		DanhSachHinhHoc listHinhHoc = new DanhSachHinhHoc();
 		DanhSachHinhHoc result = new DanhSachHinhHoc();
-		int x;
+		float x;
+		int location;
 
 		public readonly string[] options = new string[]
 		{
@@ -14,8 +15,9 @@ namespace GeometryManagement
 			"Doc tu tap tin",
 			"Nhap du lieu hinh hoc",
 			"Xuat danh sach",
-			"Tim hinh vuong co dien tich bang x",
+			"Cac ham tim kiem theo chuc nang tuong ung",
 			"Sort tang theo tung chuc nang tuong ung",
+			"Delete theo tung chuc nang tuong ung"
 		};
 
 		public void XuatMenu()
@@ -66,62 +68,135 @@ namespace GeometryManagement
 					listHinhHoc.Xuat();
 					break;
 				case 4:
+					#region Chức năng tìm kiếm
 					Clear();
-					WriteLine("Tim hinh vuong co dien tich bang x >> ");
+					WriteLine("\tCac ham tim kiem theo chuc nang tuong ung >> ");
+					WriteLine("Tim kiem theo x");
+					WriteLine("\n\tHINH VUONG >>");
 					Write("Nhap vao dien tich x >> ");
-					x = int.Parse(ReadLine());
+					x = float.Parse(ReadLine());
 					WriteLine("Hinh vuong co dien tich = {0} la...", x);
 					listHinhHoc.TimHinhVuongDTBangX(x).Xuat();
-					break;
-				case 5:
-					Clear();
-					WriteLine("Tim hinh vuong co chu vi bang x >> ");
-					Write("Nhap vao chu vi x >> ");
-					x = int.Parse(ReadLine());
-					WriteLine("Hinh vuong co dien tich = {0} la...", x);
+					Write("\nNhap vao chu vi x >> ");
+					x = float.Parse(ReadLine());
+					WriteLine("Hinh vuong co chu vi = {0} la...", x);
 					listHinhHoc.TimHinhVuongCVBangX(x).Xuat();
-					break;
-				case 6:
+					Write("\n\tNHAN PHIM BAT KI DE CHUYEN QUA HINH TIEP THEO >> ");
+					ReadLine();
 					Clear();
-					WriteLine("Tim hinh vuong co dien tich nho nhat >> ");
+					WriteLine("\n\tHINH TRON >>");
+					Write("Nhap vao dien tich x >> ");
+					x = float.Parse(ReadLine());
+					WriteLine("Hinh tron co dien tich = {0} la...", x);
+					listHinhHoc.TimHinhTronDTBangX(x).Xuat();
+					Write("\nNhap vao chu vi x >> ");
+					x = float.Parse(ReadLine());
+					WriteLine("Hinh tron co chu vi = {0} la...", x);
+					listHinhHoc.TimHinhTronCVBangX(x).Xuat();
+					Write("\n\tNHAN PHIM BAT KI DE CHUYEN QUA HINH TIEP THEO >> ");
+					ReadLine();
+					Clear();
+					WriteLine("\n\tHINH CHU NHAT >>");
+					Write("Nhap vao dien tich x >> ");
+					x = float.Parse(ReadLine());
+					WriteLine("Hinh chu nhat co dien tich = {0} la...", x);
+					listHinhHoc.TimHinhChuNhatDTBangX(x).Xuat();
+					Write("\nNhap vao chu vi x >> ");
+					x = float.Parse(ReadLine());
+					WriteLine("Hinh chu nhat co chu vi = {0} la...", x);
+					listHinhHoc.TimHinhChuNhatCVBangX(x).Xuat();
+					Write("\n\tNHAN PHIM BAT KI DE CHUYEN CHUC NANG TIEP THEO >> ");
+					ReadLine();
+					Clear();
+					WriteLine("\tCac ham tim kiem theo chuc nang tuong ung >> ");
+					WriteLine("Tim min max Chu vi, Dien tich tung hinh");
+					WriteLine("\n\tHINH VUONG >>");
+					WriteLine("Hinh vuong dien tich nho nhat la...");
 					listHinhHoc.TimHinhVuongMinDT().Xuat();
-					break;
-				case 7:
-					Clear();
-					WriteLine("Tim hinh vuong co chu vi nho nhat >> ");
+					WriteLine("Hinh vuong chu vi nho nhat la...");
 					listHinhHoc.TimHinhVuongMinCV().Xuat();
-					break;
-				case 8:
-					Clear();
-					WriteLine("Tim hinh vuong co canh nho nhat >> ");
+					WriteLine("Hinh vuong canh nho nhat la...");
 					listHinhHoc.TimHinhVuongMinCanh().Xuat();
-					break;
-				case 9:
-					Clear();
-					WriteLine("Tim hinh vuong co canh lon nhat >> ");
+					WriteLine("Hinh vuong canh lon nhat la...");
 					listHinhHoc.TimHinhVuongMaxCanh().Xuat();
-					break;
-				case 10:
+					Write("\n\tNHAN PHIM BAT KI DE CHUYEN QUA HINH TIEP THEO >> ");
+					ReadLine();
 					Clear();
-					WriteLine("Tim hinh co dien tich lon nhat >> ");
-					listHinhHoc.TimHinhCoMaxDT().Xuat();
-					break;
-				case 11:
+					WriteLine("\n\tHINH TRON >>");
+					WriteLine("Hinh tron dien tich nho nhat la...");
+					listHinhHoc.TimHinhTronMinDT().Xuat();
+					WriteLine("Hinh tron chu vi nho nhat la...");
+					listHinhHoc.TimHinhTronMinCV().Xuat();
+					WriteLine("Hinh tron ban kinh nho nhat la...");
+					listHinhHoc.TimHinhTronMinBanKinh().Xuat();
+					WriteLine("Hinh tron ban kinh lon nhat la...");
+					listHinhHoc.TimHinhTronMaxBanKinh().Xuat();
+					Write("\n\tNHAN PHIM BAT KI DE CHUYEN QUA HINH TIEP THEO >> ");
+					ReadLine();
 					Clear();
-					WriteLine("Tim hinh co dien tich nho nhat >> ");
+					WriteLine("\n\tHINH CHU NHAT >>");
+					WriteLine("Hinh chu nhat dien tich nho nhat la...");
+					listHinhHoc.TimHinhChuNhatMinDT().Xuat();
+					WriteLine("Hinh chu nhat chu vi nho nhat la...");
+					listHinhHoc.TimHinhChuNhatMinCV().Xuat();
+					WriteLine("Hinh chu nhat canh nho nhat la...");
+					listHinhHoc.TimHinhChuNhatMinChieuDai().Xuat();
+					WriteLine("Hinh chu nhat canh lon nhat la...");
+					listHinhHoc.TimHinhChuNhatMaxChieuDai().Xuat();
+					Write("\n\tNHAN PHIM BAT KI DE CHUYEN CHUC NANG TIEP THEO >> ");
+					ReadLine();
+					Clear();
+					WriteLine("\n\tMin, max Chu vi, Dien tich trong cac hinh>>");
+					WriteLine("Hinh co dien tich nho nhat la...");
 					listHinhHoc.TimHinhCoMinDT().Xuat();
-					break;
-				case 12:
-					Clear();
-					WriteLine("Tim hinh co chu vi lon nhat >> ");
-					listHinhHoc.TimHinhCoMaxCV().Xuat();
-					break;
-				case 13:
-					Clear();
-					WriteLine("Tim hinh co chu vi nho nhat >> ");
+					WriteLine("Hinh co dien tich lon nhat la...");
+					listHinhHoc.TimHinhCoMaxDT().Xuat();
+					WriteLine("Hinh co chu vi nho nhat la...");
 					listHinhHoc.TimHinhCoMinCV().Xuat();
+					WriteLine("Hinh co chu vi lon nhat la...");
+					listHinhHoc.TimHinhCoMaxCV().Xuat();
+					Write("\n\tNHAN PHIM BAT KI DE CHUYEN CHUC NANG TIEP THEO >> ");
+					ReadLine();
+					Clear();
+					WriteLine("\n\tHinh co tong dien tich, chu vi lon nhat, nho nhat >>");
+					WriteLine("Hinh co tong dien tich nho nhat la...");
+					x = listHinhHoc.HinhDTNhoNhat();
+					if (x == 1)
+						WriteLine("Hinh Vuong");
+					else if (x == 0)
+						WriteLine("Hinh tron");
+					else
+						WriteLine("Hinh chu nhat");
+					WriteLine("Hinh co tong dien tich lon nhat la...");
+					x = listHinhHoc.HinhDTLonNhat();
+					if (x == 1)
+						WriteLine("Hinh Vuong");
+					else if (x == 0)
+						WriteLine("Hinh tron");
+					else
+						WriteLine("Hinh chu nhat");
+					WriteLine("Hinh co tong chu vi nho nhat la...");
+					x = listHinhHoc.HinhCVNhoNhat();
+					if (x == 1)
+						WriteLine("Hinh Vuong");
+					else if (x == 0)
+						WriteLine("Hinh tron");
+					else
+						WriteLine("Hinh chu nhat");
+					WriteLine("Hinh co tong chu vi lon nhat la...");
+					x = listHinhHoc.HinhCVLonNhat();
+					if (x == 1)
+						WriteLine("Hinh Vuong");
+					else if (x == 0)
+						WriteLine("Hinh tron");
+					else
+						WriteLine("Hinh chu nhat");
+					Write("\n\tNHAN PHIM BAT KI DE KET THUC CHUC NANG TIM KIEM >> ");
+					Read();
 					break;
-				case 14:
+				#endregion Chức năng tìm kiếm
+				case 5:
+					#region Chức năng sắp xếp
 					Clear();
 					WriteLine("Sort tang theo tung chuc nang tuong ung >> ");
 					WriteLine("\n\tHINH VUONG >> ");
@@ -160,10 +235,22 @@ namespace GeometryManagement
 					Write("\n\tNHAN PHIM BAT KI DE KET THUC CHUC NANG SAP SEP >> ");
 					Read();
 					break;
-				case 15:
+				#endregion
+				case 6:
 					Clear();
-					WriteLine("Sort giam theo chu vi >> ");
-					listHinhHoc.SortListHinhVuongGiam_CV().Xuat();
+					WriteLine("Delete theo tung chuc nang tuong ung >> ");
+					WriteLine("\tXoa hinh co dien tich lon nhat");
+					listHinhHoc.XoaHinhDTLonNhat().Xuat();
+					WriteLine("\n\n\tXoa hinh co dien tich lon nhat");
+					listHinhHoc.XoaHinhDTNhoNhat().Xuat();
+					WriteLine("\n\n\tXoa hinh co chu vi lon nhat");
+					listHinhHoc.XoaHinhCVLonNhat().Xuat();
+					WriteLine("\n\n\tXoa hinh co chu vi lon nhat");
+					listHinhHoc.XoaHinhCVNhoNhat().Xuat();
+					Write("\n\nNhap vao vi tri x can xoa >> ");
+					location = int.Parse(ReadLine());
+					listHinhHoc.XoaHinhTaiViTri(location);
+					listHinhHoc.Xuat();
 					break;
 			}
 			ReadLine();

@@ -131,7 +131,7 @@ namespace GeometryManagement
 		#endregion
 
 		#region Các hàm chức năng tìm kiếm hình học
-		public DanhSachHinhHoc TimHinhVuongDTBangX(int x)
+		public DanhSachHinhHoc TimHinhVuongDTBangX(float x)
 		{
 			DanhSachHinhHoc result = new DanhSachHinhHoc();
 			foreach (var item in ListHinhHoc)
@@ -140,7 +140,7 @@ namespace GeometryManagement
 			return result;
 		}
 
-		public DanhSachHinhHoc TimHinhVuongCVBangX(int x)
+		public DanhSachHinhHoc TimHinhVuongCVBangX(float x)
 		{
 			DanhSachHinhHoc result = new DanhSachHinhHoc();
 			foreach (var item in ListHinhHoc)
@@ -149,7 +149,7 @@ namespace GeometryManagement
 			return result;
 		}
 
-		public DanhSachHinhHoc TimHinhTronDTBangX(int x)
+		public DanhSachHinhHoc TimHinhTronDTBangX(float x)
 		{
 			DanhSachHinhHoc result = new DanhSachHinhHoc();
 			foreach (var item in ListHinhHoc)
@@ -158,7 +158,7 @@ namespace GeometryManagement
 			return result;
 		}
 
-		public DanhSachHinhHoc TimHinhTronCVBangX(int x)
+		public DanhSachHinhHoc TimHinhTronCVBangX(float x)
 		{
 			DanhSachHinhHoc result = new DanhSachHinhHoc();
 			foreach (var item in ListHinhHoc)
@@ -167,7 +167,7 @@ namespace GeometryManagement
 			return result;
 		}
 
-		public DanhSachHinhHoc TimHinhChuNhatDTBangX(int x)
+		public DanhSachHinhHoc TimHinhChuNhatDTBangX(float x)
 		{
 			DanhSachHinhHoc result = new DanhSachHinhHoc();
 			foreach (var item in ListHinhHoc)
@@ -176,7 +176,7 @@ namespace GeometryManagement
 			return result;
 		}
 
-		public DanhSachHinhHoc TimHinhChuNhatCVBangX(int x)
+		public DanhSachHinhHoc TimHinhChuNhatCVBangX(float x)
 		{
 			DanhSachHinhHoc result = new DanhSachHinhHoc();
 			foreach (var item in ListHinhHoc)
@@ -450,7 +450,7 @@ namespace GeometryManagement
 			DanhSachHinhHoc result = new DanhSachHinhHoc();
 			float min = MinChieuDaiHinhChuNhat();
 			foreach (var item in ListHinhHoc)
-				if (item is HinhTron && ((HinhChuNhat)item).TinhChuVi() / ((HinhChuNhat)item).ChieuRong * 2 == min)
+				if (item is HinhChuNhat && ((HinhChuNhat)item).TinhChuVi() / ((HinhChuNhat)item).ChieuRong * 2 == min)
 					result.Them(item);
 			return result;
 		}
@@ -470,7 +470,7 @@ namespace GeometryManagement
 			DanhSachHinhHoc result = new DanhSachHinhHoc();
 			float max = MaxBanKinhHinhTron();
 			foreach (var item in ListHinhHoc)
-				if (item is HinhVuong && ((HinhTron)item).BanKinh == max)
+				if (item is HinhTron && ((HinhTron)item).BanKinh == max)
 					result.Them(item);
 			return result;
 		}
@@ -480,108 +480,9 @@ namespace GeometryManagement
 			DanhSachHinhHoc result = new DanhSachHinhHoc();
 			float max = MaxBanKinhHinhChuNhat();
 			foreach (var item in ListHinhHoc)
-				if (item is HinhVuong && ((HinhChuNhat)item).TinhChuVi() / ((HinhChuNhat)item).ChieuRong * 2 == max)
+				if (item is HinhChuNhat && ((HinhChuNhat)item).TinhChuVi() / ((HinhChuNhat)item).ChieuRong * 2 == max)
 					result.Them(item);
 			return result;
-		}
-
-		public float TongDTHinhVuong()
-		{
-			float sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhVuong)
-					sum += ((HinhVuong)item).TinhDienTich();
-			}
-			return sum;
-		}
-
-		public float TongDTHinhTron()
-		{
-			float sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhTron)
-					sum += ((HinhTron)item).TinhDienTich();
-			}
-			return sum;
-		}
-
-		public float TongDTHinhChuNhat()
-		{
-			float sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhChuNhat)
-					sum += ((HinhChuNhat)item).TinhDienTich();
-			}
-			return sum;
-		}
-
-		public float TongCVHinhVuong()
-		{
-			float sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhVuong)
-					sum += ((HinhVuong)item).TinhChuVi();
-			}
-			return sum;
-		}
-
-		public float TongCVHinhTron()
-		{
-			float sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhTron)
-					sum += ((HinhTron)item).TinhChuVi();
-			}
-			return sum;
-		}
-
-		public float TongCVHinhChuNhat()
-		{
-			float sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhChuNhat)
-					sum += ((HinhChuNhat)item).TinhChuVi();
-			}
-			return sum;
-		}
-
-		public int DemHinhVuong()
-		{
-			int sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhVuong)
-					sum++;
-			}
-			return sum;
-		}
-
-		public int DemHinhTron()
-		{
-			int sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhTron)
-					sum++;
-			}
-			return sum;
-		}
-
-		public int DemHinhChuNhat()
-		{
-			int sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhChuNhat)
-					sum++;
-			}
-			return sum;
 		}
 
 		float TimMaxDT()
@@ -719,6 +620,38 @@ namespace GeometryManagement
 			}
 			return result;
 		}
+
+		public int HinhDTLonNhat()
+		{
+			float dtHinhVuong = TongDTHinhVuong();
+			float dtHinhTron = TongDTHinhTron();
+			float dtHinhChuNhat = TongDTHinhChuNhat();
+			return dtHinhVuong > dtHinhTron ? (dtHinhVuong > dtHinhChuNhat ? 1 : -1) : (dtHinhTron > dtHinhChuNhat ? 0 : -1);
+		}
+
+		public int HinhDTNhoNhat()
+		{
+			float dtHinhVuong = TongDTHinhVuong();
+			float dtHinhTron = TongDTHinhTron();
+			float dtHinhChuNhat = TongDTHinhChuNhat();
+			return dtHinhVuong < dtHinhTron ? (dtHinhVuong < dtHinhChuNhat ? 1 : -1) : (dtHinhTron < dtHinhChuNhat ? 0 : -1);
+		}
+
+		public int HinhCVLonNhat()
+		{
+			float cvHinhVuong = TongCVHinhVuong();
+			float cvHinhTron = TongCVHinhTron();
+			float cvHinhChuNhat = TongCVHinhChuNhat();
+			return cvHinhVuong > cvHinhTron ? (cvHinhVuong > cvHinhChuNhat ? 1 : -1) : (cvHinhTron > cvHinhChuNhat ? 0 : -1);
+		}
+
+		public int HinhCVNhoNhat()
+		{
+			float cvHinhVuong = TongCVHinhVuong();
+			float cvHinhTron = TongCVHinhTron();
+			float cvHinhChuNhat = TongCVHinhChuNhat();
+			return cvHinhVuong < cvHinhTron ? (cvHinhVuong < cvHinhChuNhat ? 1 : -1) : (cvHinhTron < cvHinhChuNhat ? 0 : -1);
+		}
 		#endregion
 
 		#region Các hàm chức năng sắp xếp
@@ -827,6 +760,182 @@ namespace GeometryManagement
 			DanhSachHinhHoc listHinhChuNhat = ListHinhChuNhat();
 			listHinhChuNhat.ListHinhHoc = listHinhChuNhat.ListHinhHoc.OrderByDescending(hinh => (hinh as HinhChuNhat).TinhDienTich()).ToList();
 			return listHinhChuNhat;
+		}
+		#endregion
+
+		#region Một số chức năng khác
+		public float TongDTHinhVuong()
+		{
+			float sum = 0;
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhVuong)
+					sum += ((HinhVuong)item).TinhDienTich();
+			}
+			return sum;
+		}
+
+		public float TongDTHinhTron()
+		{
+			float sum = 0;
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhTron)
+					sum += ((HinhTron)item).TinhDienTich();
+			}
+			return sum;
+		}
+
+		public float TongDTHinhChuNhat()
+		{
+			float sum = 0;
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhChuNhat)
+					sum += ((HinhChuNhat)item).TinhDienTich();
+			}
+			return sum;
+		}
+
+		public float TongCVHinhVuong()
+		{
+			float sum = 0;
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhVuong)
+					sum += ((HinhVuong)item).TinhChuVi();
+			}
+			return sum;
+		}
+
+		public float TongCVHinhTron()
+		{
+			float sum = 0;
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhTron)
+					sum += ((HinhTron)item).TinhChuVi();
+			}
+			return sum;
+		}
+
+		public float TongCVHinhChuNhat()
+		{
+			float sum = 0;
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhChuNhat)
+					sum += ((HinhChuNhat)item).TinhChuVi();
+			}
+			return sum;
+		}
+
+		public int DemHinhVuong()
+		{
+			int sum = 0;
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhVuong)
+					sum++;
+			}
+			return sum;
+		}
+
+		public int DemHinhTron()
+		{
+			int sum = 0;
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhTron)
+					sum++;
+			}
+			return sum;
+		}
+
+		public int DemHinhChuNhat()
+		{
+			int sum = 0;
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhChuNhat)
+					sum++;
+			}
+			return sum;
+		}
+
+		public DanhSachHinhHoc ThemHinhTaiViTri(int location)
+		{
+			HinhVuong hv = new HinhVuong(3);
+			for (int i = ListHinhHoc.Count - 1; i >= location; i--)
+				ListHinhHoc[i] = ListHinhHoc[i - 1];
+			ListHinhHoc[location] = ListHinhHoc.Add(new HinhHoc())
+		}
+		#endregion
+
+		#region Các hàm chức năng xóa
+		public DanhSachHinhHoc XoaHinhDTLonNhat()
+		{
+			DanhSachHinhHoc result = new DanhSachHinhHoc();
+			float dtLonNhat = TimMaxDT();
+			WriteLine("Dien tich lon nhat la " + dtLonNhat);
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhVuong && ((HinhVuong)item).TinhDienTich() != dtLonNhat ||
+					item is HinhTron && ((HinhTron)item).TinhDienTich() != dtLonNhat ||
+					item is HinhChuNhat && ((HinhChuNhat)item).TinhDienTich() != dtLonNhat)
+					result.Them(item);
+			}
+			return result;
+		}
+
+		public DanhSachHinhHoc XoaHinhDTNhoNhat()
+		{
+			DanhSachHinhHoc result = new DanhSachHinhHoc();
+			float dtNhoNhat = TimMinDT();
+			WriteLine("Dien tich nho nhat la " + dtNhoNhat);
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhVuong && ((HinhVuong)item).TinhDienTich() != dtNhoNhat ||
+					item is HinhTron && ((HinhTron)item).TinhDienTich() != dtNhoNhat ||
+					item is HinhChuNhat && ((HinhChuNhat)item).TinhDienTich() != dtNhoNhat)
+					result.Them(item);
+			}
+			return result;
+		}
+
+		public DanhSachHinhHoc XoaHinhCVLonNhat()
+		{
+			DanhSachHinhHoc result = new DanhSachHinhHoc();
+			float cvLonNhat = TimMaxCV();
+			WriteLine("Chu vi lon nhat la " + cvLonNhat);
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhVuong && ((HinhVuong)item).TinhChuVi() != cvLonNhat ||
+					item is HinhTron && ((HinhTron)item).TinhChuVi() != cvLonNhat ||
+					item is HinhChuNhat && ((HinhChuNhat)item).TinhChuVi() != cvLonNhat)
+					result.Them(item);
+			}
+			return result;
+		}
+
+		public DanhSachHinhHoc XoaHinhCVNhoNhat()
+		{
+			DanhSachHinhHoc result = new DanhSachHinhHoc();
+			float cvNhoNhat = TimMinCV();
+			WriteLine("Chu vi nho nhat la " + cvNhoNhat);
+			foreach (var item in ListHinhHoc)
+			{
+				if (item is HinhVuong && ((HinhVuong)item).TinhChuVi() != cvNhoNhat ||
+					item is HinhTron && ((HinhTron)item).TinhChuVi() != cvNhoNhat ||
+					item is HinhChuNhat && ((HinhChuNhat)item).TinhChuVi() != cvNhoNhat)
+					result.Them(item);
+			}
+			return result;
+		}
+
+		public void XoaHinhTaiViTri(int location)
+		{
+			ListHinhHoc.RemoveAt(location);
 		}
 		#endregion
 	}

@@ -560,17 +560,12 @@ namespace Manage
 			*/
 
 			int constLength = a.Count;
-
 			for (int i = 0; i < constLength; i++)
 			{
 				var item = a[i];
 				if (item.ngaySinh.Month == 1)
 					a.Add(new Subscriber(item.soCMND, item.hoTen, item.diaChi, item.gioiTinh, item.ngaySinh, item.soCMND));
 			}
-
-			//foreach (var item in a)
-			//	if (item.ngaySinh.Month == 1)
-			//		a.Add(new Subscriber(item.soCMND, item.hoTen, item.diaChi, item.gioiTinh, item.ngaySinh, item.soCMND));
 		}
 
 		public List<int> FindDaySub_TheMost()
