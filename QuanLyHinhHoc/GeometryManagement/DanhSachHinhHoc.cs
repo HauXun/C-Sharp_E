@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using static System.Console;
@@ -12,6 +13,7 @@ namespace GeometryManagement
 			return (y as HinhVuong).TinhDienTich().CompareTo((x as HinhVuong).TinhDienTich());
 		}
 	}
+
 	class DanhSachHinhHoc
 	{
 		List<HinhHoc> ListHinhHoc = new List<HinhHoc>();
@@ -47,7 +49,7 @@ namespace GeometryManagement
 		{
 			//string path = "E:\\data.txt";
 			string path = @"data.txt";
-			Write("Enter your txt file name to open it: ");
+			Write("Nhap ten tap tin de mo >> ");
 			string keyOpen = ReadLine().ToLower();
 			string keyWord = ".txt";
 			string a;
@@ -863,13 +865,53 @@ namespace GeometryManagement
 			return sum;
 		}
 
-		public DanhSachHinhHoc ThemHinhTaiViTri(int location)
+		public int TongHinhHoc() => DemHinhVuong() + DemHinhTron() + DemHinhChuNhat();
+
+		public void ThemHinhTaiViTri(int location)
 		{
-			HinhVuong hv = new HinhVuong(3);
-			for (int i = ListHinhHoc.Count - 1; i >= location; i--)
-				ListHinhHoc[i] = ListHinhHoc[i - 1];
-			ListHinhHoc[location] = ListHinhHoc.Add(new HinhHoc())
+			//for (int i = ListHinhHoc.Count - 1; i >= location; i--)
+			//	ListHinhHoc[i] = ListHinhHoc[i - 1];
+			//ListHinhHoc[location] = ListHinhHoc.RemoveAt()
+			string isContinue = "";
+			do
+			{
+				Write("\n\nNhap vao vi tri x can them >> ");
+				location = int.Parse(ReadLine());
+				Clear();
+				Write("\nBan muon them hinh gi? Moi nhap hinh tuong ung ( 'HV' - 'HT' - 'HCN' ) >> ");
+				isContinue = ReadLine().ToUpper();
+				if (isContinue == "HT")
+				{
+					WriteLine("\nHinh tron >>");
+					HinhTron ht = new HinhTron();
+					ht.Nhap();
+					ListHinhHoc.Insert(location, ht);
+				}
+				else if (isContinue == "HV")
+				{
+					WriteLine("\nHinh Vuong >>");
+					HinhVuong hv = new HinhVuong();
+					hv.Nhap();
+					ListHinhHoc.Insert(location, hv);
+				}
+				else if (isContinue == "HCN")
+				{
+					WriteLine("\nHinh chu nhat >>");
+					HinhChuNhat hcn = new HinhChuNhat();
+					hcn.Nhap();
+					ListHinhHoc.Insert(location, hcn);
+				}
+				else
+				{
+					WriteLine("Ban phai nhap 1 tron 3 dinh dang o tren ( 'HV' - 'HT' hoac 'HCN' )");
+					ReadLine();
+				}
+				WriteLine("\n\tBan co muon nhap nua khong ?");
+				Write("Nhan phim bat ki de tiep tuc. Go 'No' neu khong! >> ");
+				isContinue = ReadLine().ToUpper();
+			} while (isContinue != "NO");
 		}
+
 		#endregion
 
 		#region Các hàm chức năng xóa
@@ -936,6 +978,59 @@ namespace GeometryManagement
 		public void XoaHinhTaiViTri(int location)
 		{
 			ListHinhHoc.RemoveAt(location);
+		}
+		#endregion
+
+		#region Các hàm chức năng ghi danh sách các hình xuống file riêng
+
+		public void GhiFile()
+		{
+			string str = "\t\t\tBANG TONG HOP THONG TIN\n" +
+				$"1) Tong so cac doi tuong hinh hoc la: {TongHinhHoc()}\n" +
+				$"2) Tong so hinh tron la: {DemHinhTron()}\n" +
+				$"3) Tong so hinh vuong la: {DemHinhVuong()}\n" +
+				$"4) Tong so hinh chu nhat la {DemHinhChuNhat()}\n" +
+				$"\nA. Danh sach hinh tron (theo chieu tang dien tich)\n" + ListHinhTron().SortListHinhTronTang_DT() +
+				$"\n\nB. Danh sach hinh vuong(theo chieu tang dien tich)\n" + ListHinhVuong().SortListHinhVuongTang_DT() +
+				$"\n\nC. Danh sach hinh chu nhat(theo chieu tang dien tich)\n" + ListHinhChuNhat().SortListHinhChuNhatTang_DT() +
+				$"\n";
+			using (StreamWriter file = new StreamWriter(@"hinhhoc.txt", append: false)) // FileMode.Append, FileAccess.Write)
+			{
+				file.Write(str);
+			}
+		}
+
+		public void GhiFileHinhVuong()
+		{
+			string str = "\t\t\tBANG TONG HOP THONG TIN\n" +
+				$"\n\nDanh sach hinh vuong\n" + ListHinhVuong().SortListHinhVuongTang_DT() +
+				$"\n";
+			using (StreamWriter file = new StreamWriter(@"hinhvuong.txt", append: false)) // FileMode.Append, FileAccess.Write)
+			{
+				file.Write(str);
+			}
+		}
+
+		public void GhiFileHinhTron()
+		{
+			string str = "\t\t\tBANG TONG HOP THONG TIN\n" +
+				$"\n\nDanh sach hinh tron\n" + ListHinhTron().SortListHinhTronTang_DT() +
+				$"\n";
+			using (StreamWriter file = new StreamWriter(@"hinhtron.txt", append: false)) // FileMode.Append, FileAccess.Write)
+			{
+				file.Write(str);
+			}
+		}
+
+		public void GhiFileHinhChuNhat()
+		{
+			string str = "\t\t\tBANG TONG HOP THONG TIN\n" +
+				$"\n\nDanh sach hinh chu nhat\n" + ListHinhChuNhat().SortListHinhChuNhatTang_DT() +
+				$"\n";
+			using (StreamWriter file = new StreamWriter(@"hinhchunhat.txt", append: false)) // FileMode.Append, FileAccess.Write)
+			{
+				file.Write(str);
+			}
 		}
 		#endregion
 	}
