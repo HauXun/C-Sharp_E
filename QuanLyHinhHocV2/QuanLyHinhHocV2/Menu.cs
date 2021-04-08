@@ -24,8 +24,7 @@ namespace GeometryManagement
 			"Ghi tat ca thong tin hinh hoc vao file txt",
 			"Ghi tat ca thong tin hinh vuong vao file txt",
 			"Ghi tat ca thong tin hinh tron vao file txt",
-			"Ghi tat ca thong tin hinh chu nhat vao file txt",
-			"Test code"
+			"Ghi tat ca thong tin hinh chu nhat vao file txt"
 		};
 
 		public void XuatMenu()
@@ -157,13 +156,13 @@ namespace GeometryManagement
 					Clear();
 					WriteLine("\n\tMin, max Chu vi, Dien tich trong cac hinh>>");
 					WriteLine("Hinh co dien tich nho nhat la...");
-					listHinhHoc.TimHinhMinMaxDT_CV(DanhSachHinhHoc.TypeList.TatCaHinh, DanhSachHinhHoc.TypeMinMax.minDienTich).Xuat();
+					WriteLine(listHinhHoc.TimHinhMinMaxCV_DT(DanhSachHinhHoc.TypeMinMax.minDienTich));
 					WriteLine("Hinh co dien tich lon nhat la...");
-					listHinhHoc.TimHinhMinMaxDT_CV(DanhSachHinhHoc.TypeList.TatCaHinh, DanhSachHinhHoc.TypeMinMax.maxDienTich).Xuat();
+					WriteLine(listHinhHoc.TimHinhMinMaxCV_DT(DanhSachHinhHoc.TypeMinMax.maxDienTich));
 					WriteLine("Hinh co chu vi nho nhat la...");
-					listHinhHoc.TimHinhMinMaxDT_CV(DanhSachHinhHoc.TypeList.TatCaHinh, DanhSachHinhHoc.TypeMinMax.minChuVi).Xuat();
+				    WriteLine(listHinhHoc.TimHinhMinMaxCV_DT(DanhSachHinhHoc.TypeMinMax.minChuVi));
 					WriteLine("Hinh co chu vi lon nhat la...");
-					listHinhHoc.TimHinhMinMaxDT_CV(DanhSachHinhHoc.TypeList.TatCaHinh, DanhSachHinhHoc.TypeMinMax.maxChuVi).Xuat();
+					WriteLine(listHinhHoc.TimHinhMinMaxCV_DT(DanhSachHinhHoc.TypeMinMax.maxChuVi));
 					Write("\n\tNHAN PHIM BAT KI DE CHUYEN CHUC NANG TIEP THEO >> ");
 					ReadLine();
 					Clear();
@@ -223,26 +222,26 @@ namespace GeometryManagement
 				#endregion
 				case 6:
 					#region Chức năng xóa
-					//Clear();
-					//WriteLine("Delete theo tung chuc nang tuong ung >> ");
-					//WriteLine("\tXoa hinh co dien tich lon nhat");
-					//listHinhHoc.XoaHinh(DanhSachHinhHoc.TypeMinMax.maxDienTich);
-					//listHinhHoc.Xuat();
-					//WriteLine("\n\n\tXoa hinh co dien tich nho nhat");
-					//listHinhHoc.XoaHinh(DanhSachHinhHoc.TypeMinMax.minDienTich);
-					//listHinhHoc.Xuat();
-					//WriteLine("\n\n\tXoa hinh co chu vi lon nhat");
-					//listHinhHoc.XoaHinh(DanhSachHinhHoc.TypeMinMax.maxChuVi);
-					//listHinhHoc.Xuat();
-					//WriteLine("\n\n\tXoa hinh co chu vi nho nhat");
-					//listHinhHoc.XoaHinh(DanhSachHinhHoc.TypeMinMax.minChuVi);
-					//listHinhHoc.Xuat();
-					//Write("\n\nNhap vao vi tri x can xoa >> ");
-					//location = int.Parse(ReadLine());
-					////listHinhHoc.XoaHinhTaiViTri(location);
-					//listHinhHoc.Xuat();
-					#endregion
+					Clear();
+					WriteLine("Delete theo tung chuc nang tuong ung >> ");
+					WriteLine("\tXoa hinh co dien tich lon nhat");
+					listHinhHoc.XoaHinh(DanhSachHinhHoc.TypeMinMax.maxDienTich, DanhSachHinhHoc.TypeList.TatCaHinh);
+					listHinhHoc.Xuat();
+					WriteLine("\n\n\tXoa hinh co dien tich nho nhat");
+					listHinhHoc.XoaHinh(DanhSachHinhHoc.TypeMinMax.minDienTich, DanhSachHinhHoc.TypeList.TatCaHinh);
+					listHinhHoc.Xuat();
+					WriteLine("\n\n\tXoa hinh co chu vi lon nhat");
+					listHinhHoc.XoaHinh(DanhSachHinhHoc.TypeMinMax.maxChuVi, DanhSachHinhHoc.TypeList.TatCaHinh);
+					listHinhHoc.Xuat();
+					WriteLine("\n\n\tXoa hinh co chu vi nho nhat");
+					listHinhHoc.XoaHinh(DanhSachHinhHoc.TypeMinMax.minChuVi, DanhSachHinhHoc.TypeList.TatCaHinh);
+					listHinhHoc.Xuat();
+					Write("\n\nNhap vao vi tri x can xoa >> ");
+					location = int.Parse(ReadLine());
+					listHinhHoc.XoaHinhTaiViTri(location);
+					listHinhHoc.Xuat();
 					break;
+				#endregion
 				case 7:
 					#region Các chức năng khác
 					Clear();
@@ -261,45 +260,39 @@ namespace GeometryManagement
 					Write("\n\nSo luong hinh tron la >> " + listHinhHoc.DemHinhHoc(DanhSachHinhHoc.TypeList.HinhTron));
 					Write("\n\nSo luong hinh chu nhat la >> " + listHinhHoc.DemHinhHoc(DanhSachHinhHoc.TypeList.HinhChuNhat));
 					break;
-				//case 9:
-				//	Clear();
-				//	WriteLine("Ghi tat ca thong tin hinh hoc vao file txt.");
-				//	WriteLine("Nhan phim bat ki de bat dau thuc hien >> ");
-				//	listHinhHoc.GhiFile();
-				//	ReadLine();
-				//	WriteLine("Ghi file hoan tat !");
-				//	break;
-				//case 10:
-				//	Clear();
-				//	WriteLine("Ghi tat ca thong tin hinh vuong vao file txt.");
-				//	WriteLine("Nhan phim bat ki de bat dau thuc hien >> ");
-				//	listHinhHoc.GhiFileHinhVuong();
-				//	ReadLine();
-				//	WriteLine("Ghi file hoan tat !");
-				//	break;
-				//case 11:
-				//	Clear();
-				//	WriteLine("Ghi tat ca thong tin hinh tron vao file txt.");
-				//	WriteLine("Nhan phim bat ki de bat dau thuc hien >> ");
-				//	listHinhHoc.GhiFileHinhTron();
-				//	ReadLine();
-				//	WriteLine("Ghi file hoan tat !");
-				//	break;
-				//case 12:
-				//	Clear();
-				//	WriteLine("Ghi tat ca thong tin hinh chu nhat vao file txt.");
-				//	WriteLine("Nhan phim bat ki de bat dau thuc hien >> ");
-				//	listHinhHoc.GhiFileHinhChuNhat();
-				//	ReadLine();
-				//	WriteLine("Ghi file hoan tat !");
-				//	break;
-				#endregion
-				case 13:
-					WriteLine("Test code");
-					x = float.Parse(ReadLine());
-					WriteLine(listHinhHoc.MaxArea(x));
-					//WriteLine(listHinhHoc.MinArea());
+				case 9:
+					Clear();
+					WriteLine("Ghi tat ca thong tin hinh hoc vao file txt.");
+					WriteLine("Nhan phim bat ki de bat dau thuc hien >> ");
+					listHinhHoc.GhiFile(DanhSachHinhHoc.TypeList.TatCaHinh);
+					ReadLine();
+					WriteLine("Ghi file hoan tat !");
 					break;
+				case 10:
+					Clear();
+					WriteLine("Ghi tat ca thong tin hinh vuong vao file txt.");
+					WriteLine("Nhan phim bat ki de bat dau thuc hien >> ");
+					listHinhHoc.GhiFile(DanhSachHinhHoc.TypeList.HinhVuong);
+					ReadLine();
+					WriteLine("Ghi file hoan tat !");
+					break;
+				case 11:
+					Clear();
+					WriteLine("Ghi tat ca thong tin hinh tron vao file txt.");
+					WriteLine("Nhan phim bat ki de bat dau thuc hien >> ");
+					listHinhHoc.GhiFile(DanhSachHinhHoc.TypeList.HinhTron);
+					ReadLine();
+					WriteLine("Ghi file hoan tat !");
+					break;
+				case 12:
+					Clear();
+					WriteLine("Ghi tat ca thong tin hinh chu nhat vao file txt.");
+					WriteLine("Nhan phim bat ki de bat dau thuc hien >> ");
+					listHinhHoc.GhiFile(DanhSachHinhHoc.TypeList.HinhChuNhat);
+					ReadLine();
+					WriteLine("Ghi file hoan tat !");
+					break;
+					#endregion
 			}
 			ReadLine();
 		}

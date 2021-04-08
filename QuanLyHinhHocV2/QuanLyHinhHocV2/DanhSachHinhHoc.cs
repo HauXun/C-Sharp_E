@@ -178,21 +178,6 @@ namespace GeometryManagement
 		}
 		#endregion
 
-		public DanhSachHinhHoc MaxArea(float y)
-		{
-			DanhSachHinhHoc hinhVuong = DanhSachKieuHinh(TypeList.TatCaHinh);
-			//float max = ListHinhHoc.Max(x => x.TinhDienTich());
-			hinhVuong.ListHinhHoc = hinhVuong.ListHinhHoc.Where(x => x.TinhDienTich() == y).ToList();
-			return hinhVuong;
-		}
-
-		public float MinArea()
-		{
-			float max = ListHinhHoc.Min(x => x.TinhDienTich());
-			//hinhVuong.ListHinhHoc = hinhVuong.ListHinhHoc.Where(x => (x as HinhVuong).TinhDienTich() == y).ToList();
-			return max;
-		}
-
 		#region Các hàm chức năng tìm kiếm hình học
 		public DanhSachHinhHoc TimHinhTheoDT_CV(float number, TypeCal typeCal, TypeList typeList)
 		{
@@ -344,10 +329,26 @@ namespace GeometryManagement
 			}
 			return minMax;
 		}
-		#endregion
 
+		public float TongCV_DT(TypeMinMax typeMinMax, TypeList typeList)
+		{
+			float sum = 0;
+			if (typeMinMax == TypeMinMax.maxDienTich)
+				foreach (var item in ListHinhHoc)
+				{
+					if (TrungKieuHinh(item, typeList))
+						sum += TinhDienTich(item);
+				}
+			if (typeMinMax == TypeMinMax.maxChuVi)
+				foreach (var item in ListHinhHoc)
+				{
+					if (TrungKieuHinh(item, typeList))
+						sum += TinhDienTich(item);
+				}
+			return sum;
+		}
 
-		public string TongMinMaxCV_DT(TypeMinMax typeMinMax)
+		public string TimHinhMinMaxCV_DT(TypeMinMax typeMinMax)
 		{
 			switch (typeMinMax)
 			{
@@ -367,23 +368,7 @@ namespace GeometryManagement
 			return "Co loi gi do da xay ra !";
 		}
 
-		public float TongCV_DT(TypeMinMax typeMinMax, TypeList typeList)
-		{
-			float sum = 0;
-			if (typeMinMax == TypeMinMax.maxDienTich)
-				foreach (var item in ListHinhHoc)
-				{
-					if (TrungKieuHinh(item, typeList))
-						sum += TinhDienTich(item);
-				}
-			if (typeMinMax == TypeMinMax.maxChuVi)
-				foreach (var item in ListHinhHoc)
-				{
-					if (TrungKieuHinh(item, typeList))
-						sum += TinhDienTich(item);
-				}
-			return sum;
-		}
+		#endregion
 
 		#region Các hàm chức năng sắp xếp
 
@@ -513,60 +498,30 @@ namespace GeometryManagement
 		#region Một số chức năng khác
 		public int DemHinhHoc(TypeList typeList)
 		{
+			int sum = 0;
 			foreach (var item in ListHinhHoc)
 			{
 				if (TrungKieuHinh(item, typeList))
 					switch (typeList)
 					{
 						case TypeList.HinhVuong:
+							sum++;
 							break;
 						case TypeList.HinhTron:
+							sum++;
 							break;
 						case TypeList.HinhChuNhat:
+							sum++;
 							break;
 						case TypeList.TatCaHinh:
-							break;
-						default:
+							sum++;
 							break;
 					}
 			}
-			return 0;
-		}
-
-		public int DemHinhVuong()
-		{
-			int sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhVuong)
-					sum++;
-			}
 			return sum;
 		}
 
-		public int DemHinhTron()
-		{
-			int sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhTron)
-					sum++;
-			}
-			return sum;
-		}
-
-		public int DemHinhChuNhat()
-		{
-			int sum = 0;
-			foreach (var item in ListHinhHoc)
-			{
-				if (item is HinhChuNhat)
-					sum++;
-			}
-			return sum;
-		}
-
-		public int TongHinhHoc() => DemHinhVuong() + DemHinhTron() + DemHinhChuNhat();
+		public int TongHinhHoc() => DemHinhHoc(TypeList.TatCaHinh);
 
 		public void ThemHinhTaiViTri(int location, TypeList typeList)
 		{
@@ -591,6 +546,7 @@ namespace GeometryManagement
 					ListHinhHoc.Insert(location, hcn);
 					break;
 				default:
+					WriteLine("\nCo loi gi do da xay ra! Out...");
 					break;
 			}
 		}
@@ -599,35 +555,32 @@ namespace GeometryManagement
 
 		#region Các hàm chức năng xóa
 
-		//public void XoaHinh(TypeMinMax typeMinMax)
-		//{
-		//	List<HinhHoc> isList = new List<HinhHoc>(ListHinhHoc);
-		//	foreach (var item in isList)
-		//	{
-		//		switch (typeMinMax)
-		//		{
-		//			case TypeMinMax.maxDienTich:
-		//				if (TinhDienTich(item).Equals(MinMax_CV_DT(TypeCal.dienTich, TypeMinMax.maxDienTich)))
-		//					ListHinhHoc.Remove(item);
-		//				break;
-		//			case TypeMinMax.maxChuVi:
-		//				if (TinhChuVi(item).Equals(MinMax_CV_DT(TypeCal.chuVi, TypeMinMax.maxChuVi)))
-		//					ListHinhHoc.Remove(item);
-		//				break;
-		//			case TypeMinMax.minDienTich:
-		//				if (TinhDienTich(item).Equals(MinMax_CV_DT(TypeCal.dienTich, TypeMinMax.minDienTich)))
-		//					ListHinhHoc.Remove(item);
-		//				break;
-		//			case TypeMinMax.minChuVi:
-		//				if (TinhChuVi(item).Equals(MinMax_CV_DT(TypeCal.chuVi, TypeMinMax.minChuVi)))
-		//					ListHinhHoc.Remove(item);
-		//				break;
-		//			default:
-		//				break;
-		//		}
-		//	}
-
-		////}
+		public void XoaHinh(TypeMinMax typeMinMax, TypeList typeList)
+		{
+			List<HinhHoc> isList = new List<HinhHoc>(ListHinhHoc);
+			foreach (var item in isList)
+			{
+				switch (typeMinMax)
+				{
+					case TypeMinMax.maxDienTich:
+						if (TinhDienTich(item).Equals(MinMaxCV_DT_BK_C_CD(typeMinMax, typeList)))
+							ListHinhHoc.Remove(item);
+						break;
+					case TypeMinMax.maxChuVi:
+						if (TinhChuVi(item).Equals(MinMaxCV_DT_BK_C_CD(typeMinMax, typeList)))
+							ListHinhHoc.Remove(item);
+						break;
+					case TypeMinMax.minDienTich:
+						if (TinhDienTich(item).Equals(MinMaxCV_DT_BK_C_CD(typeMinMax, typeList)))
+							ListHinhHoc.Remove(item);
+						break;
+					case TypeMinMax.minChuVi:
+						if (TinhChuVi(item).Equals(MinMaxCV_DT_BK_C_CD(typeMinMax, typeList)))
+							ListHinhHoc.Remove(item);
+						break;
+				}
+			}
+		}
 
 		public void XoaHinhTaiViTri(int location)
 		{
@@ -636,79 +589,42 @@ namespace GeometryManagement
 		#endregion
 
 		#region Các hàm chức năng ghi danh sách các hình xuống file riêng
-
-		//public void GhiFile()
-		//{
-		//    string str = "\t\t\tBANG TONG HOP THONG TIN\n" +
-		//        $"1) Tong so cac doi tuong hinh hoc la: {TongHinhHoc()}\n" +
-		//        $"2) Tong so hinh tron la: {DemHinhTron()}\n" +
-		//        $"3) Tong so hinh vuong la: {DemHinhVuong()}\n" +
-		//        $"4) Tong so hinh chu nhat la {DemHinhChuNhat()}\n" +
-		//        $"\nA. Danh sach hinh tron (theo chieu tang dien tich)\n" + ListHinhTron().SortListHinhTronTang_DT() +
-		//        $"\n\nB. Danh sach hinh vuong(theo chieu tang dien tich)\n" + ListHinhVuong().SortListHinhVuongTang_DT() +
-		//        $"\n\nC. Danh sach hinh chu nhat(theo chieu tang dien tich)\n" + ListHinhChuNhat().SortListHinhChuNhatTang_DT() +
-		//        $"\n";
-		//    using (StreamWriter file = new StreamWriter(@"hinhhoc.txt", append: false)) // FileMode.Append, FileAccess.Write)
-		//    {
-		//        file.Write(str);
-		//    }
-		//}
-
-		//public void GhiFileHinhVuong()
-		//{
-		//    string str = "\t\t\tBANG TONG HOP THONG TIN\n" +
-		//        $"\n\nDanh sach hinh vuong\n" + ListHinhVuong().SortListHinhVuongTang_DT() +
-		//        $"\n";
-		//    using (StreamWriter file = new StreamWriter(@"hinhvuong.txt", append: false)) // FileMode.Append, FileAccess.Write)
-		//    {
-		//        file.Write(str);
-		//    }
-		//}
-
-		//public void GhiFileHinhTron()
-		//{
-		//    string str = "\t\t\tBANG TONG HOP THONG TIN\n" +
-		//        $"\n\nDanh sach hinh tron\n" + ListHinhTron().SortListHinhTronTang_DT() +
-		//        $"\n";
-		//    using (StreamWriter file = new StreamWriter(@"hinhtron.txt", append: false)) // FileMode.Append, FileAccess.Write)
-		//    {
-		//        file.Write(str);
-		//    }
-		//}
-
-		//public void GhiFileHinhChuNhat()
-		//{
-		//    string str = "\t\t\tBANG TONG HOP THONG TIN\n" +
-		//        $"\n\nDanh sach hinh chu nhat\n" + ListHinhChuNhat().SortListHinhChuNhatTang_DT() +
-		//        $"\n";
-		//    using (StreamWriter file = new StreamWriter(@"hinhchunhat.txt", append: false)) // FileMode.Append, FileAccess.Write)
-		//    {
-		//        file.Write(str);
-		//    }
-		//}
 		public void GhiFile(TypeList type)
 		{
-			string str = "";
+			string str = null;
+			string filename = null;
+			string kq = null;
 
 			switch (type)
 			{
 				case TypeList.HinhVuong:
-					str = "hinh vuong ";
+					str = "hinhvuong";
+					filename = str + ".txt";
+					kq = $"\n\n\t\t\tDANH SACH {str.ToUpper()}\n{DanhSachKieuHinh(type).ToString()}\n";
 					break;
 				case TypeList.HinhTron:
-					str = "hinh tron ";
+					str = "hinhtron";
+					filename = str + ".txt";
+					kq = $"\n\n\t\t\tDANH SACH {str.ToUpper()}\n{DanhSachKieuHinh(type).ToString()}\n";
 					break;
 				case TypeList.HinhChuNhat:
-					str = "hinh chu nhat ";
+					str = "hinhchunhat";
+					filename = str + ".txt";
+					kq = $"\n\n\t\t\tDANH SACH {str.ToUpper()}\n{DanhSachKieuHinh(type).ToString()}\n";
 					break;
 				case TypeList.TatCaHinh:
-					str = "tat ca cac hinh ";
+					str = "tatcahinh";
+					filename = str + ".txt";
+					kq = $"\t\t\tBANG TONG HOP THONG TIN\n1) Tong so cac doi tuong hinh hoc la: {TongHinhHoc()}\n" +
+						$"2) Tong so hinh tron la: {DemHinhHoc(TypeList.HinhTron)}\n" +
+						$"3) Tong so hinh vuong la: {DemHinhHoc(TypeList.HinhVuong)}\n" +
+						$"4) Tong so hinh chu nhat la {DemHinhHoc(TypeList.HinhChuNhat)}\n" +
+						$"\nA. Danh sach hinh tron (theo chieu tang dien tich)\n{DanhSachKieuHinh(TypeList.HinhTron).SortHinhHoc(SortBy.SortUpByDT, TypeList.HinhTron)}" +
+						$"\n\nB. Danh sach hinh vuong(theo chieu tang dien tich)\n{DanhSachKieuHinh(TypeList.HinhVuong).SortHinhHoc(SortBy.SortUpByDT, TypeList.HinhVuong)}" +
+						$"\n\nC. Danh sach hinh chu nhat(theo chieu tang dien tich)\n{DanhSachKieuHinh(TypeList.HinhChuNhat).SortHinhHoc(SortBy.SortUpByDT, TypeList.HinhChuNhat)}\n";
 					break;
-
 			}
-			string kq = $"\n\nDanh sach \n" + str + DanhSachKieuHinh(type).ToString() + $"\n";
-			string fileName = str.Trim() + ".txt";
-			using (StreamWriter file = new StreamWriter(fileName, append: false)) // FileMode.Append, FileAccess.Write)
+			using (StreamWriter file = new StreamWriter(filename, append: false)) // FileMode.Append, FileAccess.Write)
 			{
 				file.Write(kq);
 			}
