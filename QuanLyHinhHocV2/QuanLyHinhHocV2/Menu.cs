@@ -160,7 +160,7 @@ namespace GeometryManagement
 					WriteLine("Hinh co dien tich lon nhat la...");
 					WriteLine(listHinhHoc.TimHinhMinMaxCV_DT(DanhSachHinhHoc.TypeMinMax.maxDienTich));
 					WriteLine("Hinh co chu vi nho nhat la...");
-				    WriteLine(listHinhHoc.TimHinhMinMaxCV_DT(DanhSachHinhHoc.TypeMinMax.minChuVi));
+					WriteLine(listHinhHoc.TimHinhMinMaxCV_DT(DanhSachHinhHoc.TypeMinMax.minChuVi));
 					WriteLine("Hinh co chu vi lon nhat la...");
 					WriteLine(listHinhHoc.TimHinhMinMaxCV_DT(DanhSachHinhHoc.TypeMinMax.maxChuVi));
 					Write("\n\tNHAN PHIM BAT KI DE CHUYEN CHUC NANG TIEP THEO >> ");
