@@ -1,0 +1,38 @@
+public enum TypeList
+		{
+			HinhVuong = 0,
+			HinhTron = 1,
+			HinhChuNhat = 2,
+			TatCaHinh = 3
+		}
+
+public enum TypeCal
+		{
+			chuVi = 0,
+			dienTich = 1,
+			canh = 2,
+			banKinh = 3,
+			chieuDai = 4
+		}
+
+public enum TypeMinMax
+		{
+			maxChuVi = 0,
+			minChuVi = 1,
+			maxDienTich = 2,
+			minDienTich = 3,
+			maxCanh = 4,
+			minCanh = 5,
+			maxBanKinh = 6,
+			minBanKinh = 7,
+			maxChieuDai = 8,
+			minChieuDai = 9
+		}
+
+public enum SortBy
+		{
+			SortUpByCV = 0,
+			SortUpByDT = 1,
+			SortDownByCV = 2,
+			SortDownByDT = 3
+		}
