@@ -12,10 +12,12 @@ namespace QuanLyThietBi
 		string tenThietBi;
 		string hangSX;
 		float gia;
+		int soLuong;
 		public string ThietBi { get => thietBi; set { thietBi = value; } }
 		public string TenThietBi { get => tenThietBi; set { tenThietBi = value; } }
 		public string HangSX { get => hangSX; set { hangSX = value; } }
 		public float Gia { get => gia; set { gia = value; } }
+		public int SoLuongThietBi { get => soLuong; set { soLuong = value; } }
 		public CPU()
 		{
 		}
@@ -25,6 +27,7 @@ namespace QuanLyThietBi
 			HangSX = hangSX;
 			TenThietBi = tenTB;
 			Gia = gia;
+			SoLuongThietBi = 1;
 		}
 		public override string ToString() => $"{ThietBi} {HangSX} {TenThietBi} >> Gia = {Gia.ToString("C")}";
 	}

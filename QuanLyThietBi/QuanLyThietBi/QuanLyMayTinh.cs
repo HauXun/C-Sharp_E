@@ -47,10 +47,6 @@ namespace QuanLyThietBi
 							return list.listMayTinh.Max(x => x.GiaRAM);
 					}
 					break;
-				default:
-					WriteLine("Co loi gi do da xay ra. Hay kiem tra lai!");
-					Read();
-					break;
 			}
 			return 0;
 		}
@@ -87,13 +83,44 @@ namespace QuanLyThietBi
 							break;
 					}
 					break;
-				default:
-					WriteLine("Co loi gi do da xay ra. Hay kiem tra lai!");
-					Read();
-					break;
 			}
 			return result;
 		}
 		#endregion
+		public enum SortBy
+		{
+			SLThietBi,
+			GiaThietBi,
+			GiaCPU,
+			GiaRAM,
+			SoLuongCPU,
+			SoLuongRAM
+		}
+		public DanhSachMayTinh SortMayTinh(DanhSachMayTinh list, SortBy sortBy)
+		{
+			DanhSachMayTinh result = new DanhSachMayTinh();
+			switch (sortBy)
+			{
+				case SortBy.SLThietBi:
+					result.listMayTinh = list.listMayTinh.OrderBy(x => x.SLThietBi()).ToList();
+					return result;
+				case SortBy.GiaThietBi:
+					result.listMayTinh = list.listMayTinh.OrderBy(x => x.TinhGia()).ToList();
+					return result;
+				case SortBy.GiaCPU:
+					result.listMayTinh = list.listMayTinh.OrderBy(x => x.GiaCPU).ToList();
+					return result;
+				case SortBy.GiaRAM:
+					result.listMayTinh = list.listMayTinh.OrderBy(x => x.GiaRAM).ToList();
+					return result;
+				case SortBy.SoLuongCPU:
+					result.listMayTinh = list.listMayTinh.OrderBy(x => x.SoLuongThietBi).ToList();
+					return result;
+				case SortBy.SoLuongRAM:
+					result.listMayTinh = list.listMayTinh.OrderBy(x => x.SoLuongThietBi).ToList();
+					return result;
+			}
+			return null;
+		}
 	}
 }

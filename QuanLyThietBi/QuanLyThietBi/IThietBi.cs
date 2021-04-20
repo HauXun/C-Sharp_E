@@ -9,6 +9,7 @@ namespace QuanLyThietBi
 	interface IThietBi
 	{
 		float TinhGia();
+		int SLThietBi();
 		public float GiaCPU { get; set; }
 		public float GiaRAM { get; set; }
 		public float GiaHDD { get; set; }

@@ -99,28 +99,41 @@ namespace QuanLyThietBi
 			}
 			return 0;
 		}
-		public int XuatHienNhieuNhatTheoLoai(MayTinh.Loai loai)
+		public int XuatHienNhieuNhatItNhatTheoLoai(MayTinh.Loai loai, MinMax minMax)
 		{
 			int max = int.MinValue;
+			int min = int.MaxValue;
 			List<string> list = DanhSachTheoLoai(loai);
 			foreach (var item in list)
 			{
 				int temp = DemThietBiTheoLoai(loai, item);
-				if (max < temp)
-					max = temp;
+				switch (minMax)
+				{
+					case MinMax.Min:
+						if (min > temp)
+							min = temp;
+						break;
+					case MinMax.Max:
+						if (max < temp)
+							max = temp;
+						break;
+				}
 			}
-			return max;
+			if (minMax == MinMax.Max)
+				return max;
+			else
+				return min;
 		}
-		public List<string> DanhSachXuatHienNhieuNhatTheoLoai(MayTinh.Loai loai)
+		public List<string> DanhSachXuatHienNhieuNhatItNhatTheoLoai(MayTinh.Loai loai, MinMax minMax)
 		{
 			List<string> result = new List<string>();
-			int max = XuatHienNhieuNhatTheoLoai(loai);
+			int obj = XuatHienNhieuNhatItNhatTheoLoai(loai, minMax);
 			List<string> list = DanhSachTheoLoai(loai);
 			foreach (var item in list)
 			{
 				int temp = DemThietBiTheoLoai(loai, item);
-				if (temp == max)
-				result.Add(item);
+				if (temp == obj)
+					result.Add(item);
 			}
 			return result;
 		}

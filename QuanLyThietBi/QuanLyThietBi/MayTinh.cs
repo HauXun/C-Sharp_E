@@ -14,11 +14,13 @@ namespace QuanLyThietBi
 		string tenThietBi;
 		string hangSX;
 		float gia;
+		int soLuong;
 		public float giaRAM, giaCPU, giaHDD;
 		public string ThietBi { get => thietBi; set { thietBi = value; } }
 		public string TenThietBi { get => tenThietBi; set { tenThietBi = value; } }
 		public string HangSX { get => hangSX; set { hangSX = value; } }
 		public float Gia { get => gia; set { gia = value; } }
+		public int SoLuongThietBi { get => soLuong; set { soLuong = value; } }
 		public float GiaCPU { get => giaCPU; set { giaCPU = value; } }
 		public float GiaRAM { get => giaRAM; set { giaRAM = value; } }
 		public float GiaHDD { get => giaHDD; set { giaHDD = value; } }
@@ -36,12 +38,13 @@ namespace QuanLyThietBi
 			Them(h);
 			GiaHDD = h.Gia;
 		}
+		public float TinhGia() => list.Sum(x => x.Gia);
+		public int SLThietBi() => list.Sum(x => x.SoLuongThietBi);
 		public void Them(ILinkKien x)
 		{
 			if (!list.Contains(x))
 				list.Add(x);
 		}
-		public float TinhGia() => list.Sum(x => x.Gia);
 		public override string ToString()
 		{
 			string str = "\n\nMay tinh " + TenMayTinh + "\n";
@@ -49,7 +52,7 @@ namespace QuanLyThietBi
 			{
 				str += item + "\n";
 			}
-			str += " Tong gia la: " + TinhGia().ToString("C");
+			str += "\tSo luong: " + SLThietBi() + "\n\tTong gia la: " + TinhGia().ToString("C");
 			return str;
 		}
 		#endregion
@@ -72,8 +75,6 @@ namespace QuanLyThietBi
 			}
 			return 0;
 		}
-		public int DemTheoHang(string hang) => list.Count(x => x.HangSX == hang);
-		public int DemTheoThietBi(string thietBi) => list.Count(x => x.ThietBi == ThietBi);
 		public enum Loai
 		{
 			TatCaHangSX,

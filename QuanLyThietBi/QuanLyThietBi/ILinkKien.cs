@@ -12,5 +12,6 @@ namespace QuanLyThietBi
 		string ThietBi { get; set; }
 		string TenThietBi { get; set; }
 		string HangSX { get; set; }
+		int SoLuongThietBi { get; set; }
 	}
 }
