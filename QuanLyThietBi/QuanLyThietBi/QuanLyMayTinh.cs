@@ -9,7 +9,6 @@ namespace QuanLyThietBi
 {
 	class QuanLyMayTinh
 	{
-		List<ILinkKien> listLinkKien = new List<ILinkKien>();
 		public enum LoaiGia
 		{
 			GiaMayTinh,
@@ -20,16 +19,6 @@ namespace QuanLyThietBi
 		{
 			CPU,
 			RAM
-		}
-		public enum MinMax
-		{
-			Min,
-			Max
-		}
-		public enum Loai
-		{
-			HangSX,
-			ThietBi
 		}
 		#region Các hàm chức năng tìm kiếm
 		public float Gia(DanhSachMayTinh list, int loaiGia, int minMax)
@@ -106,38 +95,5 @@ namespace QuanLyThietBi
 			return result;
 		}
 		#endregion
-		public void ThemDanhSachTheoLoai(List<string> result, List<string> kieu, int loai)
-		{
-			foreach (var item in kieu)
-			{
-				if (!result.Contains(item))
-					switch (loai)
-					{
-						case 0:
-							result.Add(item);
-							break;
-						case 1:
-							result.Add(item);
-							break;
-					}
-			}
-		}
-		public List<string> DanhSachTheoLoai(DanhSachMayTinh list, int loai)
-		{
-			List<string> result = new List<string>();
-			foreach (var item in list.listMayTinh)
-			{
-				switch(loai)
-				{
-					case 0:
-						ThemDanhSachTheoLoai(result, item.TimDanhSachTheoLoai(loai), loai);
-						break;
-					case 1:
-						ThemDanhSachTheoLoai(result, item.TimDanhSachTheoLoai(loai), loai);
-						break;
-				}
-			}
-			return result;
-		}
 	}
 }

@@ -71,19 +71,23 @@ namespace QuanLyThietBi
 					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, 2, 0).Xuat();
 					WriteLine("\nMay tinh co RAM gia cao nhat...");
 					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, 2, 1).Xuat();
-					WriteLine("\nMay tinh co gia re nhat...");
-					WriteLine("\nMay tinh co gia re nhat...");
-					WriteLine("\nMay tinh co gia re nhat...");
+					WriteLine("\nHang duoc su dung CPU nhieu nhat...");
+					foreach (var item in listMayTinh.DanhSachXuatHienNhieuNhatTheoLoai(MayTinh.Loai.HangCPU))
+						WriteLine(item);
+					WriteLine("\nHang duoc su dung CPU it nhat...");
+					foreach (var item in listMayTinh.DanhSachXuatHienNhieuNhatTheoLoai(MayTinh.Loai.HangCPU))
+						WriteLine(item);
+					WriteLine("\nHang duoc su dung RAM nhieu nhat...");
+					WriteLine("\nHang duoc su dung RAM it nhat...");
 					break;
 				#endregion
 				case 4:
 					Clear();
 					WriteLine("Test code >> ");
-					foreach (string s in listMayTinhQL.DanhSachTheoLoai(listMayTinh, 0))
-						WriteLine(s);
-					WriteLine("\n");
-					foreach (string s in listMayTinhQL.DanhSachTheoLoai(listMayTinh, 1))
-						WriteLine(s);
+					foreach (var item in listMayTinh.DanhSachXuatHienNhieuNhatTheoLoai(MayTinh.Loai.HangRAM))
+					{
+						WriteLine(item);
+					}
 					break;
 			}
 			ReadLine();

@@ -8,14 +8,14 @@ namespace QuanLyThietBi
 {
 	class HDD : ILinkKien
 	{
-		float gia;
-		string hangSX;
-		string tenThietBi;
 		string thietBi;
-		public string ThietBi { get { return thietBi; } set { thietBi = value; } }
-		public float Gia { get { return gia; } set { gia = value; } }
-		public string HangSX { get { return hangSX; } set { hangSX = value; } }
-		public string TenThietBi { get { return tenThietBi; } set { tenThietBi = value; } }
+		string tenThietBi;
+		string hangSX;
+		float gia;
+		public string ThietBi { get => thietBi; set { thietBi = value; } }
+		public string TenThietBi { get => tenThietBi; set { tenThietBi = value; } }
+		public string HangSX { get => hangSX; set { hangSX = value; } }
+		public float Gia { get => gia; set { gia = value; } }
 		public HDD()
 		{
 		}
