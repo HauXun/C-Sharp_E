@@ -21,14 +21,23 @@ namespace QuanLyThietBi
 		public HDD()
 		{
 		}
-		public HDD(string hangSX, string tenTB, float gia)
+		public HDD(string thietBi, string hangsX, string tenThietBi, float gia)
 		{
-			ThietBi = "HDD";
-			HangSX = hangSX;
-			TenThietBi = tenTB;
+			ThietBi = thietBi;
+			HangSX = hangsX;
+			TenThietBi = tenThietBi;
 			Gia = gia;
-			SoLuongThietBi = 1;
+			SoLuongThietBi++;
 		}
-		public override string ToString() => $"{ThietBi} {HangSX} {TenThietBi} >> Gia = {Gia.ToString("C")}";
+		public HDD (string line)
+		{
+			string[] str = line.Split(',');
+			ThietBi = str[0];
+			HangSX = str[1];
+			TenThietBi = str[2];
+			Gia = float.Parse(str[3]);
+			SoLuongThietBi++;
+		}
+		public override string ToString() => $"{ThietBi} {HangSX} {TenThietBi} - So luong: {SoLuongThietBi}".PadRight(65) + $"\t\t>> Gia = {Gia.ToString("C")}";
 	}
 }

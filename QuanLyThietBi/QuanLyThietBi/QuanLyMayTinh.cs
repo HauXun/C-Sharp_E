@@ -94,7 +94,8 @@ namespace QuanLyThietBi
 			GiaCPU,
 			GiaRAM,
 			SoLuongCPU,
-			SoLuongRAM
+			SoLuongRAM,
+			Hang
 		}
 		public DanhSachMayTinh SortMayTinh(DanhSachMayTinh list, SortBy sortBy)
 		{
@@ -118,6 +119,9 @@ namespace QuanLyThietBi
 					return result;
 				case SortBy.SoLuongRAM:
 					result.listMayTinh = list.listMayTinh.OrderBy(x => x.SoLuongThietBi).ToList();
+					return result;
+				case SortBy.Hang:
+					result.listMayTinh = list.listMayTinh.OrderBy(x => x.TimDanhSachTheoLoai(MayTinh.Loai.TatCaHangSX)).ToList();
 					return result;
 			}
 			return null;

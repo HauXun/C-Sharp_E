@@ -7,9 +7,6 @@ namespace QuanLyThietBi
 	{
 		DanhSachMayTinh listMayTinh = new DanhSachMayTinh();
 		QuanLyMayTinh listMayTinhQL = new QuanLyMayTinh();
-		MayTinh mayTinh = new MayTinh();
-		float x;
-		int location;
 
 		public readonly string[] options = new string[]
 		{
@@ -116,13 +113,18 @@ namespace QuanLyThietBi
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo so luong RAM...");
 					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.SoLuongRAM).Xuat();
+					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
+					Clear();
+					WriteLine("\nSap xep danh sach may tinh theo hang...");
+					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.Hang).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE KET THUC CHUC NANG SAP XEP >> ");
 					Read();
 					break;
 				case 5:
 					Clear();
 					WriteLine("Test code >> ");
-					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.SoLuongCPU).Xuat();
+					foreach (var item in listMayTinh.SortTheoHang())
+						WriteLine(item);
 					break;
 			}
 			ReadLine();

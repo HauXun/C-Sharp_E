@@ -9,13 +9,14 @@ namespace QuanLyThietBi
 	{
 		List<ILinkKien> list = new List<ILinkKien>();
 		#region Nhập xuất định dạng và truy vấn 🚀🚀🚀
-		string tenMayTinh;
 		string thietBi;
 		string tenThietBi;
 		string hangSX;
 		float gia;
 		int soLuong;
-		public float giaRAM, giaCPU, giaHDD;
+		string tenMayTinh;
+		public float giaRAM, giaCPU, giaHDD, giaMainBoard, giaPower;
+		public string TenMayTinh { get => tenMayTinh; set { tenMayTinh = value; } }
 		public string ThietBi { get => thietBi; set { thietBi = value; } }
 		public string TenThietBi { get => tenThietBi; set { tenThietBi = value; } }
 		public string HangSX { get => hangSX; set { hangSX = value; } }
@@ -24,19 +25,25 @@ namespace QuanLyThietBi
 		public float GiaCPU { get => giaCPU; set { giaCPU = value; } }
 		public float GiaRAM { get => giaRAM; set { giaRAM = value; } }
 		public float GiaHDD { get => giaHDD; set { giaHDD = value; } }
-		public string TenMayTinh { get => tenMayTinh; set { tenMayTinh = value; } }
+		public float GiaMainboard { get => giaMainBoard; set { giaMainBoard = value; } }
+		public float GiaPower { get => giaPower; set { giaPower = value; } }
 		public MayTinh()
 		{
 		}
-		public MayTinh(string tenMayTinh, CPU c, RAM r, HDD h)
+		public MayTinh(Device d, CPU c, RAM r, HDD h, Mainboard m, Power p)
 		{
-			TenMayTinh = tenMayTinh;
+			Them(d);
+			TenMayTinh = d.TenMayTinh;
 			Them(c);
 			GiaCPU = c.Gia;
 			Them(r);
 			GiaRAM = r.Gia;
 			Them(h);
 			GiaHDD = h.Gia;
+			Them(m);
+			GiaMainboard = m.Gia;
+			Them(p);
+			GiaPower = p.Gia;
 		}
 		public float TinhGia() => list.Sum(x => x.Gia);
 		public int SLThietBi() => list.Sum(x => x.SoLuongThietBi);
@@ -47,12 +54,12 @@ namespace QuanLyThietBi
 		}
 		public override string ToString()
 		{
-			string str = "\n\nMay tinh " + TenMayTinh + "\n";
+			string str = null;
 			foreach (var item in list)
 			{
 				str += item + "\n";
 			}
-			str += "\tSo luong: " + SLThietBi() + "\n\tTong gia la: " + TinhGia().ToString("C");
+			str += "\tTong so luong thiet bi: " + SLThietBi() + "\n\tTong gia la: " + TinhGia().ToString("C");
 			return str;
 		}
 		#endregion

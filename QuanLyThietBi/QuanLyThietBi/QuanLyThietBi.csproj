@@ -5,4 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="HDD.cs~RF1f0b56ad.TMP" />
+  </ItemGroup>
+
 </Project>

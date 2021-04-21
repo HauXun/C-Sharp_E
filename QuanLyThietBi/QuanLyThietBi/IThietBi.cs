@@ -13,5 +13,7 @@ namespace QuanLyThietBi
 		public float GiaCPU { get; set; }
 		public float GiaRAM { get; set; }
 		public float GiaHDD { get; set; }
+		public float GiaMainboard { get; set; }
+		public float GiaPower { get; set; }
 	}
 }

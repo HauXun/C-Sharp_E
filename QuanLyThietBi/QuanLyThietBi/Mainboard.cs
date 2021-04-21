@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyThietBi
 {
-	class RAM : ILinkKien
+	class Mainboard : ILinkKien
 	{
 		string thietBi;
 		string tenThietBi;
@@ -16,12 +16,12 @@ namespace QuanLyThietBi
 		public string ThietBi { get => thietBi; set { thietBi = value; } }
 		public string TenThietBi { get => tenThietBi; set { tenThietBi = value; } }
 		public string HangSX { get => hangSX; set { hangSX = value; } }
-		public float Gia { get => gia;  set { gia = value; } }
+		public float Gia { get => gia; set { gia = value; } }
 		public int SoLuongThietBi { get => soLuong; set { soLuong = value; } }
-		public RAM()
+		public Mainboard()
 		{
 		}
-		public RAM(string thietBi, string hangsX, string tenThietBi, float gia)
+		public Mainboard(string thietBi, string hangsX, string tenThietBi, float gia)
 		{
 			ThietBi = thietBi;
 			HangSX = hangsX;
@@ -29,7 +29,7 @@ namespace QuanLyThietBi
 			Gia = gia;
 			SoLuongThietBi++;
 		}
-		public RAM (string line)
+		public Mainboard(string line)
 		{
 			string[] str = line.Split(',');
 			ThietBi = str[0];

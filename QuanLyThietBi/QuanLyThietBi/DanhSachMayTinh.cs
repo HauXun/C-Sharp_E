@@ -31,18 +31,71 @@ namespace QuanLyThietBi
 				Write("\nAccess...");
 			StreamReader file = new StreamReader(a);
 			string str = "";
-			string[] tC;
-			string[] tR;
-			string[] tH;
+			//while ((str = file.ReadLine()) != null)
+			//{
+			//	// CPU,Intel,300 * CPU,Intel,300 * RAM,SamSung,50 * HDD,Seagate,500
+			//	MayTinh mayTinh = new MayTinh();
+			//	string[] s = str.Split('*');
+			//	foreach (string item in s)
+			//	{
+			//		if (item.IndexOf("MT") == 0)
+			//			mayTinh.Them(new Device(item));
+			//		if (item.IndexOf("CPU") == 0)
+			//			mayTinh.Them(new CPU(item));
+			//		if (item.IndexOf("RAM") == 0)
+			//			mayTinh.Them(new RAM(item));
+			//		if (item.IndexOf("HDD") == 0)
+			//			mayTinh.Them(new HDD(item));
+			//		if (item.IndexOf("Mainboard") == 0)
+			//			mayTinh.Them(new Mainboard(item));
+			//		if (item.IndexOf("Power") == 0)
+			//			mayTinh.Them(new Power(item));
+			//	}
+			//	Them(mayTinh);
+			//}
 			while ((str = file.ReadLine()) != null)
 			{
-				string[] s = str.Split(',');
-				tC = s[1].Split(' ');
-				tR = s[2].Split(' ');
-				tH = s[3].Split(' ');
-				Them(new MayTinh(s[0], new CPU(tC[0], tC[1], float.Parse(tC[2])),
-					new RAM(tR[0], tR[1], float.Parse(tR[2])),
-					new HDD(tH[0], tH[1], float.Parse(tH[2]))));
+				Device d = new Device();
+				CPU c = new CPU();
+				RAM r = new RAM();
+				HDD h = new HDD();
+				Mainboard m = new Mainboard();
+				Power p = new Power();
+				string[] s = str.Split('*');
+				foreach (var item in s)
+				{
+					if (item.IndexOf("MT") == 0)
+					{
+						string[] ss = item.Split(',');
+						d = new Device(ss[1]);
+					}
+					if (item.IndexOf("CPU") == 0)
+					{
+						string[] ss = item.Split(',');
+						c = new CPU(ss[0], ss[1], ss[2], float.Parse(ss[3]));
+					}
+					if (item.IndexOf("RAM") == 0)
+					{
+						string[] ss = item.Split(',');
+						r = new RAM(ss[0], ss[1], ss[2], float.Parse(ss[3]));
+					}
+					if (item.IndexOf("HDD") == 0)
+					{
+						string[] ss = item.Split(',');
+						h = new HDD(ss[0], ss[1], ss[2], float.Parse(ss[3]));
+					}
+					if (item.IndexOf("Mainboard") == 0)
+					{
+						string[] ss = item.Split(',');
+						m = new Mainboard(ss[0], ss[1], ss[2], float.Parse(ss[3]));
+					}
+					if (item.IndexOf("Power") == 0)
+					{
+						string[] ss = item.Split(',');
+						p = new Power(ss[0], ss[1], ss[2], float.Parse(ss[3]));
+					}
+				}
+				Them(new MayTinh(d, c, r, h, m, p));
 			}
 		}
 		public void Them(MayTinh mt)
@@ -138,5 +191,11 @@ namespace QuanLyThietBi
 			return result;
 		}
 		#endregion
+		public List<MayTinh> SortTheoHang()
+		{
+			List<MayTinh> mayTinhs = new List<MayTinh>(listMayTinh);
+			mayTinhs.OrderBy(x => x.TenMayTinh);
+			return mayTinhs;
+		}
 	}
 }
