@@ -6,27 +6,29 @@ using System.Threading.Tasks;
 
 namespace QuanLyThietBi
 {
-	class Device : ILinkKien
+	class Device : IThietBi
 	{
-		string tenMayTinh;
-		public string TenMayTinh { get => tenMayTinh; set { tenMayTinh = value; } }
+		public string TenMayTinh { get; set; }
 		public string ThietBi { get; set; }
 		public string TenThietBi { get; set; }
 		public string HangSX { get; set; }
 		public float Gia { get; set; }
+		public float GiaCPU { get; set; }
+		public float GiaRAM { get; set; }
+		public float GiaHDD { get; set; }
+		public float GiaMainboard { get; set; }
+		public float GiaPower { get; set; }
 		public int SoLuongThietBi { get; set; }
-		public Device()
+		public int SoLuongCPU { get; set; }
+		public int SoLuongRAM { get; set; }
+		public int SoLuongHDD { get; set; }
+		public int SoLuongMainboard { get; set; }
+		public int SoLuongPower { get; set; }
+		public Device(string line)
 		{
+			string[] str = line.Split(',');
+			TenMayTinh = str[1];
 		}
-		public Device(string tenMayTinh)
-		{
-			TenMayTinh = tenMayTinh;
-		}
-		//public Device(string line)
-		//{
-		//	string[] str = line.Split(',');
-		//	TenMayTinh = str[1];
-		//}
 		public override string ToString() => $"\n\nMay tinh {TenMayTinh}".PadRight(65);
 	}
 }

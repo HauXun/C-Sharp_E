@@ -5,52 +5,28 @@ using static System.Console;
 
 namespace QuanLyThietBi
 {
-	class MayTinh : ILinkKien, IThietBi
+	class MayTinh : ILinkKien
 	{
-		List<ILinkKien> list = new List<ILinkKien>();
+		List<IThietBi> list = new List<IThietBi>();
 		#region Nhập xuất định dạng và truy vấn 🚀🚀🚀
-		string thietBi;
-		string tenThietBi;
-		string hangSX;
-		float gia;
-		int soLuong;
-		string tenMayTinh;
-		public float giaRAM, giaCPU, giaHDD, giaMainBoard, giaPower;
-		public string TenMayTinh { get => tenMayTinh; set { tenMayTinh = value; } }
-		public string ThietBi { get => thietBi; set { thietBi = value; } }
-		public string TenThietBi { get => tenThietBi; set { tenThietBi = value; } }
-		public string HangSX { get => hangSX; set { hangSX = value; } }
-		public float Gia { get => gia; set { gia = value; } }
-		public int SoLuongThietBi { get => soLuong; set { soLuong = value; } }
-		public float GiaCPU { get => giaCPU; set { giaCPU = value; } }
-		public float GiaRAM { get => giaRAM; set { giaRAM = value; } }
-		public float GiaHDD { get => giaHDD; set { giaHDD = value; } }
-		public float GiaMainboard { get => giaMainBoard; set { giaMainBoard = value; } }
-		public float GiaPower { get => giaPower; set { giaPower = value; } }
 		public MayTinh()
 		{
 		}
-		public MayTinh(Device d, CPU c, RAM r, HDD h, Mainboard m, Power p)
-		{
-			Them(d);
-			TenMayTinh = d.TenMayTinh;
-			Them(c);
-			GiaCPU = c.Gia;
-			Them(r);
-			GiaRAM = r.Gia;
-			Them(h);
-			GiaHDD = h.Gia;
-			Them(m);
-			GiaMainboard = m.Gia;
-			Them(p);
-			GiaPower = p.Gia;
-		}
 		public float TinhGia() => list.Sum(x => x.Gia);
 		public int SLThietBi() => list.Sum(x => x.SoLuongThietBi);
-		public void Them(ILinkKien x)
+		public float TinhGiaCPU() => list.Sum(x => x.GiaCPU);
+		public float TinhGiaRAM() => list.Sum(x => x.GiaRAM);
+		public float TinhGiaHDD() => list.Sum(x => x.GiaHDD);
+		public float TinhGiaMainboard() => list.Sum(x => x.GiaMainboard);
+		public float TinhGiaPower() => list.Sum(x => x.GiaPower);
+		public int SLCPU() => list.Sum(x => x.SoLuongCPU);
+		public int SLRAM() => list.Sum(x => x.SoLuongRAM);
+		public int SLHDD() => list.Sum(x => x.SoLuongHDD);
+		public int SLMainboard() => list.Sum(x => x.SoLuongMainboard);
+		public int SLPower() => list.Sum(x => x.SoLuongPower);
+		public void Them(IThietBi x)
 		{
-			if (!list.Contains(x))
-				list.Add(x);
+			list.Add(x);
 		}
 		public override string ToString()
 		{
@@ -91,7 +67,8 @@ namespace QuanLyThietBi
 			TatCaThietBi,
 			CPU,
 			RAM,
-			HDD
+			HDD,
+			HangMayTinh
 		}
 		public List<string> TimDanhSachTheoLoai(Loai loai)
 		{
@@ -129,6 +106,9 @@ namespace QuanLyThietBi
 					case Loai.HDD:
 						if (item.ThietBi == "HDD")
 							result.Add("HDD");
+						break;
+					case Loai.HangMayTinh:
+						result.Add(item.TenMayTinh);
 						break;
 				}
 			}

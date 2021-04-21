@@ -60,15 +60,15 @@ namespace QuanLyThietBi
 					Clear();
 					WriteLine("Tim kiem theo chuc nang tuong ung >> ");
 					WriteLine("\nMay tinh co gia re nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, 0, 0).Xuat();
+					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaMayTinh, QuanLyMayTinh.MinMax.Min).Xuat();
 					WriteLine("\nMay tinh co CPU gia thap nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, 1, 0).Xuat();
+					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaCPU, QuanLyMayTinh.MinMax.Min).Xuat();
 					WriteLine("\nMay tinh co CPU gia cao nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, 1, 1).Xuat();
+					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaCPU, QuanLyMayTinh.MinMax.Max).Xuat();
 					WriteLine("\nMay tinh co RAM gia thap nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, 2, 0).Xuat();
+					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaRAM, QuanLyMayTinh.MinMax.Min).Xuat();
 					WriteLine("\nMay tinh co RAM gia cao nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, 2, 1).Xuat();
+					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaRAM, QuanLyMayTinh.MinMax.Max).Xuat();
 					WriteLine("\nHang duoc su dung CPU nhieu nhat...");
 					foreach (var item in listMayTinh.DanhSachXuatHienNhieuNhatItNhatTheoLoai(MayTinh.Loai.HangCPU, DanhSachMayTinh.MinMax.Max))
 						WriteLine(item);
@@ -89,41 +89,40 @@ namespace QuanLyThietBi
 					WriteLine("\nSap xep danh sach may tinh theo so luong thiet bi...");
 					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.SLThietBi).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
-					Read();
+					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo gia thiet bi...");
 					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.GiaThietBi).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
-					Read();
+					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo gia CPU...");
 					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.GiaCPU).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
-					Read();
+					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo gia RAM...");
 					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.GiaRAM).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
-					Read();
+					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo so luong CPU...");
 					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.SoLuongCPU).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
-					Read();
+					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo so luong RAM...");
 					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.SoLuongRAM).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
-					Clear();
+					ReadLine();
 					WriteLine("\nSap xep danh sach may tinh theo hang...");
 					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.Hang).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE KET THUC CHUC NANG SAP XEP >> ");
-					Read();
 					break;
 				case 5:
 					Clear();
 					WriteLine("Test code >> ");
-					foreach (var item in listMayTinh.SortTheoHang())
+					foreach (var item in listMayTinh.DanhSachTheoLoai(MayTinh.Loai.HangMayTinh))
 						WriteLine(item);
 					break;
 			}

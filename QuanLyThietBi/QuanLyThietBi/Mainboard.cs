@@ -6,29 +6,24 @@ using System.Threading.Tasks;
 
 namespace QuanLyThietBi
 {
-	class Mainboard : ILinkKien
+	class Mainboard : IThietBi
 	{
-		string thietBi;
-		string tenThietBi;
-		string hangSX;
-		float gia;
-		int soLuong;
-		public string ThietBi { get => thietBi; set { thietBi = value; } }
-		public string TenThietBi { get => tenThietBi; set { tenThietBi = value; } }
-		public string HangSX { get => hangSX; set { hangSX = value; } }
-		public float Gia { get => gia; set { gia = value; } }
-		public int SoLuongThietBi { get => soLuong; set { soLuong = value; } }
-		public Mainboard()
-		{
-		}
-		public Mainboard(string thietBi, string hangsX, string tenThietBi, float gia)
-		{
-			ThietBi = thietBi;
-			HangSX = hangsX;
-			TenThietBi = tenThietBi;
-			Gia = gia;
-			SoLuongThietBi++;
-		}
+		public string TenMayTinh { get; set; }
+		public string ThietBi { get; set; }
+		public string TenThietBi { get; set; }
+		public string HangSX { get; set; }
+		public float Gia { get; set; }
+		public float GiaCPU { get; set; }
+		public float GiaRAM { get; set; }
+		public float GiaHDD { get; set; }
+		public float GiaMainboard { get; set; }
+		public float GiaPower { get; set; }
+		public int SoLuongThietBi { get; set; }
+		public int SoLuongCPU { get; set; }
+		public int SoLuongRAM { get; set; }
+		public int SoLuongHDD { get; set; }
+		public int SoLuongMainboard { get; set; }
+		public int SoLuongPower { get; set; }
 		public Mainboard(string line)
 		{
 			string[] str = line.Split(',');
@@ -36,7 +31,9 @@ namespace QuanLyThietBi
 			HangSX = str[1];
 			TenThietBi = str[2];
 			Gia = float.Parse(str[3]);
+			GiaMainboard = Gia;
 			SoLuongThietBi++;
+			SoLuongMainboard = SoLuongThietBi;
 		}
 		public override string ToString() => $"{ThietBi} {HangSX} {TenThietBi} - So luong: {SoLuongThietBi}".PadRight(65) + $"\t\t>> Gia = {Gia.ToString("C")}";
 	}

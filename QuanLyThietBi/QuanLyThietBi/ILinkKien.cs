@@ -8,10 +8,17 @@ namespace QuanLyThietBi
 {
 	interface ILinkKien
 	{
-		float Gia { get; set; }
-		string ThietBi { get; set; }
-		string TenThietBi { get; set; }
-		string HangSX { get; set; }
-		int SoLuongThietBi { get; set; }
+		float TinhGia();
+		float TinhGiaCPU();
+		float TinhGiaRAM();
+		float TinhGiaHDD();
+		float TinhGiaMainboard();
+		float TinhGiaPower();
+		int SLThietBi();
+		int SLCPU();
+		int SLRAM();
+		int SLHDD();
+		int SLMainboard();
+		int SLPower();
 	}
 }
