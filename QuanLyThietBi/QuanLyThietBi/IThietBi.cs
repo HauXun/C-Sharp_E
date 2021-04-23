@@ -8,16 +8,16 @@ namespace QuanLyThietBi
 {
 	interface IThietBi
 	{
-		public string TenMayTinh { get; set; }
+		string TenMayTinh { get; set; }
 		string ThietBi { get; set; }
 		string TenThietBi { get; set; }
 		string HangSX { get; set; }
 		float Gia { get; set; }
-		public float GiaCPU { get; set; }
-		public float GiaRAM { get; set; }
-		public float GiaHDD { get; set; }
-		public float GiaMainboard { get; set; }
-		public float GiaPower { get; set; }
+		float GiaCPU { get; set; }
+		float GiaRAM { get; set; }
+		float GiaHDD { get; set; }
+		float GiaMainboard { get; set; }
+		float GiaPower { get; set; }
 		int SoLuongThietBi { get; set; }
 		int SoLuongCPU { get; set; }
 		int SoLuongRAM { get; set; }

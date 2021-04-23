@@ -122,8 +122,6 @@ namespace QuanLyThietBi
 				case 5:
 					Clear();
 					WriteLine("Test code >> ");
-					foreach (var item in listMayTinh.DanhSachTheoLoai(MayTinh.Loai.HangMayTinh))
-						WriteLine(item);
 					break;
 			}
 			ReadLine();

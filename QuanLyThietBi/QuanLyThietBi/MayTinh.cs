@@ -24,9 +24,11 @@ namespace QuanLyThietBi
 		public int SLHDD() => list.Sum(x => x.SoLuongHDD);
 		public int SLMainboard() => list.Sum(x => x.SoLuongMainboard);
 		public int SLPower() => list.Sum(x => x.SoLuongPower);
+		public string TenMayTinh { get; set; }
 		public void Them(IThietBi x)
 		{
 			list.Add(x);
+			TenMayTinh = x.TenMayTinh;
 		}
 		public override string ToString()
 		{

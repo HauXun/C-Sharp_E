@@ -146,11 +146,5 @@ namespace QuanLyThietBi
 			return result;
 		}
 		#endregion
-		public List<MayTinh> SortTheoHang()
-		{
-			List<MayTinh> mayTinhs = new List<MayTinh>(listMayTinh);
-			//mayTinhs.OrderBy(x => x.TenMayTinh);
-			return mayTinhs;
-		}
 	}
 }

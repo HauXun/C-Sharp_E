@@ -29,6 +29,6 @@ namespace QuanLyThietBi
 			string[] str = line.Split(',');
 			TenMayTinh = str[1];
 		}
-		public override string ToString() => $"\n\nMay tinh {TenMayTinh}".PadRight(65);
+		public override string ToString() => $"\n\nMay tinh {TenMayTinh}";
 	}
 }
