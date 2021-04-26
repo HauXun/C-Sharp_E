@@ -35,10 +35,10 @@ namespace QuanLyThietBi
 			{
 				MayTinh mayTinh = new MayTinh();
 				string[] s = str.Split('*');
+				mayTinh.TenMayTinh = s[0];
 				foreach (string item in s)
 				{
-					if (item.IndexOf("MT") == 0)
-						mayTinh.Them(new Device(item));
+
 					if (item.IndexOf("CPU") == 0)
 						mayTinh.Them(new CPU(item));
 					if (item.IndexOf("RAM") == 0)
@@ -53,10 +53,7 @@ namespace QuanLyThietBi
 				Them(mayTinh);
 			}
 		}
-		public void Them(MayTinh mt)
-		{
-			listMayTinh.Add(mt);
-		}
+		public void Them(MayTinh mt) => listMayTinh.Add(mt);
 		public override string ToString()
 		{
 			string str = null;
@@ -64,86 +61,100 @@ namespace QuanLyThietBi
 				str += item + "\n";
 			return str;
 		}
-		public void Xuat()
-		{
-			WriteLine(ToString());
-		}
+		public void Xuat() => WriteLine(ToString());
 		#endregion
-		#region Các hàm phân loại danh sách máy tinh 🚀🚀🚀
-		public enum MinMax
-		{
-			Min,
-			Max
-		}
+		#region Các hàm phân loại danh sách máy tính (☞ﾟヮﾟ)☞
 		public void ThemDanhSach(List<string> result, List<string> kieu)
 		{
 			foreach (var item in kieu)
 				if (!result.Contains(item))
 					result.Add(item);
 		}
-		public List<string> DanhSachTheoLoai(MayTinh.Loai loai)
+		public List<string> DanhSachHangTheoLoai<T>()
 		{
 			List<string> result = new List<string>();
 			foreach (var item in listMayTinh)
-				ThemDanhSach(result, item.TimDanhSachTheoLoai(loai));
+				ThemDanhSach(result, item.DanhSachHangTheoLoai<T>());
 			return result;
 		}
-		public int DemThietBiTheoLoai(MayTinh.Loai loai, string kieu)
+		#endregion
+		#region Các hàm tìm kiếm danh sách máy tính ☜(ﾟヮﾟ☜)
+		public enum MinMax
 		{
-			switch (loai)
+			Min,
+			Max,
+			All
+		}
+		public float TinhGia<T>(MinMax minMax)
+		{
+			switch (minMax)
 			{
-				case MayTinh.Loai.HangCPU:
-					return listMayTinh.Sum(x => x.DemTheoLoai(loai, kieu));
-				case MayTinh.Loai.HangRAM:
-					return listMayTinh.Sum(x => x.DemTheoLoai(loai, kieu));
-				case MayTinh.Loai.HangHDD:
-					return listMayTinh.Sum(x => x.DemTheoLoai(loai, kieu));
-				case MayTinh.Loai.CPU:
-					return listMayTinh.Sum(x => x.DemTheoLoai(loai, kieu));
-				case MayTinh.Loai.RAM:
-					return listMayTinh.Sum(x => x.DemTheoLoai(loai, kieu));
-				case MayTinh.Loai.HDD:
-					return listMayTinh.Sum(x => x.DemTheoLoai(loai, kieu));
+				case MinMax.Min:
+					return listMayTinh.Min(x => x.GiaTheoLoai<T>());
+				case MinMax.Max:
+					return listMayTinh.Max(x => x.GiaTheoLoai<T>());
+				case MinMax.All:
+					return listMayTinh.Sum(x => x.TongGia());
 			}
 			return 0;
 		}
-		public int XuatHienNhieuNhatItNhatTheoLoai(MayTinh.Loai loai, MinMax minMax)
+		public DanhSachMayTinh DanhSachMayTinhTheoGia<T>(MinMax minMax)
 		{
-			int max = int.MinValue;
-			int min = int.MaxValue;
-			List<string> list = DanhSachTheoLoai(loai);
-			foreach (var item in list)
-			{
-				int temp = DemThietBiTheoLoai(loai, item);
-				switch (minMax)
-				{
-					case MinMax.Min:
-						if (min > temp)
-							min = temp;
-						break;
-					case MinMax.Max:
-						if (max < temp)
-							max = temp;
-						break;
-				}
-			}
-			if (minMax == MinMax.Max)
-				return max;
-			else
-				return min;
+			DanhSachMayTinh result = new DanhSachMayTinh();
+			result.listMayTinh = listMayTinh.Where(x => x.GiaTheoLoai<T>() == TinhGia<T>(minMax)).ToList();
+			return result;
 		}
-		public List<string> DanhSachXuatHienNhieuNhatItNhatTheoLoai(MayTinh.Loai loai, MinMax minMax)
+		public int DemTheoHangSX<T>(string hangSX) => listMayTinh.Sum(x => x.DemTheoHangSX<T>(hangSX));
+		public int TimSLSDMinMax<T>(MinMax minMax)
+		{
+			List<string> dsHang = DanhSachHangTheoLoai<T>();
+			switch (minMax)
+			{
+				case MinMax.Min:
+					return dsHang.Min(x => DemTheoHangSX<T>(x));
+				case MinMax.Max:
+					return dsHang.Max(x => DemTheoHangSX<T>(x));
+			}
+			return 0;
+		}
+		public List<string> DanhSachXHMinMax<T>(MinMax minMax)
 		{
 			List<string> result = new List<string>();
-			int obj = XuatHienNhieuNhatItNhatTheoLoai(loai, minMax);
-			List<string> list = DanhSachTheoLoai(loai);
-			foreach (var item in list)
-			{
-				int temp = DemThietBiTheoLoai(loai, item);
-				if (temp == obj)
+			List<string> dsHang = DanhSachHangTheoLoai<T>();
+			int obj = TimSLSDMinMax<T>(minMax);
+			foreach (var item in dsHang)
+				if (DemTheoHangSX<T>(item) == obj)
 					result.Add(item);
-			}
 			return result;
+		}
+		public DanhSachMayTinh TimDSMayTinhByInput(string hangSX)
+		{
+			DanhSachMayTinh result = new DanhSachMayTinh();
+			//foreach (var item in listMayTinh)
+			//	foreach (var ss in item.DanhSachHang())
+			//		if (ss.CompareTo(hangSX) == 0)
+			//			result.Them(item);
+			listMayTinh.ForEach(item => item.DanhSachHang().ForEach(ss => { if (ss.CompareTo(hangSX) == 0) result.Them(item); }));
+			return result;
+		}
+		#endregion
+		#region Các hàm chức năng khác ¯\_(ツ)_/¯
+		public void XoaMayTinhTheoHangCPU(string hangSX)
+		{
+			List<MayTinh> reList = new List<MayTinh>(listMayTinh);
+			//foreach (var item in reList)
+			//	foreach (var ss in item.DanhSachHangTheoLoai<CPU>())
+			//		if (ss.CompareTo(hangSX) == 0)
+			//			listMayTinh.Remove(item);
+			reList.ForEach(item => item.DanhSachHangTheoLoai<CPU>().ForEach(ss => { if (ss.CompareTo(hangSX) == 0) listMayTinh.Remove(item); }));
+		}
+		public void CapNhapMayTinh()
+		{
+			//foreach (var item in listMayTinh)
+			//	foreach (var ss in item.list)
+			//		if (ss is CPU && ss.HangSX.CompareTo("Intel") == 0)
+			//			ss.Gia = 700;
+			listMayTinh.ForEach(item => item.list.ForEach(ss => { if (ss.HangSX.CompareTo("Intel") == 0) ss.Gia = 700; }));
 		}
 		#endregion
 	}

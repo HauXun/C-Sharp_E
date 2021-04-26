@@ -15,6 +15,9 @@ namespace QuanLyThietBi
 			"Xuat danh sach",
 			"Tim kiem theo chuc nang tuong ung",
 			"Sap xep theo chuc nang tuong ung",
+			"Tim danh sach may tinh theo hang",
+			"Xoa may tinh theo hang CPU",
+			"Cap nhap theo chi muc:\n\tCap nhap lai may tinh neu la CPU cua Intel",
 			"Test code"
 		};
 
@@ -25,7 +28,6 @@ namespace QuanLyThietBi
 				WriteLine("{0}. {1}", i, options[i]);
 			WriteLine("".PadRight(55, '='));
 		}
-
 		public int ChonMenu(int soMenu)
 		{
 			int stt = -1;
@@ -38,15 +40,16 @@ namespace QuanLyThietBi
 			}
 			return stt;
 		}
-
 		public void XuLyMenu(int menu)
 		{
+			int i = 0;
+			string hangSX;
 			switch (menu)
 			{
 				case 0:
 					return;
 				case 1:
-					#region Các chức năng nhập xuất cơ bản
+					#region Các chức năng nhập xuất cơ bản 🤷‍🤷‍🤷‍
 					Clear();
 					WriteLine("Doc du lieu tu tap tin...");
 					listMayTinh.ImportFromFile();
@@ -56,70 +59,96 @@ namespace QuanLyThietBi
 					WriteLine("Xuat >> ");
 					listMayTinh.Xuat();
 					break;
+				#endregion
 				case 3:
+					#region Các chức năng tìm kiếm 🚀🚀🚀
 					Clear();
 					WriteLine("Tim kiem theo chuc nang tuong ung >> ");
 					WriteLine("\nMay tinh co gia re nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaMayTinh, QuanLyMayTinh.MinMax.Min).Xuat();
+					listMayTinhQL.DanhSachMayTinhTheoGia<IThietBi>(listMayTinh, QuanLyMayTinh.MinMax.Min).Xuat();
 					WriteLine("\nMay tinh co CPU gia thap nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaCPU, QuanLyMayTinh.MinMax.Min).Xuat();
+					listMayTinhQL.DanhSachMayTinhTheoGia<CPU>(listMayTinh, QuanLyMayTinh.MinMax.Min).Xuat();
 					WriteLine("\nMay tinh co CPU gia cao nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaCPU, QuanLyMayTinh.MinMax.Max).Xuat();
+					listMayTinhQL.DanhSachMayTinhTheoGia<CPU>(listMayTinh, QuanLyMayTinh.MinMax.Max).Xuat();
 					WriteLine("\nMay tinh co RAM gia thap nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaRAM, QuanLyMayTinh.MinMax.Min).Xuat();
+					listMayTinhQL.DanhSachMayTinhTheoGia<RAM>(listMayTinh, QuanLyMayTinh.MinMax.Min).Xuat();
 					WriteLine("\nMay tinh co RAM gia cao nhat...");
-					listMayTinhQL.ListMayTinhTheoLoai(listMayTinh, QuanLyMayTinh.LoaiGia.GiaRAM, QuanLyMayTinh.MinMax.Max).Xuat();
+					listMayTinhQL.DanhSachMayTinhTheoGia<RAM>(listMayTinh, QuanLyMayTinh.MinMax.Max).Xuat();
 					WriteLine("\nHang duoc su dung CPU nhieu nhat...");
-					foreach (var item in listMayTinh.DanhSachXuatHienNhieuNhatItNhatTheoLoai(MayTinh.Loai.HangCPU, DanhSachMayTinh.MinMax.Max))
-						WriteLine(item);
+					listMayTinhQL.DanhSachXHMinMax<CPU>(listMayTinh, QuanLyMayTinh.MinMax.Max).ForEach(x => Write($"{x.PadRight(20)}\t"));
 					WriteLine("\nHang duoc su dung CPU it nhat...");
-					foreach (var item in listMayTinh.DanhSachXuatHienNhieuNhatItNhatTheoLoai(MayTinh.Loai.HangCPU, DanhSachMayTinh.MinMax.Min))
-						WriteLine(item);
+					listMayTinhQL.DanhSachXHMinMax<CPU>(listMayTinh, QuanLyMayTinh.MinMax.Min).ForEach(x => Write($"{x.PadRight(20)}\t"));
 					WriteLine("\nHang duoc su dung RAM nhieu nhat...");
-					foreach (var item in listMayTinh.DanhSachXuatHienNhieuNhatItNhatTheoLoai(MayTinh.Loai.HangRAM, DanhSachMayTinh.MinMax.Max))
-						WriteLine(item);
+					listMayTinhQL.DanhSachXHMinMax<RAM>(listMayTinh, QuanLyMayTinh.MinMax.Max).ForEach(x => Write($"{x.PadRight(20)}\t"));
 					WriteLine("\nHang duoc su dung RAM it nhat...");
-					foreach (var item in listMayTinh.DanhSachXuatHienNhieuNhatItNhatTheoLoai(MayTinh.Loai.HangRAM, DanhSachMayTinh.MinMax.Min))
-						WriteLine(item);
+					listMayTinhQL.DanhSachXHMinMax<CPU>(listMayTinh, QuanLyMayTinh.MinMax.Min).ForEach(x => Write($"{x.PadRight(20)}\t"));
 					break;
 				#endregion
 				case 4:
+					#region Các chức năng sắp xếp ¯\_(ツ)_/¯
 					Clear();
 					WriteLine("Sap xep danh sach may tinh theo chuc nang tuong ung >> ");
 					WriteLine("\nSap xep danh sach may tinh theo so luong thiet bi...");
-					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.SLThietBi).Xuat();
+					listMayTinhQL.SortTheoLoai<IThietBi>(listMayTinh, QuanLyMayTinh.SortBy.SLThietBi).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
 					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo gia thiet bi...");
-					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.GiaThietBi).Xuat();
+					listMayTinhQL.SortTheoLoai<IThietBi>(listMayTinh, QuanLyMayTinh.SortBy.GiaThietBi).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
 					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo gia CPU...");
-					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.GiaCPU).Xuat();
+					listMayTinhQL.SortTheoLoai<CPU>(listMayTinh, QuanLyMayTinh.SortBy.GiaThietBi).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
 					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo gia RAM...");
-					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.GiaRAM).Xuat();
+					listMayTinhQL.SortTheoLoai<RAM>(listMayTinh, QuanLyMayTinh.SortBy.GiaThietBi).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
 					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo so luong CPU...");
-					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.SoLuongCPU).Xuat();
+					listMayTinhQL.SortTheoLoai<CPU>(listMayTinh, QuanLyMayTinh.SortBy.SLThietBi).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
 					ReadLine();
 					Clear();
 					WriteLine("\nSap xep danh sach may tinh theo so luong RAM...");
-					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.SoLuongRAM).Xuat();
-					WriteLine("\n\t\tNHAN PHIM BAT KI DE CHUYEN QUA CHE DO SAP XEP KHAC >> ");
-					ReadLine();
-					WriteLine("\nSap xep danh sach may tinh theo hang...");
-					listMayTinhQL.SortMayTinh(listMayTinh, QuanLyMayTinh.SortBy.Hang).Xuat();
+					listMayTinhQL.SortTheoLoai<RAM>(listMayTinh, QuanLyMayTinh.SortBy.SLThietBi).Xuat();
 					WriteLine("\n\t\tNHAN PHIM BAT KI DE KET THUC CHUC NANG SAP XEP >> ");
 					break;
+				#endregion
 				case 5:
+					#region Các chức năng khác ༼ つ ◕_◕ ༽つ
+					Clear();
+					WriteLine("Tim danh sach may tinh theo hang >> ");
+					WriteLine("Danh sach cac hang ton tai trong du lieu...");
+					listMayTinh.DanhSachHangTheoLoai<IThietBi>().ForEach(x => { Write($"\t{x.PadRight(15)}  "); i++; if ((i + 1) % 4 == 0) WriteLine("\t"); });
+					Write("\nNhap vao hang san xuat tuong ung de tim kiem >> ");
+					hangSX = ReadLine();
+					try { listMayTinhQL.TimDSMayTinhByInput(listMayTinh, hangSX); }
+					catch (Exception e) { WriteLine("Bad Exeption (ngoai le khong mong muon): " + e.Message); }
+					finally { Clear(); WriteLine("\nDanh sach cac hang may tinh " + hangSX); listMayTinhQL.TimDSMayTinhByInput(listMayTinh, hangSX).Xuat(); }
+					break;
+				case 6:
+					Clear();
+					WriteLine("Xoa may tinh theo hang CPU");
+					WriteLine("Danh sach cac hang CPU ton tai trong du lieu...");
+					listMayTinh.DanhSachHangTheoLoai<CPU>().ForEach(x => { Write($"\t{x.PadRight(15)}  "); i++; if ((i + 1) % 4 == 0) WriteLine("\t"); });
+					Write("\nNhap vao hang san xuat tuong ung de tim kiem >> ");
+					hangSX = ReadLine();
+					try { listMayTinhQL.XoaMayTinhTheoHangCPU(listMayTinh, hangSX); }
+					catch (Exception e) { WriteLine("Bad Exeption (ngoai le khong mong muon): " + e.Message); }
+					finally { Clear(); WriteLine("\nDanh sach cac hang may tinh sau khi xoa cac may tinh hang " + hangSX); listMayTinhQL.XoaMayTinhTheoHangCPU(listMayTinh, hangSX); listMayTinh.Xuat(); }
+					break;
+				case 7:
+					Clear();
+					WriteLine("\n\t\tDanh sach cap nhap...");
+					listMayTinhQL.CapNhapMayTinh(listMayTinh);
+					listMayTinh.Xuat();
+					break;
+				#endregion
+				case 8:
 					Clear();
 					WriteLine("Test code >> ");
 					break;

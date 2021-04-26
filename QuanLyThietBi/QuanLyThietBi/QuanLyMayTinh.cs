@@ -1,136 +1,109 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Console;
 
 namespace QuanLyThietBi
 {
 	class QuanLyMayTinh
 	{
-		public enum LoaiGia
-		{
-			GiaMayTinh,
-			GiaCPU,
-			GiaRAM
-		}
-		public enum LinkKien
-		{
-			CPU,
-			RAM
-		}
+		#region Các hàm tìm kiếm danh sách máy tính ☜(ﾟヮﾟ☜)
 		public enum MinMax
 		{
 			Min,
-			Max
+			Max,
+			All
 		}
-		#region Các hàm chức năng tìm kiếm
-		public float Gia(DanhSachMayTinh list, LoaiGia loaiGia, MinMax minMax)
+		public float TinhGia<T>(DanhSachMayTinh list, MinMax minMax)
 		{
 			switch (minMax)
 			{
 				case MinMax.Min:
-					switch (loaiGia)
-					{
-						case LoaiGia.GiaMayTinh:
-							return list.listMayTinh.Min(x => x.TinhGia());
-						case LoaiGia.GiaCPU:
-							return list.listMayTinh.Min(x => x.TinhGiaCPU());
-						case LoaiGia.GiaRAM:
-							return list.listMayTinh.Min(x => x.TinhGiaRAM());
-					}
-					break;
+					return list.listMayTinh.Min(x => x.GiaTheoLoai<T>());
 				case MinMax.Max:
-					switch (loaiGia)
-					{
-						case LoaiGia.GiaMayTinh:
-							return list.listMayTinh.Max(x => x.TinhGia());
-						case LoaiGia.GiaCPU:
-							return list.listMayTinh.Max(x => x.TinhGiaCPU());
-						case LoaiGia.GiaRAM:
-							return list.listMayTinh.Max(x => x.TinhGiaRAM());
-					}
-					break;
+					return list.listMayTinh.Max(x => x.GiaTheoLoai<T>());
+				case MinMax.All:
+					return list.listMayTinh.Sum(x => x.TongGia());
 			}
 			return 0;
 		}
-		public DanhSachMayTinh ListMayTinhTheoLoai(DanhSachMayTinh list, LoaiGia loaiGia, MinMax minMax)
+		public DanhSachMayTinh DanhSachMayTinhTheoGia<T>(DanhSachMayTinh list, MinMax minMax)
 		{
 			DanhSachMayTinh result = new DanhSachMayTinh();
+			result.listMayTinh = list.listMayTinh.Where(x => x.GiaTheoLoai<T>() == TinhGia<T>(list, minMax)).ToList();
+			return result;
+		}
+		public int DemTheoHangSX<T>(DanhSachMayTinh list, string hangSX) => list.listMayTinh.Sum(x => x.DemTheoHangSX<T>(hangSX));
+		public int TimSLSDMinMax<T>(DanhSachMayTinh list, MinMax minMax)
+		{
+			List<string> dsHang = list.DanhSachHangTheoLoai<T>();
 			switch (minMax)
 			{
 				case MinMax.Min:
-					switch (loaiGia)
-					{
-						case LoaiGia.GiaMayTinh:
-							result.listMayTinh = list.listMayTinh.Where(x => x.TinhGia() == Gia(list, loaiGia, minMax)).ToList();
-							break;
-						case LoaiGia.GiaCPU:
-							result.listMayTinh = list.listMayTinh.Where(x => x.TinhGiaCPU() == Gia(list, loaiGia, minMax)).ToList();
-							break;
-						case LoaiGia.GiaRAM:
-							result.listMayTinh = list.listMayTinh.Where(x => x.TinhGiaRAM() == Gia(list, loaiGia, minMax)).ToList();
-							break;
-					}
-					break;
+					return dsHang.Min(x => DemTheoHangSX<T>(list, x));
 				case MinMax.Max:
-					switch (loaiGia)
-					{
-						case LoaiGia.GiaMayTinh:
-							result.listMayTinh = list.listMayTinh.Where(x => x.TinhGia() == Gia(list, loaiGia, minMax)).ToList();
-							break;
-						case LoaiGia.GiaCPU:
-							result.listMayTinh = list.listMayTinh.Where(x => x.TinhGiaCPU() == Gia(list, loaiGia, minMax)).ToList();
-							break;
-						case LoaiGia.GiaRAM:
-							result.listMayTinh = list.listMayTinh.Where(x => x.TinhGiaRAM() == Gia(list, loaiGia, minMax)).ToList();
-							break;
-					}
-					break;
+					return dsHang.Max(x => DemTheoHangSX<T>(list, x));
 			}
+			return 0;
+		}
+		public List<string> DanhSachXHMinMax<T>(DanhSachMayTinh list, MinMax minMax)
+		{
+			List<string> result = new List<string>();
+			List<string> dsHang = list.DanhSachHangTheoLoai<T>();
+			int obj = TimSLSDMinMax<T>(list, minMax);
+			foreach (var item in dsHang)
+				if (DemTheoHangSX<T>(list, item) == obj)
+					result.Add(item);
+			return result;
+		}
+		public DanhSachMayTinh TimDSMayTinhByInput(DanhSachMayTinh list, string hangSX)
+		{
+			DanhSachMayTinh result = new DanhSachMayTinh();
+			//foreach (var item in list.listMayTinh)
+			//	foreach (var ss in item.DanhSachHang())
+			//		if (ss.CompareTo(hangSX) == 0)
+			//			result.Them(item);
+			list.listMayTinh.ForEach(item => item.DanhSachHang().ForEach(ss => { if (ss.CompareTo(hangSX) == 0) result.Them(item); }));
 			return result;
 		}
 		#endregion
+		#region Các hàm sắp xếp danh sách máy tinh (☞ﾟヮﾟ)☞
 		public enum SortBy
 		{
 			SLThietBi,
-			GiaThietBi,
-			GiaCPU,
-			GiaRAM,
-			SoLuongCPU,
-			SoLuongRAM,
-			Hang
+			GiaThietBi
 		}
-		public DanhSachMayTinh SortMayTinh(DanhSachMayTinh list, SortBy sortBy)
+		public DanhSachMayTinh SortTheoLoai<T>(DanhSachMayTinh list, SortBy sortBy)
 		{
 			DanhSachMayTinh result = new DanhSachMayTinh();
 			switch (sortBy)
 			{
 				case SortBy.SLThietBi:
-					result.listMayTinh = list.listMayTinh.OrderBy(x => x.SLThietBi()).ToList();
+					result.listMayTinh = list.listMayTinh.OrderBy(x => x.DemThietBiTheoLoai<T>()).ToList();
 					return result;
 				case SortBy.GiaThietBi:
-					result.listMayTinh = list.listMayTinh.OrderBy(x => x.TinhGia()).ToList();
-					return result;
-				case SortBy.GiaCPU:
-					result.listMayTinh = list.listMayTinh.OrderBy(x => x.TinhGiaCPU()).ToList();
-					return result;
-				case SortBy.GiaRAM:
-					result.listMayTinh = list.listMayTinh.OrderBy(x => x.TinhGiaRAM()).ToList();
-					return result;
-				case SortBy.SoLuongCPU:
-					result.listMayTinh = list.listMayTinh.OrderBy(x => x.SLCPU()).ToList();
-					return result;
-				case SortBy.SoLuongRAM:
-					result.listMayTinh = list.listMayTinh.OrderBy(x => x.SLRAM()).ToList();
-					return result;
-				case SortBy.Hang:
-					//result.listMayTinh = list.listMayTinh.OrderBy(x => x.TimDanhSachTheoLoai(MayTinh.Loai.TatCaHangSX)).ToList();
+					result.listMayTinh = list.listMayTinh.OrderBy(x => x.GiaTheoLoai<T>()).ToList();
 					return result;
 			}
 			return null;
 		}
-
+		#endregion
+		#region Các hàm chức năng khác ¯\_(ツ)_/¯
+		public void XoaMayTinhTheoHangCPU(DanhSachMayTinh list, string hangSX)
+		{
+			List<MayTinh> reList = new List<MayTinh>(list.listMayTinh);
+			//foreach (var item in reList)
+			//	foreach (var ss in item.DanhSachHangTheoLoai<CPU>())
+			//		if (ss.CompareTo(hangSX) == 0)
+			//			listMayTinh.Remove(item);
+			reList.ForEach(item => item.DanhSachHangTheoLoai<CPU>().ForEach(ss => { if (ss.CompareTo(hangSX) == 0) list.listMayTinh.Remove(item); }));
+		}
+		public void CapNhapMayTinh(DanhSachMayTinh list)
+		{
+			//foreach (var item in list.listMayTinh)
+			//	foreach (var ss in item.list)
+			//		if (ss is CPU && ss.HangSX.CompareTo("Intel") == 0)
+			//			ss.Gia = 700;
+			list.listMayTinh.ForEach(item => item.list.ForEach(ss => { if (ss.HangSX.CompareTo("Intel") == 0) ss.Gia = 700; }));
+		}
+		#endregion
 	}
 }
