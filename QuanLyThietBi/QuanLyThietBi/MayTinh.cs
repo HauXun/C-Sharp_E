@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace QuanLyThietBi
@@ -10,7 +11,24 @@ namespace QuanLyThietBi
 		public string TenMayTinh { get; set; }
 		public float TongGia() => list.Sum(x => x.Gia);
 		public float GiaTheoLoai<T>() => list.Where(x => x is T).Sum(x => x.Gia);
-		public int DemThietBiTheoLoai<T>() => list.Count(x => x is T);
+		public int DemThietBiTheoLoai<T>()
+		{
+			Type t = typeof(T);
+			if (t.Name != "CPU")
+				return list.Count(x => x is T);
+			return list.Count(item => item is CPU && !(item is RAM) && !(item is HDD) && !(item is Mainboard) && !(item is Power));
+			//int count = 0;
+			//foreach (var item in list)
+			//{
+			//	if (t.Name == "CPU")
+			//		if (item is CPU && !(item is RAM) && !(item is HDD) && !(item is Mainboard) && !(item is Power))
+			//			count++;
+			//		else
+			//		if (item is T)
+			//			count++;
+			//}
+			//return count;
+		}
 		#endregion
 		#region Nhập xuất định dạng và truy vấn 🚀🚀🚀
 		public void Them(IThietBi x) => list.Add(x);
@@ -37,7 +55,7 @@ namespace QuanLyThietBi
 			List<string> result = new List<string>();
 			List<IThietBi> listTB = TimThietBiTheoLoai<T>();
 			foreach (var item in listTB)
-				if(!result.Contains(item.HangSX))
+				if (!result.Contains(item.HangSX))
 					result.Add(item.HangSX);
 			return result;
 		}

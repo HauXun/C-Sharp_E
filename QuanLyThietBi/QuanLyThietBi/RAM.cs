@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace QuanLyThietBi
 {
-	class RAM : IThietBi
+	class RAM : CPU
 	{
-		public string TenMayTinh { get; set; }
-		public string ThietBi { get; set; }
-		public string TenThietBi { get; set; }
-		public string HangSX { get; set; }
-		public float Gia { get; set; }
-		public RAM (string line)
+		public RAM(string line) : base(line)
 		{
 			string[] str = line.Split(',');
 			ThietBi = str[0];
