@@ -1,0 +1,81 @@
+
+
+			DANH SACH MAY TINH
+
+May tinh Lenovo
+CPU AMD Ryzen-7-3800XT -> Speed: 3.9 Ghz
+Mainboard Gigabyte X570-Aorus-Master
+RAM Kingston Kingston_16GB -> 16 GB
+HDD Seagate Fire-Cuda
+Power Seasonic Prime-Ultra-1300w
+
+	Tong so luong CPU: 1        Tong gia CPU la: $2,883.00
+	Tong so luong RAM: 1        Tong gia RAM la: $80.00
+	Tong so luong HDD: 1        Tong gia HDD la: $100.00
+	Tong so luong Mainboard: 1  Tong gia CPU la: $842.00
+	Tong so luong Power: 1      Tong gia CPU la: $495.00
+
+Tong tat ca so luong thiet bi: 5      Tong gia may tinh la: $2,883.00
+
+May tinh Alienware
+CPU Intel Corei9-7940X -> Speed: 3.1 Ghz
+Mainboard Asus ROG-Strix-Z390-I_Gaming
+RAM GSkill GSkill_4GB -> 4 GB
+RAM GSkill GSkill_4GB -> 4 GB
+HDD Kingston L200
+Power Corsair RM750
+
+	Tong so luong CPU: 1        Tong gia CPU la: $3,329.00
+	Tong so luong RAM: 2        Tong gia RAM la: $68.00
+	Tong so luong HDD: 1        Tong gia HDD la: $300.00
+	Tong so luong Mainboard: 1  Tong gia CPU la: $799.00
+	Tong so luong Power: 1      Tong gia CPU la: $246.00
+
+Tong tat ca so luong thiet bi: 6      Tong gia may tinh la: $3,329.00
+
+May tinh AsusROG
+CPU AMD Ryzen-Threadripper-2950X -> Speed: 3.5 Ghz
+CPU AMD Ryzen-Threadripper-2950X -> Speed: 3.5 Ghz
+Mainboard MSI MPG-X570-Gaming-Pro-Carbon-WiFi
+RAM GSkill GSkill_16GB -> 16 GB
+HDD WesternDigital WDR
+Power Corsair CX550
+
+	Tong so luong CPU: 2        Tong gia CPU la: $4,370.00
+	Tong so luong RAM: 1        Tong gia RAM la: $104.00
+	Tong so luong HDD: 1        Tong gia HDD la: $190.00
+	Tong so luong Mainboard: 1  Tong gia CPU la: $699.00
+	Tong so luong Power: 1      Tong gia CPU la: $645.00
+
+Tong tat ca so luong thiet bi: 6      Tong gia may tinh la: $4,370.00
+
+May tinh Dell
+CPU Intel Corei7-7900X -> Speed: 3.3 Ghz
+Mainboard Asus ROG-Strix-B550-E_Gaming
+RAM Corsair Corsair_4GB -> 4 GB
+HDD Seagate NAS-N300
+Power FSP Dagger-550w
+
+	Tong so luong CPU: 1        Tong gia CPU la: $3,023.00
+	Tong so luong RAM: 1        Tong gia RAM la: $50.00
+	Tong so luong HDD: 1        Tong gia HDD la: $200.00
+	Tong so luong Mainboard: 1  Tong gia CPU la: $788.00
+	Tong so luong Power: 1      Tong gia CPU la: $473.00
+
+Tong tat ca so luong thiet bi: 5      Tong gia may tinh la: $3,023.00
+
+May tinh MSI
+CPU AMD Ryzen-5-3600X -> Speed: 3.8 Ghz
+Mainboard ASRock A520M-ITX/a
+RAM Crucial Crucial_16GB -> 16 GB
+RAM Crucial Crucial_16GB -> 16 GB
+HDD Samsung 970-EVO
+Power Thermaltake Toughpower-Grand-RGB-650w
+
+	Tong so luong CPU: 1        Tong gia CPU la: $3,107.00
+	Tong so luong RAM: 2        Tong gia RAM la: $240.00
+	Tong so luong HDD: 1        Tong gia HDD la: $250.00
+	Tong so luong Mainboard: 1  Tong gia CPU la: $698.00
+	Tong so luong Power: 1      Tong gia CPU la: $753.00
+
+Tong tat ca so luong thiet bi: 6      Tong gia may tinh la: $3,107.00

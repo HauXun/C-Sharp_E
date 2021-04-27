@@ -1,0 +1,9 @@
+Lenovo*CPU,AMD,Ryzen-7-3800XT,3.9,1366*Mainboard,Gigabyte,X570-Aorus-Master,842*RAM,Kingston,Kingston_16GB,16,80*HDD,Seagate,Fire-Cuda,100*Power,Seasonic,Prime-Ultra-1300w,495
+Asus*CPU,Intel,Corei7-6900K,3.2,1077*Mainboard,MSI,MPG-Z490-Gaming-Carbon_WiFi,819*RAM,Kingston,Kingston_8GB,8,45*HDD,Bracudar,X300,150*Power,Corsair,CX-Series-CX450M,356
+Dell*CPU,AMD,Ryzen-Threadripper-2990WX,3.0,3000*CPU,AMD,Ryzen-Threadripper-2990WX,3.0,3000*Mainboard,Gigabyte,Z390-Aorus-Ultra,982*RAM,Corsair,Corsair_8GB,8,81*RAM,Corsair,Corsair_8GB,8,81*HDD,WD,SN550,500*Power,Corsair,RMx-Series-RM750x,523
+Lenovo*CPU,Intel,Corei9-7900X,3.3,921*CPU,Intel,Corei9-7900X,3.3,921*Mainboard,Asus,ROG-Maximus-XII-Extreme,999*RAM,Corsair,Corsair_8GB,8,50*RAM,Corsair,Corsair_8GB,8,50*HDD,Toshiba,P300,350*Power,Cooler,Master-V850,423
+MSI*CPU,AMD,Ryzen-7-3700X,3.6,1326*Mainboard,Mortar,WiFi-MSI-MAG-B460M,781*RAM,Crucial,Crucial_8GB,8,79*RAM,Crucial,Crucial_8GB,8,79*HDD,Samsung,870-EVO,150*Power,Corsair,AXi-Series-AX1600i,366
+Alienware*CPU,Intel,Corei9-7940X,3.1,1916*Mainboard,Asus,ROG-Strix-Z390-I_Gaming,799*RAM,GSkill,GSkill_4GB,4,34*RAM,GSkill,GSkill_4GB,4,34*HDD,Kingston,L200,300*Power,Corsair,RM750,246
+AsusROG*CPU,AMD,Ryzen-Threadripper-2950X,3.5,1366*CPU,AMD,Ryzen-Threadripper-2950X,3.5,1366*Mainboard,MSI,MPG-X570-Gaming-Pro-Carbon-WiFi,699*RAM,GSkill,GSkill_16GB,16,104*HDD,WesternDigital,WDR,190*Power,Corsair,CX550,645
+Dell*CPU,Intel,Corei7-7900X,3.3,1512*Mainboard,Asus,ROG-Strix-B550-E_Gaming,788*RAM,Corsair,Corsair_4GB,4,50*HDD,Seagate,NAS-N300,200*Power,FSP,Dagger-550w,473
+MSI*CPU,AMD,Ryzen-5-3600X,3.8,1166*Mainboard,ASRock,A520M-ITX/a,698*RAM,Crucial,Crucial_16GB,16,120*RAM,Crucial,Crucial_16GB,16,120*HDD,Samsung,970-EVO,250*Power,Thermaltake,Toughpower-Grand-RGB-650w,753
