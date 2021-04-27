@@ -151,6 +151,7 @@ namespace QuanLyThietBi
 				case 8:
 					Clear();
 					WriteLine("Test code >> ");
+					listMayTinh.DanhSachHangTheoLoai<CPU>().ForEach(x => WriteLine(x));
 					break;
 			}
 			ReadLine();
