@@ -1,8 +1,15 @@
 ﻿namespace QuanLyThietBiV2
 {
-	class HDD : CPU
+	class HDD : IThietBi
 	{
-		public HDD(string line) : base()
+		public string TenMayTinh { get; set; }
+		public string ThietBi { get; set; }
+		public string TenThietBi { get; set; }
+		public string HangSX { get; set; }
+		public float Gia { get; set; }
+		public float TocDo { get; set; }
+		public int DungLuong { get; set; }
+		public HDD(string line)
 		{
 			string[] str = line.Split(',');
 			ThietBi = str[0];

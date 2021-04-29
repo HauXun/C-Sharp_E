@@ -1,8 +1,15 @@
 ﻿namespace QuanLyThietBiV2
 {
-	class MAINBOARD : CPU
+	class MAINBOARD : IThietBi
 	{
-		public MAINBOARD(string line) : base()
+		public string TenMayTinh { get; set; }
+		public string ThietBi { get; set; }
+		public string TenThietBi { get; set; }
+		public string HangSX { get; set; }
+		public float Gia { get; set; }
+		public float TocDo { get; set; }
+		public int DungLuong { get; set; }
+		public MAINBOARD(string line)
 		{
 			string[] str = line.Split(',');
 			ThietBi = str[0];
