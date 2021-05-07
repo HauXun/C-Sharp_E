@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DanhSachMayTinh.cs~RF5208ab.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ThuVienDungChung\ThuVienDungChung.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ThuVienDungChung">
+      <HintPath>..\ThuVienDungChung\bin\Debug\net5.0\ThuVienDungChung.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
