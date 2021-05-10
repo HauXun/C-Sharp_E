@@ -57,6 +57,7 @@ namespace QuanLyThietBiV3
 		}
 		#endregion
 		#region Truy vấn và phân loại danh sách 👀👀👀
+		public List<IThietBi> TimThietBiTheoLoai<T>() => list.Where(x => x is T).ToList();
 		public float ThuocTinhTheoLoai(Tinh tinh)
 		{
 			foreach (var item in list)
@@ -75,16 +76,42 @@ namespace QuanLyThietBiV3
 			}
 			return 0;
 		}
+		public bool IsEquipment<T>()
+		{
+			foreach (var item in list)
+				if (item is T)
+					return true;
+			return false;
+		}
+		public bool IsFirm(string hang)
+		{
+			foreach (var item in GeneralLibrary.dsHang)
+				if (item.CompareTo(hang) == 0)
+					return true;
+			return false;
+		}
 		public string HangThietBiTheoLoai<T>() // list.Find(x => x is T).HangSX;
 		{
-			List<IThietBi> listTB = TimThietBiTheoLoai<T>();
-			foreach (var item in listTB)
-				foreach (var s in GeneralLibrary.dsHang)
-					if (s.CompareTo(item.HangSX) == 0)
-						return s;
+			foreach (var item in list)
+				if (item is T && IsFirm(item.HangSX))
+						return item.HangSX;
 			return null;
 		}
-		public List<IThietBi> TimThietBiTheoLoai<T>() => list.Where(x => x is T).ToList();
+		public void UpdateValue<T>(Tinh tinh, float obj, float obj2)
+		{
+			foreach (var item in TimThietBiTheoLoai<T>())
+				switch (tinh)
+				{
+					case Tinh.Speed:
+						if (((CPU)item).TocDo == obj)
+							((CPU)item).TocDo = obj2;
+						break;
+					case Tinh.sCapacity:
+						if (((RAM)item).DungLuong == obj)
+							((RAM)item).DungLuong = (int)obj2;
+						break;
+				}
+		}
 		#endregion
 	}
 }

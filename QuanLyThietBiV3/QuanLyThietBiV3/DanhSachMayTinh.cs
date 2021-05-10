@@ -175,19 +175,8 @@ namespace QuanLyThietBiV3
 		public void CapNhapMayTinhTheoThuocTinh<T>(MayTinh.Tinh tinh, float obj, float obj2)
 		{
 			foreach (var item in listMayTinh)
-				foreach (var s in item.TimThietBiTheoLoai<T>())
-					switch (tinh)
-					{
-						case MayTinh.Tinh.Speed:
-							if (((CPU)s).TocDo == obj)
-								((CPU)s).TocDo = obj2;
-							break;
-						case MayTinh.Tinh.sCapacity:
-							if (((RAM)s).DungLuong == obj)
-								((RAM)s).DungLuong = (int)obj2;
-							break;
-
-					}
+				if (item.IsEquipment<T>())
+					item.UpdateValue<T>(tinh, obj, obj2);
 		}
 		public void GhiFile()
 		{

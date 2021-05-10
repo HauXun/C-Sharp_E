@@ -317,7 +317,7 @@ namespace QuanLyThietBiV3
 					Clear();
 					WriteLine("Test code >> ");
 					//listMayTinh.DanhSachThuocTinhTheoLoai<CPU>(MayTinh.Tinh.Speed).ForEach(x => { WriteLine(x); });
-					WriteLine(listMayTinh.MinMaxThuocTinh<CPU>(MayTinh.Tinh.Speed, DanhSachMayTinh.MinMax.Max));
+					listMayTinh.DanhSachHangTheoLoai<RAM>().ForEach(x => { Write($"\t{x.PadRight(15)}  "); i++; if ((i + 1) % 4 == 0) WriteLine("\t"); });
 					break;
 			}
 			ReadLine();
