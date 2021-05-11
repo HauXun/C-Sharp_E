@@ -9,14 +9,21 @@ namespace Mang1ChieuSoNguyen
 {
 	class XuLyChuongTrinh
 	{
+		static int n;
+		static int[] a;
+		XuLyMang xuLyMang = new XuLyMang();
+		ProgramColor programColor = new ProgramColor();
+
+		#region Xử lý menu 🚴‍♀️🚴‍♀️🚴‍♀️
 		public void XuatMenu(string[] options)
 		{
+			ForegroundColor = ConsoleColor.White;
+			BackgroundColor = programColor.BackgroundColor();
 			WriteLine("".PadRight(20, '=') + "MENU".PadRight(20, '='));
 			for (int i = 0; i < options.Length; i++)
 				WriteLine("{0}. {1}", i, options[i]);
 			WriteLine("".PadRight(40, '='));
 		}
-
 		public int ChonMenu(int soMenu, string[] options)
 		{
 			int stt = -1;
@@ -29,7 +36,6 @@ namespace Mang1ChieuSoNguyen
 			}
 			return stt;
 		}
-
 		public enum TuyChon
 		{
 			TimKiem = 2,
@@ -45,17 +51,24 @@ namespace Mang1ChieuSoNguyen
 			{
 				case 0:
 					WriteLine("\n Bạn đã lựa chọn đi ngủ.\n\tCÚT");
-					Environment.Exit(0);
 					return;
 				case 1:
 					Clear();
 					WriteLine("\nNhập dữ liệu");
-
+					Write("\nNhap kích thước của mảng (số lượng phần tử) >> ");
+					n = int.Parse(ReadLine());
+					a = new int[n];
+					xuLyMang.Nhap(a, ref n);
+					xuLyMang.Xuat(a, n);
 					break;
 				case 2:
 					Clear();
 					WriteLine("\nNhập dữ liệu tự động");
-
+					Write("\nNhap kích thước của mảng (số lượng phần tử) >> ");
+					n = int.Parse(ReadLine());
+					a = new int[n];
+					xuLyMang.NhapTuDong(a, ref n);
+					xuLyMang.Xuat(a, n);
 					break;
 				case 3:
 					Clear();
@@ -70,7 +83,6 @@ namespace Mang1ChieuSoNguyen
 					{
 						menuM = ChonMenu(soMenu, meme.options);
 						TuyChon tuyChon = (TuyChon)menuM;
-						XuLyMenu(tuyChon);
 						if (menuM == 1)
 							return;
 						else if (menuM == 0)
@@ -78,9 +90,14 @@ namespace Mang1ChieuSoNguyen
 							WriteLine("\n Bạn đã lựa chọn đi ngủ.\n\tCÚT");
 							Environment.Exit(0);
 						}
+						ResetColor();
+						ForegroundColor = programColor.ForegroundColor();
+						BackgroundColor = programColor.BackgroundColor();
+						XuLyMenu(tuyChon);
 					} while (menuM > 0);
 					break;
 			}
+			ReadLine();
 		}
 		public void XuLyMenu(TuyChon tuyChon)
 		{
@@ -150,7 +167,9 @@ namespace Mang1ChieuSoNguyen
 					} while (menu > 0);
 					break;
 			}
+			ReadLine();
 		}
+		#endregion
 
 		public void XuLyChucNang(TuyChon tuyChon ,int menu)
 		{
@@ -397,6 +416,7 @@ namespace Mang1ChieuSoNguyen
 					}
 					break;
 			}
+			ReadLine();
 		}
 	}
 }
