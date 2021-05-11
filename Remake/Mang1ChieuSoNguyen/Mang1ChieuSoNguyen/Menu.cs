@@ -48,6 +48,7 @@ namespace Mang1ChieuSoNguyen
 			"Thoát luôn đi ngủ",
 			"Quay về trang trước",
 			"Xóa phần tử đầu tiên",
+			"Xóa phần tử cuối",
 			"Xóa phần tử tại vị trí",
 			"Xóa tất cả số dương",
 			"Xóa tất cả số âm",
