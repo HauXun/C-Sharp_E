@@ -8,15 +8,15 @@ namespace MangPhanSo
 		private int tuSo, mauSo;
 
 		public int TuSo { get => tuSo; set => tuSo = value; }
-		public int MauSo 
-		{ 
-			get => mauSo; 
+		public int MauSo
+		{
+			get => mauSo;
 			set
 			{
 				if (value == 0)
 					throw new ArgumentException("Can't divide by zero!");
-				mauSo = value; 
-			} 
+				mauSo = value;
+			}
 		}
 
 
@@ -52,11 +52,11 @@ namespace MangPhanSo
 			if (TuSo == 0)
 				return "0";
 			if (MauSo == 1)
-				return MauSo.ToString();
+				return tuSo.ToString();
 			return $@" {TuSo.ToString()}/{MauSo.ToString()}";
 		}
 
-		public float GiaTri => TuSo / MauSo;
+		public float GiaTri => (float)TuSo / MauSo;
 
 
 		#region Nạp chồng biểu thức hai phân số
@@ -120,60 +120,50 @@ namespace MangPhanSo
 		#region Nạp chồng biểu thức so sánh phân số với 1 biến số nguyên
 		public static bool operator ==(PhanSo a, object b)
 		{
-			try
-			{
-				double tempNumber = Convert.ToDouble(b);
-				return a.TuSo / a.MauSo == tempNumber;
-			}
-			catch (Exception)
-			{
-				throw new InvalidOperationException("Type of object b should be a numeric type!");
-			}
+			Type type = b.GetType();
+			if (type == typeof(int))
+				return a.TuSo / a.MauSo == (int)b;
+			return a.TuSo / a.MauSo == (float)b;
+			//try
+			//{
+			//	double tempNumber = Convert.ToDouble(b);
+			//	return a.TuSo / a.MauSo == tempNumber;
+			//}
+			//catch (Exception)
+			//{
+			//	throw new InvalidOperationException("Type of object b should be a numeric type!");
+			//}
 		}
 
 		public static bool operator !=(PhanSo a, object b)
 		{
-			try
-			{
-				double tempNumber = Convert.ToDouble(b);
-				return a.TuSo / a.MauSo != tempNumber;
-			}
-			catch (Exception)
-			{
-				throw new InvalidOperationException("Type of object b should be a numeric type!");
-			}
+			Type type = b.GetType();
+			if (type == typeof(int))
+				return a.TuSo / a.MauSo != (int)b;
+			return a.TuSo / a.MauSo != (float)b;
 		}
 
 		public static bool operator >(PhanSo a, object b)
 		{
-			try
-			{
-				double tempNumber = Convert.ToDouble(b);
-				return a.TuSo / a.MauSo > tempNumber;
-			}
-			catch (Exception)
-			{
-				throw new InvalidOperationException("Type of object b should be a numeric type!");
-			}
+			Type type = b.GetType();
+			if (type == typeof(int))
+				return a.TuSo / a.MauSo > (int)b;
+			return a.TuSo / a.MauSo > (float)b;
 		}
 
 		public static bool operator <(PhanSo a, object b)
 		{
-			try
-			{
-				double tempNumber = Convert.ToDouble(b);
-				return a.TuSo / a.MauSo < tempNumber;
-			}
-			catch (Exception)
-			{
-				throw new InvalidOperationException("Type of object b should be a numeric type!");
-			}
+			Type type = b.GetType();
+			if (type == typeof(int))
+				return a.TuSo / a.MauSo < (int)b;
+			return a.TuSo / a.MauSo < (float)b;
 		}
 
 		public static bool operator >=(PhanSo a, object b) => a > b || a == b;
 
 		public static bool operator <=(PhanSo a, object b) => a < b || a == b;
 		#endregion
+
 
 		private static int UCLN(int a, int b)
 		{

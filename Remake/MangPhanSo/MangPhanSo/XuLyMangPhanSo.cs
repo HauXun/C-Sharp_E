@@ -84,14 +84,14 @@ namespace MangPhanSo
 			{
 				i++;
 				Write("{0, 10}", item.ToString());
-				if ((i + 1) % 10 == 0)
+				if ((i + 1) % 11 == 0)
 					Write('\n');
 			}
 			Write('\n');
 		}
 		#endregion
 
-		private float CompareTo(PhanSo a, PhanSo b)
+		private int CompareTo(PhanSo a, PhanSo b)
 		{
 			var x = a.TuSo / a.MauSo;
 			var y = b.TuSo / b.MauSo;
@@ -104,14 +104,70 @@ namespace MangPhanSo
 		private float MaxDuong() => PhanSoDuong().Max(x => x.GiaTri);
 		private float MinAm() => PhanSoAm().Min(x => x.GiaTri);
 		private float MinDuong() => PhanSoDuong().Min(x => x.GiaTri);
-		public List<PhanSo> PhanSoAm() => a.FindAll(x => x < 0);
-		public List<PhanSo> PhanSoDuong() => a.FindAll(x => x > 0);
-		public PhanSo PhanSoAmMax() => a.Find(x => x == MaxAm());
-		public PhanSo PhanSoAmMin() => a.Find(x => x == MinAm());
-		public PhanSo PhanSoDuongMax() => a.Find(x => x == MaxDuong());
-		public PhanSo PhanSoDuongMin() => a.Find(x => x == MinDuong());
+		public List<PhanSo> PhanSoAm() => a.FindAll(x => x.GiaTri < 0);
+		public List<PhanSo> PhanSoDuong() => a.FindAll(x => x.GiaTri > 0);
+		public PhanSo PhanSoAmMax() => PhanSoAm().Find(x => x.GiaTri == MaxAm());
+		public PhanSo PhanSoAmMin() => PhanSoAm().Find(x => x.GiaTri == MinAm());
+		public PhanSo PhanSoDuongMax() => a.Find(x => x.GiaTri == MaxDuong());
+		public PhanSo PhanSoDuongMin() => a.Find(x => x.GiaTri == MinDuong());
+		public List<int> ViTriPhanSoX(PhanSo x)
+		{
+			int i = 0;
+			List<int> result = new List<int>();
+			Dictionary<PhanSo, int> keys = a.ToDictionary(x => x, x => i++);
+			foreach (var item in keys)
+				if (item.Key.GiaTri.Equals(x.GiaTri))
+					result.Add(item.Value);
+			return result;
+		}
+		public List<int> ViTriPhanSoAm()
+		{
+			int i = 0;
+			List<int> result = new List<int>();
+			Dictionary<PhanSo, int> keys = a.ToDictionary(x => x, x => i++);
+			foreach (var item in keys)
+				if (item.Key.GiaTri < 0)
+					result.Add(item.Value);
+			return result;
+		}
+		public List<int> ViTriPhanSoDuong()
+		{
+			int i = 0;
+			List<int> result = new List<int>();
+			Dictionary<PhanSo, int> keys = a.ToDictionary(x => x, x => i++);
+			foreach (var item in keys)
+				if (item.Key.GiaTri > 0)
+					result.Add(item.Value);
+			return result;
+		}
 		#endregion
 		#region Xóa 🚩🚩🚩
+		public void XoaDau() => a.RemoveAt(0);
+		public void XoaCuoi() => a.RemoveAt(a.Count - 1);
+		public void XoaTaiViTri(int location) => a.RemoveAt(location);
+		public void XoaX(PhanSo ps) => a.RemoveAll(x => x.GiaTri == ps.GiaTri);
+		public void XoaPhanSoTuX(int tuso) => a.RemoveAll(x => x.TuSo == tuso);
+		public void XoaPhanSoMauX(int mauso) => a.RemoveAll(x => x.TuSo == mauso);
+		public void XoaPhanSoChan() => a.RemoveAll(x => (x.GiaTri % 2) == 0);
+		public void XoaPhanSoLe() => a.RemoveAll(x => (x.GiaTri % 2) != 0);
+		public void XoaPhanSoAm() => PhanSoAm().ForEach(x => a.Remove(x));
+		public void XoaPhanSoDuong() => PhanSoDuong().ForEach(x => a.Remove(x));
+		public void XoaPhanSoMax() => a.Remove(PhanSoDuongMax());
+		public void XoaPhanSoMin() => a.Remove(PhanSoAmMin());
+		public void XoaPhanSoGiongDau()
+		{
+			List<PhanSo> s = new List<PhanSo>(a.Skip(1));
+			s.RemoveAll(x => x.GiaTri == a[0].GiaTri);
+			s.Insert(0, a[0]);
+			a = s;
+		}	
+		public void XoaPhanSoGiongCuoi()
+		{
+			List<PhanSo> s = new List<PhanSo>(a.Take(a.Count - 1));
+			s.RemoveAll(x => x.GiaTri == a[a.Count - 1].GiaTri);
+			s.Insert(s.Count - 1, a[a.Count - 1]);
+			a = s;
+		}
 		#endregion
 		#region Đếm 👩‍🏫👩‍🏫👩‍🏫
 		public int DemPhanSoAm() => a.Count(x => x.GiaTri < 0);
