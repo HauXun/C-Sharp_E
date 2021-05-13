@@ -147,6 +147,16 @@ namespace MangPhanSo
 						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, xuLyMangPhanSo);
 					} while (menu > 0);
 					break;
+				case TuyChon.Tong:
+					soMenu = menuM.sum.Length - 1;
+					do
+					{
+						menu = ChonMenu(soMenu, menuM.sum);
+						if (menu == 1)
+							return;
+						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, xuLyMangPhanSo);
+					} while (menu > 0);
+					break;
 			}
 			ReadLine();
 		}

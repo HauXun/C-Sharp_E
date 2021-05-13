@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MangPhanSo
 {
 	class Menu
@@ -25,7 +20,8 @@ namespace MangPhanSo
 			"Xóa",
 			"Đếm",
 			"Thêm",
-			"Sắp xếp"
+			"Sắp xếp",
+			"Tổng"
 		};
 
 		public readonly string[] search = new string[]

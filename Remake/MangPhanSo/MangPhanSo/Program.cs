@@ -1,10 +1,13 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using static System.Console;
 
 namespace MangPhanSo
 {
-	class Program
+	static class Program
 	{
+		public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> seft) => seft.Select((item, index) => (item, index));
 		static void ChayChuongTrinh()
 		{
 			Menu menuM = new Menu();

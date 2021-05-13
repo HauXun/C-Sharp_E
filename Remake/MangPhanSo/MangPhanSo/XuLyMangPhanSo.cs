@@ -91,15 +91,33 @@ namespace MangPhanSo
 		}
 		#endregion
 
-		private int CompareTo(PhanSo a, PhanSo b)
+		public List<int> XacDinhViTri()
 		{
-			var x = a.TuSo / a.MauSo;
-			var y = b.TuSo / b.MauSo;
-			return x.CompareTo(y);
+			List<int> positon = new List<int>();
+			int location;
+			WriteLine("\n Nhập vào lần lượt các vị trí cần xóa");
+			foreach (var (item, index) in a.WithIndex())
+			{
+				do
+				{
+					Write($"\n {index}. Nhập vào vị trí >> ");
+					location = int.Parse(ReadLine());
+					if (location < 0 || location > a.Count)
+						WriteLine("\n Bạn đã nhập vị trí ngoài vùng phạm vi của mảng đang xét! Vui lòng nhập lại");
+				} while (location < 0 || location > a.Count);
+				if (!positon.Contains(location))
+					positon.Add(location);
+				Write("\n Bạn có muốn nhập nữa không Y/n? Nhấn n nếu không");
+				if (ReadLine().ToLower() == "n")
+					break;
+			}
+			return positon;
 		}
 
 
 		#region Tìm kiếm 🕵️‍♀️🕵️‍♀️🕵️‍♀️
+		private float Max() => a.Max(x => x.GiaTri);
+		private float Min() => a.Min(x => x.GiaTri);
 		private float MaxAm() => PhanSoAm().Max(x => x.GiaTri);
 		private float MaxDuong() => PhanSoDuong().Max(x => x.GiaTri);
 		private float MinAm() => PhanSoAm().Min(x => x.GiaTri);
@@ -160,14 +178,15 @@ namespace MangPhanSo
 			s.RemoveAll(x => x.GiaTri == a[0].GiaTri);
 			s.Insert(0, a[0]);
 			a = s;
-		}	
+		}
 		public void XoaPhanSoGiongCuoi()
 		{
 			List<PhanSo> s = new List<PhanSo>(a.Take(a.Count - 1));
 			s.RemoveAll(x => x.GiaTri == a[a.Count - 1].GiaTri);
-			s.Insert(s.Count - 1, a[a.Count - 1]);
+			s.Add(a[a.Count - 1]);
 			a = s;
 		}
+		public void XoaTaiCacViTri(List<int> position) => position.ForEach(x => a.RemoveAt(x));
 		#endregion
 		#region Đếm 👩‍🏫👩‍🏫👩‍🏫
 		public int DemPhanSoAm() => a.Count(x => x.GiaTri < 0);
@@ -176,10 +195,21 @@ namespace MangPhanSo
 		public int DemMauSoX(float x) => a.Count(obj => obj.MauSo == x);
 		#endregion
 		#region Thêm 👨‍🎓👨‍🎓👨‍🎓
+		public void ThemDau(PhanSo x) => a.Insert(0, x);
+		public void ThemCuoi(PhanSo x) => a.Add(x);
+		public void ThemTaiViTri(int location, PhanSo x) => a.Insert(location, x);
 		#endregion
 		#region Sắp xếp 👩‍⚖️👩‍⚖️👩‍⚖️
+		public void TangTheoTu() => a.Sort((x, y) => x.TuSo.CompareTo(y.TuSo));
+		public void TangTheoMau() => a.Sort((x, y) => x.MauSo.CompareTo(y.MauSo));
+		public void GiamTheoTu() => a.Sort((x, y) => y.TuSo.CompareTo(x.TuSo));
+		public void GiamTheoMau() => a.Sort((x, y) => y.MauSo.CompareTo(x.MauSo));
 		#endregion
 		#region Tổng 👨‍✈️👨‍✈️👨‍✈️
+		public float TongAm() => PhanSoAm().Sum(x => x.GiaTri);
+		public float TongDuong() => PhanSoDuong().Sum(x => x.GiaTri);
+		public float TongTuX(int tuso) => a.FindAll(x => x.TuSo == tuso).Sum(x => x.GiaTri);
+		public float TongMauX(int mauso) => a.FindAll(x => x.MauSo == mauso).Sum(x => x.GiaTri);
 		#endregion
 	}
 }

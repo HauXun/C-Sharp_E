@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using static System.Console;
 
 namespace MangPhanSo
@@ -232,6 +233,15 @@ namespace MangPhanSo
 						case 16:
 							Clear();
 							WriteLine("\nXóa các phần tử tại các vị trí (vị trí được lưu trong mảng)");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							List<int> position = xuLyMangPhanSo.XacDinhViTri();
+							WriteLine("\n Các vị trí được xác định");
+							position.ForEach(x => Write("{0, 10}", x));
+							position.Sort();
+							position.Reverse();
+							xuLyMangPhanSo.XoaTaiCacViTri(position);
+							WriteLine("\n Mảng sau khi xóa tất phân số có các vị trí được xác định trong mảng");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
 							break;
 					}
 					break;
@@ -292,14 +302,34 @@ namespace MangPhanSo
 						case 2:
 							Clear();
 							WriteLine("\nThêm phân số đầu tiên trong mảng");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							Write("\n Nhập phân số cần thêm:");
+							phanSo.Nhap();
+							xuLyMangPhanSo.ThemDau(phanSo);
+							WriteLine("\n Danh sách sau khi thêm phân số {0} vào đầu", phanSo);
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
 							break;
 						case 3:
 							Clear();
 							WriteLine("\nThêm phân số cuối cùng trong mảng");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							Write("\n Nhập phân số cần thêm:");
+							phanSo.Nhap();
+							xuLyMangPhanSo.ThemCuoi(phanSo);
+							WriteLine("\n Danh sách sau khi thêm phân số {0} vào cuối", phanSo);
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
 							break;
 						case 4:
 							Clear();
 							WriteLine("\nThêm một phân số tại vị trí trong mảng");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							Write("\n Nhập phân số cần thêm:");
+							phanSo.Nhap();
+							Write("\n Nhập vào vị trí cần thêm >> ");
+							location = int.Parse(ReadLine());
+							xuLyMangPhanSo.ThemTaiViTri(location, phanSo);
+							WriteLine("\n Danh sách sau khi thêm phân số {0} vào danh sách tại vị trí {1}", phanSo, location);
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
 							break;
 					}
 					break;
@@ -316,18 +346,34 @@ namespace MangPhanSo
 						case 2:
 							Clear();
 							WriteLine("\nSắp xếp phân số theo chiều tăng của tử");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							WriteLine("\n Danh sách sau khi sắp xếp tăng theo chiều tăng của tử");
+							xuLyMangPhanSo.TangTheoTu();
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
 							break;
 						case 3:
 							Clear();
 							WriteLine("\nSắp xếp phân số theo chiều tăng của mẫu");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							WriteLine("\n Danh sách sau khi sắp xếp tăng theo chiều tăng của mẫu");
+							xuLyMangPhanSo.TangTheoMau();
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
 							break;
 						case 4:
 							Clear();
 							WriteLine("\nSắp xếp phân số theo chiều giảm của mẫu");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							WriteLine("\n Danh sách sau khi sắp xếp giảm theo chiều giảm của tử");
+							xuLyMangPhanSo.GiamTheoTu();
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
 							break;
 						case 5:
 							Clear();
 							WriteLine("\nSắp xếp phân số theo chiều giảm của mẫu");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							WriteLine("\n Danh sách sau khi sắp xếp giảm theo chiều giảm của mẫu");
+							xuLyMangPhanSo.GiamTheoMau();
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
 							break;
 					}
 					break;
@@ -344,18 +390,30 @@ namespace MangPhanSo
 						case 2:
 							Clear();
 							WriteLine("\nTổng tất cả các phân số âm trong mảng");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							WriteLine("\n Tổng tất cả các phân số âm trong mảng là {0}", xuLyMangPhanSo.TongAm());
 							break;
 						case 3:
 							Clear();
 							WriteLine("\nTổng tất cả các phân số dương trong mảng");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							WriteLine("\n Tổng tất cả các phân số dương trong mảng là {0}", xuLyMangPhanSo.TongDuong());
 							break;
 						case 4:
 							Clear();
 							WriteLine("\nTổng tất cả phân số có tử là x");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							Write("\n Nhập vào tử số >> ");
+							x = int.Parse(ReadLine());
+							WriteLine("\n Tổng tất cả các phân số có tử là {0} trong mảng là {1}", x, xuLyMangPhanSo.TongTuX((int)x));
 							break;
 						case 5:
 							Clear();
 							WriteLine("\nTổng tất cả phân số có mẫu là x");
+							xuLyMangPhanSo.Xuat(xuLyMangPhanSo.a);
+							Write("\n Nhập vào mẫu số >> ");
+							x = int.Parse(ReadLine());
+							WriteLine("\n Tổng tất cả các phân số có mẫu là {0} trong mảng là {1}", x, xuLyMangPhanSo.TongMauX((int)x));
 							break;
 					}
 					break;
