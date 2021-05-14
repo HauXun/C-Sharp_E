@@ -9,10 +9,6 @@ namespace QuanLyDanhBa
 	class XuLyDuLieuDanhBa
 	{
 		#region Tìm kiếm 🕵️‍♀️🕵️‍♀️🕵️‍♀️
-		private int MaxSLXH_TheoThanhPho(List<ThueBao> thueBao) => thueBao.Max(x => DemTheoThanhPho(thueBao, x.ThanhPho));
-		private int MinSLXH_TheoThanhPho(List<ThueBao> thueBao) => thueBao.Min(x => DemTheoThanhPho(thueBao, x.ThanhPho));
-		private int MaxSLXH_TheoSDT(List<ThueBao> thueBao) => thueBao.Max(x => DemTheoSDT(thueBao, x.Sdt, x.Sdt2));
-		private int MinSLXH_TheoSDT(List<ThueBao> thueBao) => thueBao.Min(x => DemTheoSDT(thueBao, x.Sdt, x.Sdt2));
 
 		public List<string> ThanhPhoNhieuThueBaoNhat(List<ThueBao> thueBao)
 		{
@@ -51,21 +47,18 @@ namespace QuanLyDanhBa
 			Max,
 			Min
 		}
-		public List<int> MinMaxNgayThueBaoDangKy(List<ThueBao> thueBao, MinMax minMax)
+		public Dictionary<int, int> MinMaxNgayThueBaoDangKy(List<ThueBao> thueBao, MinMax minMax)
 		{
 			int i = 0;
 			Dictionary<int, int> keys = thueBao.ToDictionary(x => i++, x => x.NgaySinh.Day);
 			Dictionary<int, int> counts = new Dictionary<int, int>();
-			for (int key = 0; key < keys.Max(x => x.Value); key++)
-				counts.Add(key, 0);
-			List<int> result = new List<int>();
 			foreach (var item in thueBao)
-			{
+				if (!counts.ContainsKey(item.NgaySinh.Day))
+					counts.Add(item.NgaySinh.Day, 0);
+			Dictionary<int, int> result = new Dictionary<int, int>();
+			foreach (var item in thueBao)
 				if (keys.ContainsValue(item.NgaySinh.Day))
 					counts[item.NgaySinh.Day]++;
-				else
-					counts.Add(item.NgaySinh.Day, 1);
-			}
 			int obj = 0;
 			switch (minMax)
 			{
@@ -77,10 +70,29 @@ namespace QuanLyDanhBa
 					break;
 			}
 			foreach (KeyValuePair<int, int> item in counts)
-				if (item.Value == obj + 1)
-					result.Add(item.Value);
+				if (item.Value == obj)
+					result.Add(item.Key, 0);
 			return result;
 		}
+		public List<int> ThangKhongCoThueBaoDangKy(List<ThueBao> thueBao)
+		{
+			List<int> result = new List<int>();
+			List<int> month = new List<int>();
+			foreach (var item in thueBao)
+				if (!month.Contains(item.NgaySinh.Month))
+					month.Add(item.NgaySinh.Month);
+			for (int i = 1; i <= 12; i++)
+				if (!month.Contains(i))
+					result.Add(i);
+			return result;
+		}
+		public List<ThueBao> TimThueBaoTheoGioiTinh(List<ThueBao> thueBao, GioiTinh gioiTinh) => thueBao.FindAll(x => x.GioiTinh == gioiTinh);
+		public List<ThueBao> ThueBaoCoDinh(List<ThueBao> thueBao) => thueBao.FindAll(x => x.NgayCungCapDV != "Empty");
+		public List<ThueBao> ThueBaoDiDong(List<ThueBao> thueBao) => thueBao.FindAll(x => x.NhaDichVu != "Empty");
+		public List<string> ThanhPhoNhieuThueBaoCoDinhNhat(List<ThueBao> thueBao) => ThanhPhoNhieuThueBaoNhat(ThueBaoCoDinh(thueBao));
+		public List<string> ThanhPhoItThueBaoCoDinhNhat(List<ThueBao> thueBao) => ThanhPhoItThueBaoNhat(ThueBaoCoDinh(thueBao));
+		public List<string> ThanhPhoNhieuThueBaoDiDong(List<ThueBao> thueBao) => ThanhPhoNhieuThueBaoNhat(ThueBaoDiDong(thueBao));
+		public List<string> ThanhPhoItThueBaoDiDong(List<ThueBao> thueBao) => ThanhPhoItThueBaoNhat(ThueBaoDiDong(thueBao));
 		#endregion
 		#region Sắp xếp 👩‍⚖️👩‍⚖️👩‍⚖️
 		#endregion
@@ -94,5 +106,12 @@ namespace QuanLyDanhBa
 		//	if (sdt == "Empty" && sdt2 == "Empty")
 		//		return 0;
 		#endregion
+		#region MinMax 🚏🚏🚏
+		private int MaxSLXH_TheoThanhPho(List<ThueBao> thueBao) => thueBao.Max(x => DemTheoThanhPho(thueBao, x.ThanhPho));
+		private int MinSLXH_TheoThanhPho(List<ThueBao> thueBao) => thueBao.Min(x => DemTheoThanhPho(thueBao, x.ThanhPho));
+		private int MaxSLXH_TheoSDT(List<ThueBao> thueBao) => thueBao.Max(x => DemTheoSDT(thueBao, x.Sdt, x.Sdt2));
+		private int MinSLXH_TheoSDT(List<ThueBao> thueBao) => thueBao.Min(x => DemTheoSDT(thueBao, x.Sdt, x.Sdt2));
+		#endregion
+
 	}
 }

@@ -10,6 +10,7 @@ namespace QuanLyDanhBa
 	class XuLyChuongTrinh
 	{
 		XuLyDuLieuDanhBa xuLyDuLieuDanhBa = new XuLyDuLieuDanhBa();
+		Dictionary<int, int> result;
 		public void XuLyChucNang(XuLyMenu.TuyChon tuyChon, int menu, DanhSachDanhBa danhSachDanhBa)
 		{
 			Object x;
@@ -53,37 +54,55 @@ namespace QuanLyDanhBa
 							Clear();
 							WriteLine("\nTìm ngày có nhiều thuê bao đăng ký nhất");
 							WriteLine("\nNgày có nhiều thuê bao đăng ký nhất");
-							xuLyDuLieuDanhBa.MinMaxNgayThueBaoDangKy(danhSachDanhBa.thueBao, XuLyDuLieuDanhBa.MinMax.Max).ForEach(x => Write("{0, 5}", x));
+							result = new Dictionary<int, int>(xuLyDuLieuDanhBa.MinMaxNgayThueBaoDangKy(danhSachDanhBa.thueBao, XuLyDuLieuDanhBa.MinMax.Max));
+							foreach (KeyValuePair<int, int> item in result)
+								Write("Ngày {0}, ", item.Key);
 							break;
 						case 7:
 							Clear();
 							WriteLine("\nTìm ngày có ít thuê bao đăng ký nhất");
 							WriteLine("\nNgày có ít thuê bao đăng ký nhất");
-							xuLyDuLieuDanhBa.MinMaxNgayThueBaoDangKy(danhSachDanhBa.thueBao, XuLyDuLieuDanhBa.MinMax.Min).ForEach(x => Write("{0, 5}", x));
+							result = new Dictionary<int, int>(xuLyDuLieuDanhBa.MinMaxNgayThueBaoDangKy(danhSachDanhBa.thueBao, XuLyDuLieuDanhBa.MinMax.Min));
+							foreach (KeyValuePair<int, int> item in result)
+								Write("Ngày {0}, ", item.Key);
 							break;
 						case 8:
 							Clear();
 							WriteLine("\nTìm tháng không có thuê bao nào đăng ký");
+							WriteLine("\nTháng không có thuê bao nào đăng ký");
+							xuLyDuLieuDanhBa.ThangKhongCoThueBaoDangKy(danhSachDanhBa.thueBao).ForEach(x => Write("Tháng {0}, ", x));
 							break;
 						case 9:
 							Clear();
 							WriteLine("\nTìm thuê bao theo giới tính");
+							WriteLine("\n Thuê bao theo giới tính Nam");
+							xuLyDuLieuDanhBa.TimThueBaoTheoGioiTinh(danhSachDanhBa.thueBao, GioiTinh.Nam).ForEach(x => WriteLine(x));
+							WriteLine("\n Thuê bao theo giới tính Nữ");
+							xuLyDuLieuDanhBa.TimThueBaoTheoGioiTinh(danhSachDanhBa.thueBao, GioiTinh.Nu).ForEach(x => WriteLine(x));
 							break;
 						case 10:
 							Clear();
-							WriteLine("\nTìm thành phố có nhiều thuê bao cố định nhất");
+							WriteLine("\n\nnTìm thành phố có nhiều thuê bao cố định nhất");
+							WriteLine("\nThành phố có nhiều thuê bao cố định nhất");
+							xuLyDuLieuDanhBa.ThanhPhoNhieuThueBaoCoDinhNhat(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}, ", x));
 							break;
 						case 11:
 							Clear();
-							WriteLine("\n\nTìm thành phố có ít thuê bao cố định nhất");
+							WriteLine("\nTìm thành phố có ít thuê bao cố định nhất");
+							WriteLine("\nTìm thành phố có ít thuê bao cố định nhất");
+							xuLyDuLieuDanhBa.ThanhPhoItThueBaoCoDinhNhat(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}, ", x));
 							break;
 						case 12:
 							Clear();
 							WriteLine("\nTìm thành phố có nhiều thuê bao di động nhất");
+							WriteLine("\nThành phố có nhiều thuê bao di động nhất");
+							xuLyDuLieuDanhBa.ThanhPhoNhieuThueBaoDiDong(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}, ", x));
 							break;
 						case 13:
 							Clear();
 							WriteLine("\nTìm thành phố có ít thuê bao di động nhất");
+							WriteLine("\nThành phố có ít thuê bao di động nhất");
+							xuLyDuLieuDanhBa.ThanhPhoItThueBaoDiDong(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}, ", x));
 							break;
 						case 14:
 							Clear();
