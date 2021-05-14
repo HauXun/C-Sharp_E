@@ -7,7 +7,6 @@ namespace QuanLyDanhBa
 	class XuLyMenu
 	{
 		DanhSachDanhBa danhSachDanhBa = new DanhSachDanhBa();
-		XuLyDuLieuDanhBa xuLyDuLieuDanhBa = new XuLyDuLieuDanhBa();
 		XuLyMauSac xuLyMauSac = new XuLyMauSac();
 		public enum TuyChon
 		{
@@ -79,13 +78,13 @@ namespace QuanLyDanhBa
 						ResetColor();
 						ForegroundColor = xuLyMauSac.ForegroundColor();
 						BackgroundColor = xuLyMauSac.BackgroundColor();
-						XuLyTuyChon(tuyChon, xuLyDuLieuDanhBa);
+						XuLyTuyChon(tuyChon, danhSachDanhBa);
 					} while (menuM > 0);
 					break;
 			}
 			ReadLine();
 		}
-		public void XuLyTuyChon(TuyChon tuyChon, XuLyDuLieuDanhBa xuLyDuLieuDanhBa)
+		public void XuLyTuyChon(TuyChon tuyChon, DanhSachDanhBa danhSachDanhBa)
 		{
 			Menu menuM = new Menu();
 			XuLyChuongTrinh xuLyChuongTrinh = new XuLyChuongTrinh();
@@ -100,7 +99,7 @@ namespace QuanLyDanhBa
 						menu = ChonMenu(soMenu, menuM.search);
 						if (menu == 1)
 							return;
-						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, xuLyDuLieuDanhBa);
+						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, danhSachDanhBa);
 					} while (menu > 0);
 					break;
 				case TuyChon.SapXep:
@@ -110,7 +109,7 @@ namespace QuanLyDanhBa
 						menu = ChonMenu(soMenu, menuM.sort);
 						if (menu == 1)
 							return;
-						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, xuLyDuLieuDanhBa);
+						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, danhSachDanhBa);
 					} while (menu > 0);
 					break;
 				case TuyChon.Xoa:
@@ -120,7 +119,7 @@ namespace QuanLyDanhBa
 						menu = ChonMenu(soMenu, menuM.delete);
 						if (menu == 1)
 							return;
-						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, xuLyDuLieuDanhBa);
+						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, danhSachDanhBa);
 					} while (menu > 0);
 					break;
 				case TuyChon.Khac:
@@ -130,7 +129,7 @@ namespace QuanLyDanhBa
 						menu = ChonMenu(soMenu, menuM.other);
 						if (menu == 1)
 							return;
-						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, xuLyDuLieuDanhBa);
+						xuLyChuongTrinh.XuLyChucNang(tuyChon, menu, danhSachDanhBa);
 					} while (menu > 0);
 					break;
 			}

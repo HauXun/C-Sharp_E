@@ -9,7 +9,8 @@ namespace QuanLyDanhBa
 {
 	class XuLyChuongTrinh
 	{
-		public void XuLyChucNang(XuLyMenu.TuyChon tuyChon, int menu, XuLyDuLieuDanhBa xuLyDuLieuDanhBa)
+		XuLyDuLieuDanhBa xuLyDuLieuDanhBa = new XuLyDuLieuDanhBa();
+		public void XuLyChucNang(XuLyMenu.TuyChon tuyChon, int menu, DanhSachDanhBa danhSachDanhBa)
 		{
 			Object x;
 			switch (tuyChon)
@@ -27,26 +28,38 @@ namespace QuanLyDanhBa
 						case 2:
 							Clear();
 							WriteLine("\nTìm thành phố có nhiều thuê bao nhất");
+							WriteLine("\nThành phố có nhiều thuê bao nhất");
+							xuLyDuLieuDanhBa.ThanhPhoNhieuThueBaoNhat(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}", x));
 							break;
 						case 3:
 							Clear();
-							WriteLine("\nTìm thành phố có ítthuê bao nhất");
+							WriteLine("\nTìm thành phố có ít thuê bao nhất");
+							WriteLine("\nThành phố có ít thuê bao nhất");
+							xuLyDuLieuDanhBa.ThanhPhoItThueBaoNhat(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}", x));
 							break;
 						case 4:
 							Clear();
 							WriteLine("\nTìm thuê bao sở hữu ít số điện thoại nhất");
+							WriteLine("\nThuê bao sở hữu ít số điện thoại nhất");
+							xuLyDuLieuDanhBa.ThueBaoItSDTNhat(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}", x));
 							break;
 						case 5:
 							Clear();
 							WriteLine("\nTìm thuê bao sở hữu nhiều số điện thoại nhất");
+							WriteLine("\nThuê bao sở hữu nhiều số điện thoại nhất");
+							xuLyDuLieuDanhBa.ThueBaoNhieuSDTNhat(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}", x));
 							break;
 						case 6:
 							Clear();
 							WriteLine("\nTìm ngày có nhiều thuê bao đăng ký nhất");
+							WriteLine("\nNgày có nhiều thuê bao đăng ký nhất");
+							xuLyDuLieuDanhBa.MinMaxNgayThueBaoDangKy(danhSachDanhBa.thueBao, XuLyDuLieuDanhBa.MinMax.Max).ForEach(x => Write("{0, 5}", x));
 							break;
 						case 7:
 							Clear();
 							WriteLine("\nTìm ngày có ít thuê bao đăng ký nhất");
+							WriteLine("\nNgày có ít thuê bao đăng ký nhất");
+							xuLyDuLieuDanhBa.MinMaxNgayThueBaoDangKy(danhSachDanhBa.thueBao, XuLyDuLieuDanhBa.MinMax.Min).ForEach(x => Write("{0, 5}", x));
 							break;
 						case 8:
 							Clear();

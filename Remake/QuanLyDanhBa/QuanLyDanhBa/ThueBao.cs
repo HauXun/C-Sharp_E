@@ -15,7 +15,8 @@ namespace QuanLyDanhBa
 		private GioiTinh gioiTinh;
 		private DateTime ngaySinh;
 		private string diaChi;
-		private int sdt;
+		private string sdt;
+		private string sdt2;
 		private string ngayCungCapDV;
 		private string nhaDichVu;
 
@@ -24,13 +25,14 @@ namespace QuanLyDanhBa
 		public GioiTinh GioiTinh { get => gioiTinh; set => gioiTinh = value; }
 		public DateTime NgaySinh { get => ngaySinh; set => ngaySinh = value; }
 		public string DiaChi { get => diaChi; set => diaChi = value; }
-		public int Sdt { get => sdt; set => sdt = value; }
+		public string Sdt { get => sdt; set => sdt = value; }
+		public string Sdt2 { get => sdt2; set => sdt2 = value; }
 		public string NgayCungCapDV { get => ngayCungCapDV; set => ngayCungCapDV = value; }
 		public string NhaDichVu { get => nhaDichVu; set => nhaDichVu = value; }
 
 		public ThueBao() { }
 
-		public ThueBao(string soCMND, string hoTen, string diaChi, GioiTinh gioiTinh, DateTime ngaySinh, int sdt, string ngayCungCapDV, string nhaDichVu)
+		public ThueBao(string soCMND, string hoTen, string diaChi, GioiTinh gioiTinh, DateTime ngaySinh, string sdt, string sdt2, string ngayCungCapDV, string nhaDichVu)
 		{
 			SoCMND = soCMND;
 			HoTen = hoTen;
@@ -38,6 +40,7 @@ namespace QuanLyDanhBa
 			NgaySinh = ngaySinh;
 			DiaChi = diaChi;
 			Sdt = sdt;
+			Sdt2 = sdt2;
 			NgayCungCapDV = ngayCungCapDV;
 			NhaDichVu = nhaDichVu;
 		}
@@ -50,9 +53,10 @@ namespace QuanLyDanhBa
 			GioiTinh = s[2].Trim() == "Nam" ? GioiTinh.Nam : GioiTinh.Nu;
 			NgaySinh = DateTime.ParseExact(s[3].Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 			DiaChi = s[4].Trim();
-			Sdt = int.Parse(s[5].Trim());
-			NgayCungCapDV = s[6].Trim();
-			NhaDichVu = s[7].Trim();
+			Sdt = s[5].Trim();
+			Sdt2 = s[6].Trim();
+			NgayCungCapDV = s[7].Trim();
+			NhaDichVu = s[8].Trim();
 		}
 
 		public string Tinh
@@ -72,7 +76,8 @@ namespace QuanLyDanhBa
 			}
 		}
 
-		public override string ToString() => $" {SoCMND.PadRight(13)} {HoTen.PadRight(21)} {GioiTinh.ToString().PadRight(14)} {NgaySinh.ToShortDateString().PadRight(26)}" +
-			$" {DiaChi.PadRight(49)} {Sdt.ToString().PadRight(19)} {NgayCungCapDV.PadRight(25)} {NhaDichVu.PadRight(14)}\n";
+
+		public override string ToString() => $"{"".PadRight(5)} {SoCMND.PadRight(10)} {HoTen.PadRight(19)} {GioiTinh.ToString().PadRight(11)} {NgaySinh.ToShortDateString().PadRight(24)}" +
+			$" {DiaChi.PadRight(47)} {Sdt.PadRight(12)} {Sdt2.PadRight(12)} {NgayCungCapDV.PadRight(24)} {NhaDichVu.PadRight(14)}\n";
 	}
 }

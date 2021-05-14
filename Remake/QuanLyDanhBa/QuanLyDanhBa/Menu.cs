@@ -27,7 +27,7 @@ namespace QuanLyDanhBa
 			"Thoát luôn đi ngủ",
 			"Quay về trang trước",
 			"Tìm thành phố có nhiều thuê bao nhất",
-			"Tìm thành phố có ítthuê bao nhất",
+			"Tìm thành phố có ít thuê bao nhất",
 			"Tìm thuê bao sở hữu ít số điện thoại nhất",
 			"Tìm thuê bao sở hữu nhiều số điện thoại nhất",
 			"Tìm ngày có nhiều thuê bao đăng ký nhất",

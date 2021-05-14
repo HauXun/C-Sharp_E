@@ -7,7 +7,7 @@ namespace QuanLyDanhBa
 {
 	class DanhSachDanhBa
 	{
-		List<ThueBao> thueBao = new List<ThueBao>();
+		public List<ThueBao> thueBao = new List<ThueBao>();
 		public int length { get { return thueBao.Count; } }
 
 		public void ImportFromFile()
@@ -86,7 +86,7 @@ namespace QuanLyDanhBa
 		public void XuatThongTinThueBao()
 		{
 			WriteLine("".PadRight(190, '='));
-			WriteLine(" Số CMND".PadRight(15) + "Họ và tên".PadRight(20) + "Giới Tính".PadRight(15) + "Ngày tháng năm sinh".PadRight(25) + "Địa chỉ".PadRight(50) + "SDT".PadRight(20) + "Ngày cung cấp dịch vụ".PadRight(25) + "Nhà dịch vụ".PadRight(15));
+			WriteLine("".PadRight(5) + "Số CMND".PadRight(12) + "Họ và tên".PadRight(20) + "Giới Tính".PadRight(12) + "Ngày tháng năm sinh".PadRight(25) + "Địa chỉ".PadRight(48) + "SDT".PadRight(13) + "SDT 2".PadRight(13) + "Ngày cung cấp dịch vụ".PadRight(25) + "Nhà dịch vụ".PadRight(15));
 			WriteLine("".PadRight(190, '='));
 			foreach (var (item, index) in thueBao.WithIndex())
 				Write($"{thueBao[index]}");
