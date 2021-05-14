@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace QuanLyDanhBa
 {
 	class Menu
@@ -11,7 +6,6 @@ namespace QuanLyDanhBa
 		public readonly string[] input = new string[]
 		{
 			"Thoát chương trình",
-			"Quay về trang trước",
 			"Nhập dữ liệu thuê bao",
 			"Nhập dữ liệu thuê bao từ file",
 			"Xuất dữ liệu thuê bao",
@@ -23,11 +17,9 @@ namespace QuanLyDanhBa
 			"Thoát luôn đi ngủ",
 			"Quay về trang trước",
 			"Tìm kiếm",
-			"Xóa",
-			"Đếm",
-			"Thêm",
 			"Sắp xếp",
-			"Tổng"
+			"Xóa",
+			"Khác"
 		};
 
 		public readonly string[] search = new string[]
