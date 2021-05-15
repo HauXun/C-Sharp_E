@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace QuanLyHinhHoc
 {
 	class HinhHoc
 	{
+		public virtual float TinhDienTich() => 0;
+		public virtual float TinhChuVi() => 0;
+		public virtual HinhHoc Nhap() => null;
 	}
 }
