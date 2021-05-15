@@ -71,7 +71,7 @@ namespace QuanLyHinhHoc
 			}
 			return result;
 		}
-		public float MinMaxTheoKieuGoi<T>(DanhSachHinhHoc danhSachHinhHoc, TypeMinMax typeMinMax)
+		private float MinMaxTheoKieuGoi<T>(DanhSachHinhHoc danhSachHinhHoc, TypeMinMax typeMinMax)
 		{
 			List<HinhHoc> hinhHoc = DanhSachTheoKieuHinh<T>(danhSachHinhHoc);
 			switch (typeMinMax)
@@ -101,6 +101,24 @@ namespace QuanLyHinhHoc
 		}
 		public List<HinhHoc> TimHinhTheoKieuTinh<T>(DanhSachHinhHoc danhSachHinhHoc, TypeMinMax typeMinMax, TypeCal typeCal)
 			=> TimHinhTheoKieuGoi<T>(danhSachHinhHoc, typeCal, MinMaxTheoKieuGoi<T>(danhSachHinhHoc, typeMinMax));
+		public List<HinhHoc> TimHinhMinMaxKieuTinh<T>(DanhSachHinhHoc danhSachHinhHoc, TypeMinMax typeMinMax, TypeCal typeCal)
+			=> TimHinhTheoKieuGoi<T>(danhSachHinhHoc, typeCal, MinMaxTheoKieuGoi<T>(danhSachHinhHoc, typeMinMax));
+		private float TongPhepTinhMinMaxTheoHinh<T>(DanhSachHinhHoc danhSachHinhHoc, TypeMinMax typeMinMax)
+		{
+			if (typeMinMax == TypeMinMax.MaxDienTich || typeMinMax == TypeMinMax.MaxChuVi)
+				return danhSachHinhHoc.ListHinhHoc.FindAll(p => p is T).Sum(x => x.TinhDienTich());
+			else
+				return danhSachHinhHoc.ListHinhHoc.FindAll(p => p is T).Sum(x => x.TinhChuVi());
+		}
+		public string HinhCoTongPhepTinhMinMax(DanhSachHinhHoc danhSachHinhHoc, TypeMinMax typeMinMax)
+		{
+			float hinhVuong = TongPhepTinhMinMaxTheoHinh<HinhVuong>(danhSachHinhHoc, typeMinMax);
+			float hinhTron = TongPhepTinhMinMaxTheoHinh<HinhTron>(danhSachHinhHoc, typeMinMax);
+			float hinhChuNhat = TongPhepTinhMinMaxTheoHinh<HinhChuNhat>(danhSachHinhHoc, typeMinMax);
+			if (typeMinMax == TypeMinMax.MaxDienTich || typeMinMax == TypeMinMax.MaxChuVi)
+				return hinhVuong > hinhTron ? (hinhVuong > hinhChuNhat ? "Hình Vuông" : "Hình Chữ Nhật") : (hinhTron > hinhChuNhat ? "Hình Tròn" : "Hình Chữ Nhật");
+			return hinhVuong < hinhTron ? (hinhVuong < hinhChuNhat ? "Hình Vuông" : "Hình Chữ Nhật") : (hinhTron < hinhChuNhat ? "Hình Tròn" : "Hình Chữ Nhật");
+		}
 		#endregion
 		#region Các hàm chức năng sắp xếp 💫💫💫
 		#endregion

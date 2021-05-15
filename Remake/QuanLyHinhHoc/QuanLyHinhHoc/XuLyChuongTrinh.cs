@@ -241,7 +241,7 @@ namespace QuanLyHinhHoc
 								xuLyDuLieuHinhHoc.DanhSachTheoKieuHinh<HinhChuNhat>(danhSachHinhHoc));
 							WriteLine("\nHình chữ nhật có cạnh nhỏ nhất");
 							xuLyDuLieuHinhHoc.Xuat(xuLyDuLieuHinhHoc.TimHinhTheoKieuTinh<HinhChuNhat>
-								(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MaxCanhHCN, XuLyDuLieuHinhHoc.TypeCal.CanhHCN));
+								(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MinCanhHCN, XuLyDuLieuHinhHoc.TypeCal.CanhHCN));
 							break;
 						case 25:
 							Clear();
@@ -255,34 +255,70 @@ namespace QuanLyHinhHoc
 						case 26:
 							Clear();
 							WriteLine("\nTìm hình có diện tích nhỏ nhất");
+							xuLyDuLieuHinhHoc.Xuat(
+								xuLyDuLieuHinhHoc.DanhSachTheoKieuHinh<HinhHoc>(danhSachHinhHoc));
+							WriteLine("\nHình có diện tích nhỏ nhất");
+							xuLyDuLieuHinhHoc.Xuat(xuLyDuLieuHinhHoc.TimHinhMinMaxKieuTinh<HinhHoc>
+								(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MinDienTich, XuLyDuLieuHinhHoc.TypeCal.DienTich));
 							break;
 						case 27:
 							Clear();
 							WriteLine("\nTìm hình có diện tích lớn nhất");
+							xuLyDuLieuHinhHoc.Xuat(
+								xuLyDuLieuHinhHoc.DanhSachTheoKieuHinh<HinhHoc>(danhSachHinhHoc));
+							WriteLine("\nHình có diện tích lớn nhất");
+							xuLyDuLieuHinhHoc.Xuat(xuLyDuLieuHinhHoc.TimHinhMinMaxKieuTinh<HinhHoc>
+								(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MaxDienTich, XuLyDuLieuHinhHoc.TypeCal.DienTich));
 							break;
 						case 28:
 							Clear();
 							WriteLine("\nTìm hình có chu vi nhỏ nhất");
+							xuLyDuLieuHinhHoc.Xuat(
+								xuLyDuLieuHinhHoc.DanhSachTheoKieuHinh<HinhHoc>(danhSachHinhHoc));
+							WriteLine("\nHình có chu vi nhỏ nhất");
+							xuLyDuLieuHinhHoc.Xuat(xuLyDuLieuHinhHoc.TimHinhMinMaxKieuTinh<HinhHoc>
+								(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MinChuVi, XuLyDuLieuHinhHoc.TypeCal.ChuVi));
 							break;
 						case 29:
 							Clear();
 							WriteLine("\nTìm hình có chu vi lớn nhất");
+							xuLyDuLieuHinhHoc.Xuat(
+								xuLyDuLieuHinhHoc.DanhSachTheoKieuHinh<HinhHoc>(danhSachHinhHoc));
+							WriteLine("\nHình có chu vi lớn nhất");
+							xuLyDuLieuHinhHoc.Xuat(xuLyDuLieuHinhHoc.TimHinhMinMaxKieuTinh<HinhHoc>
+								(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MaxChuVi, XuLyDuLieuHinhHoc.TypeCal.ChuVi));
 							break;
 						case 30:
 							Clear();
 							WriteLine("\nTìm hình có tổng diện tích nhỏ nhất");
+							xuLyDuLieuHinhHoc.Xuat(
+								xuLyDuLieuHinhHoc.DanhSachTheoKieuHinh<HinhHoc>(danhSachHinhHoc));
+							WriteLine("\nHình có tổng diện tích nhỏ nhất");
+							WriteLine(xuLyDuLieuHinhHoc.HinhCoTongPhepTinhMinMax(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MinDienTich));
 							break;
 						case 31:
 							Clear();
 							WriteLine("\nTìm hình có tổng diện tích lớn nhất");
+							xuLyDuLieuHinhHoc.Xuat(
+								xuLyDuLieuHinhHoc.DanhSachTheoKieuHinh<HinhHoc>(danhSachHinhHoc));
+							WriteLine("\nHình có tổng diện tích lớn nhất");
+							WriteLine(xuLyDuLieuHinhHoc.HinhCoTongPhepTinhMinMax(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MaxDienTich));
 							break;
 						case 32:
 							Clear();
 							WriteLine("\nTìm hình có tổng chu vi nhỏ nhất");
+							xuLyDuLieuHinhHoc.Xuat(
+								xuLyDuLieuHinhHoc.DanhSachTheoKieuHinh<HinhHoc>(danhSachHinhHoc));
+							WriteLine("\nHình có tổng chu vi nhỏ nhất");
+							WriteLine(xuLyDuLieuHinhHoc.HinhCoTongPhepTinhMinMax(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MinChuVi));
 							break;
 						case 33:
 							Clear();
 							WriteLine("\nTìm hình có tổng chu vi lớn nhất");
+							xuLyDuLieuHinhHoc.Xuat(
+								xuLyDuLieuHinhHoc.DanhSachTheoKieuHinh<HinhHoc>(danhSachHinhHoc));
+							WriteLine("\nHình có tổng chu vi lớn nhất");
+							WriteLine(xuLyDuLieuHinhHoc.HinhCoTongPhepTinhMinMax(danhSachHinhHoc, XuLyDuLieuHinhHoc.TypeMinMax.MaxChuVi));
 							break;
 					}
 					break;
