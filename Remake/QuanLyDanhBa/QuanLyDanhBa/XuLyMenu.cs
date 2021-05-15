@@ -11,8 +11,8 @@ namespace QuanLyDanhBa
 		public enum TuyChon
 		{
 			TimKiem = 2,
-			Xoa,
 			SapXep,
+			Xoa,
 			Khac
 		}
 		#region Xử lý menu 🚴‍♀️🚴‍♀️🚴‍♀️

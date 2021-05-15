@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Console;
 
 namespace QuanLyDanhBa
@@ -107,34 +104,52 @@ namespace QuanLyDanhBa
 						case 14:
 							Clear();
 							WriteLine("\nTìm thuê bao sở hữu nhiều số điện thoại cố định nhất");
+							WriteLine("\nThuê bao sở hữu nhiều số điện thoại cố định nhất");
+							xuLyDuLieuDanhBa.ThueBaoNhieuSDTCoDinh(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}", x)); ;
 							break;
 						case 15:
 							Clear();
 							WriteLine("\nTìm thuê bao sở hữu ít số điện thoại cố định nhất");
+							WriteLine("\nThuê bao sở hữu ít số điện thoại cố định nhất");
+							xuLyDuLieuDanhBa.ThueBaoItSDTCoDinh(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}", x)); ;
 							break;
 						case 16:
 							Clear();
 							WriteLine("\nTìm thuê bao sở hữu nhiều số điện thoại di động nhất");
+							WriteLine("\nThuê bao sở hữu nhiều số điện thoại di động nhất");
+							xuLyDuLieuDanhBa.ThueBaoNhieuSDTDiDong(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}", x)); ;
 							break;
 						case 17:
 							Clear();
 							WriteLine("\nTìm thuê bao sở hữu ít số điện thoại di động nhất");
+							WriteLine("\nThuê bao sở hữu ít số điện thoại di động nhất");
+							xuLyDuLieuDanhBa.ThueBaoItSDTDiDong(danhSachDanhBa.thueBao).ForEach(x => Write("{0, 5}", x)); ;
 							break;
 						case 18:
 							Clear();
 							WriteLine("\nTìm tháng không có thuê bao nào đăng ký số cố định");
+							xuLyDuLieuDanhBa.ThangKhongCoDangKyCoDinh(danhSachDanhBa.thueBao).ForEach(x => Write("Tháng {0}, ", x));
 							break;
 						case 19:
 							Clear();
 							WriteLine("\nTìm tháng không có thuê bao nào đăng ký số di động");
+							xuLyDuLieuDanhBa.ThangKhongCoDangKyDiDong(danhSachDanhBa.thueBao).ForEach(x => Write("Tháng {0}, ", x));
 							break;
 						case 20:
 							Clear();
 							WriteLine("\nTìm thuê bao di động theo giới tính");
+							WriteLine("\n Thuê bao cố định theo giới tính Nam");
+							xuLyDuLieuDanhBa.ThueBaoCoDinhTheoGioiTinh(danhSachDanhBa.thueBao, GioiTinh.Nam).ForEach(x => WriteLine(x));
+							WriteLine("\n Thuê bao cố định theo giới tính Nữ");
+							xuLyDuLieuDanhBa.ThueBaoCoDinhTheoGioiTinh(danhSachDanhBa.thueBao, GioiTinh.Nu).ForEach(x => WriteLine(x));
 							break;
 						case 21:
 							Clear();
 							WriteLine("\nTìm thuê bao cố định theo giới tính");
+							WriteLine("\n Thuê bao theo giới tính Nam");
+							xuLyDuLieuDanhBa.ThueBaoDiDongTheoGioiTinh(danhSachDanhBa.thueBao, GioiTinh.Nam).ForEach(x => WriteLine(x));
+							WriteLine("\n Thuê bao theo giới tính Nữ");
+							xuLyDuLieuDanhBa.ThueBaoDiDongTheoGioiTinh(danhSachDanhBa.thueBao, GioiTinh.Nu).ForEach(x => WriteLine(x));
 							break;
 					}
 					break;
@@ -151,26 +166,50 @@ namespace QuanLyDanhBa
 						case 2:
 							Clear();
 							WriteLine("\nSắp xếp danh sách thuê bao tăng theo họ tên");
+							danhSachDanhBa.XuatThongTinThueBao();
+							WriteLine("\n Danh sách sau khi sắp xếp thuê bao tăng theo họ tên");
+							xuLyDuLieuDanhBa.TangTheoHoTen(danhSachDanhBa.thueBao);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 						case 3:
 							Clear();
 							WriteLine("\nSắp xếp danh sách thuê bao giảm theo họ tên");
+							danhSachDanhBa.XuatThongTinThueBao();
+							WriteLine("\n Danh sách sau khi sắp xếp thuê bao giảm theo họ tên");
+							xuLyDuLieuDanhBa.GiamTheoHoTen(danhSachDanhBa.thueBao);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 						case 4:
 							Clear();
 							WriteLine("\nSắp xếp danh sách thuê bao tăng theo số lượng điện thoại sở hữu");
+							danhSachDanhBa.XuatThongTinThueBao();
+							WriteLine("\n Danh sách sau khi sắp xếp thuê bao tăng theo số lượng điện thoại sở hữu");
+							xuLyDuLieuDanhBa.TangTheoSLDT(danhSachDanhBa.thueBao);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 						case 5:
 							Clear();
 							WriteLine("\nSắp xếp danh sách thuê bao giảm theo số lượng điện thoại sở hữu");
+							danhSachDanhBa.XuatThongTinThueBao();
+							WriteLine("\n Danh sách sau khi sắp xếp thuê bao giảm theo số lượng điện thoại sở hữu");
+							xuLyDuLieuDanhBa.GiamTheoSLDT(danhSachDanhBa.thueBao);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 						case 6:
 							Clear();
 							WriteLine("\nSắp xếp danh sách các thành phố tăng theo số lượng thuê bao");
+							danhSachDanhBa.XuatThongTinThueBao();
+							WriteLine("\n Danh sách sau khi sắp xếp danh sách các thành phố tăng theo số lượng thuê bao");
+							xuLyDuLieuDanhBa.TangThanhPhoTheoSLTB(danhSachDanhBa.thueBao);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 						case 7:
 							Clear();
 							WriteLine("\nSắp xếp danh sách các thành phố giảm theo số lượng thuê bao");
+							danhSachDanhBa.XuatThongTinThueBao();
+							WriteLine("\n Danh sách sau khi sắp xếp danh sách các thành phố giảm theo số lượng thuê bao");
+							xuLyDuLieuDanhBa.GiamThanhPhoTheoSLTB(danhSachDanhBa.thueBao);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 					}
 					break;
@@ -187,14 +226,32 @@ namespace QuanLyDanhBa
 						case 2:
 							Clear();
 							WriteLine("\nXóa thuê bao theo địa chỉ");
+							danhSachDanhBa.XuatThongTinThueBao();
+							Write("\n Nhập vào địa chỉ của thuê bao cần xóa >> ");
+							x = ReadLine();
+							xuLyDuLieuDanhBa.XoaTheoDiaChi(danhSachDanhBa.thueBao, (string)x);
+							WriteLine("\n Danh sách sau khi xóa các thuê bao có địa chỉ {0}", x);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 						case 3:
 							Clear();
 							WriteLine("\nXóa thuê bao theo ngày lắp đặt");
+							danhSachDanhBa.XuatThongTinThueBao();
+							Write("\n Nhập vào ngày lắp đặt của thuê bao cần xóa >> ");
+							x = int.Parse(ReadLine());
+							xuLyDuLieuDanhBa.XoaTheoNgayLapDat(danhSachDanhBa.thueBao, (int)x);
+							WriteLine("\n Danh sách sau khi xóa các thuê bao có ngày lắp đặt là {0}", x);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 						case 4:
 							Clear();
 							WriteLine("\nXóa thuê bao theo nhà dịch vụ");
+							danhSachDanhBa.XuatThongTinThueBao();
+							Write("\n Nhập vào nhà dịch vụ của thuê bao cần xóa >> ");
+							x = ReadLine();
+							xuLyDuLieuDanhBa.XoaTheoNhaDichVu(danhSachDanhBa.thueBao, (string)x);
+							WriteLine("\n Danh sách sau khi xóa các thuê bao có nhà dịch vụ là {0}", x);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 					}
 					break;
@@ -211,22 +268,23 @@ namespace QuanLyDanhBa
 						case 2:
 							Clear();
 							WriteLine("\nTất cả khách hàng nào sinh tháng 1 thì được tặng thêm một số điện thoại mới có số là số CMND");
+							danhSachDanhBa.XuatThongTinThueBao();
+							xuLyDuLieuDanhBa.ThemSDTNeuSinhThang1(danhSachDanhBa.thueBao);
+							danhSachDanhBa.XuatThongTinThueBao();
 							break;
 						case 3:
 							Clear();
-							WriteLine("\nThống kê và hiển thị dữ liệu theo từng tỉnh và mỗi tỉnh hiển thị theo thành phố theo mẫu sau");
-							break;
-						case 4:
-							Clear();
-							WriteLine(@"Tỉnh: Lâm Đồng (tổng số thuê bao: 4)
-											Thành Phố: Dalat (tổng số thuê bao: 2)
-										1)	001, nguyen van a, 01 PDTV, Dalat, Lam Dong, 123
-										2)	002, nguyen van b, 01 PDTV, Dalat, Lam Dong, 123
-										Thành phố bảo lộc: (Tổng số thuê bao: 2)
-										--- Hiển thị danh sách thuê bao ở thành phố bảo lộc ---
-										Tỉnh Khánh Hòa (Tổng số….)
-											Thành Phố: Nha Trang (tổng số thuê bao:……)
-											--- Danh sách thuê bao ---");
+							WriteLine(@"Thống kê và hiển thị dữ liệu theo từng tỉnh và mỗi tỉnh hiển thị theo thành phố theo mẫu sau
+							Tỉnh: Lâm Đồng(tổng số thuê bao: 4)
+								Thành Phố: Dalat(tổng số thuê bao: 2)
+									1)  001, nguyen van a, 01 PDTV, Dalat, Lam Dong, 123
+									2)	002, nguyen van b, 01 PDTV, Dalat, Lam Dong, 123
+									Thành phố bảo lộc: (Tổng số thuê bao: 2)
+									---Hiển thị danh sách thuê bao ở thành phố bảo lộc ---
+									Tỉnh Khánh Hòa(Tổng số….)
+										Thành Phố: Nha Trang(tổng số thuê bao:……)
+										---Danh sách thuê bao-- - ");
+							xuLyDuLieuDanhBa.ThongKeDuLieu(danhSachDanhBa.thueBao);
 							break;
 					}
 					break;

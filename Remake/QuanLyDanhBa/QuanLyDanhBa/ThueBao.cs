@@ -51,7 +51,7 @@ namespace QuanLyDanhBa
 			SoCMND = s[0].Trim();
 			HoTen = s[1].Trim();
 			GioiTinh = s[2].Trim() == "Nam" ? GioiTinh.Nam : GioiTinh.Nu;
-			NgaySinh = DateTime.ParseExact(s[3].Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+			NgaySinh = DateTime.Parse(s[3].Trim(), CultureInfo.CreateSpecificCulture("fr-FR"));
 			DiaChi = s[4].Trim();
 			Sdt = s[5].Trim();
 			Sdt2 = s[6].Trim();

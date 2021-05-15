@@ -74,11 +74,11 @@ namespace QuanLyDanhBa
 			"Thoát luôn đi ngủ",
 			"Quay về trang trước",
 			"Tất cả khách hàng nào sinh tháng 1 thì được tặng thêm một số điện thoại mới có số là số CMND",
-			"Thống kê và hiển thị dữ liệu theo từng tỉnh và mỗi tỉnh hiển thị theo thành phố theo mẫu sau",
-			@"Tỉnh: Lâm Đồng (tổng số thuê bao: 4)
-				Thành Phố: Dalat (tổng số thuê bao: 2)
-			1)	001, nguyen van a, 01 PDTV, Dalat, Lam Dong, 123
-			2)	002, nguyen van b, 01 PDTV, Dalat, Lam Dong, 123
+			@"Thống kê và hiển thị dữ liệu theo từng tỉnh và mỗi tỉnh hiển thị theo thành phố theo mẫu sau
+Tỉnh: Lâm Đồng (tổng số thuê bao: 4)
+		Thành Phố: Dalat (tổng số thuê bao: 2)
+			1.001, nguyen van a, 01 PDTV, Dalat, Lam Dong, 123
+			2.002, nguyen van b, 01 PDTV, Dalat, Lam Dong, 123
 			Thành phố bảo lộc: (Tổng số thuê bao: 2)
 			--- Hiển thị danh sách thuê bao ở thành phố bảo lộc ---
 			Tỉnh Khánh Hòa (Tổng số….)
