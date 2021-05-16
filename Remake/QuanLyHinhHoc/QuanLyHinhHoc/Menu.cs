@@ -68,14 +68,14 @@ namespace QuanLyHinhHoc
 			"Sắp xếp hình vuông giảm theo chu vi",
 			"Sắp xếp hình vuông tăng theo diện tích",
 			"Sắp xếp hình vuông giảm theo diện tích\n\n",
-			"Sắp xếp hình tròn vuông tăng theo chu vi",
-			"Sắp xếp hình tròn vuông giảm theo chu vi",
-			"Sắp xếp hình tròn vuông tăng theo diện tích",
-			"Sắp xếp hình tròn vuông giảm theo diện tích\n\n",
-			"Sắp xếp hình chữ nhật vuông tăng theo chu vi",
-			"Sắp xếp hình chữ nhật vuông giảm theo chu vi",
-			"Sắp xếp hình chữ nhật vuông tăng theo diện tích",
-			"Sắp xếp hình chữ nhật vuông giảm theo diện tích"
+			"Sắp xếp hình tròn tăng theo chu vi",
+			"Sắp xếp hình tròn giảm theo chu vi",
+			"Sắp xếp hình tròn tăng theo diện tích",
+			"Sắp xếp hình tròn giảm theo diện tích\n\n",
+			"Sắp xếp hình chữ nhật tăng theo chu vi",
+			"Sắp xếp hình chữ nhật giảm theo chu vi",
+			"Sắp xếp hình chữ nhật tăng theo diện tích",
+			"Sắp xếp hình chữ nhật giảm theo diện tích"
 		};
 
 		public readonly string[] delete = new string[]

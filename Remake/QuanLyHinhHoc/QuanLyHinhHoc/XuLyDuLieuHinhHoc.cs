@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using static System.Console;
 
 namespace QuanLyHinhHoc
@@ -121,12 +122,120 @@ namespace QuanLyHinhHoc
 		}
 		#endregion
 		#region Các hàm chức năng sắp xếp 💫💫💫
+		public List<HinhHoc> SapXepTheoCachGoi<T>(DanhSachHinhHoc danhSachHinhHoc, SortBy sortBy)
+		{
+			List<HinhHoc> result = DanhSachTheoKieuHinh<T>(danhSachHinhHoc);
+			switch (sortBy)
+			{
+				case SortBy.SortUpByCV:
+					result = result.OrderBy(hinh => hinh.TinhChuVi()).ToList();
+					return result;
+				case SortBy.SortUpByDT:
+					result = result.OrderBy(hinh => hinh.TinhDienTich()).ToList();
+					return result;
+				case SortBy.SortDownByCV:
+					result = result.OrderByDescending(hinh => hinh.TinhChuVi()).ToList();
+					return result;
+				case SortBy.SortDownByDT:
+					result = result.OrderByDescending(hinh => hinh.TinhDienTich()).ToList();
+					return result;
+			}
+			return null;
+		}
 		#endregion
 		#region Các hàm chức năng xóa 🚩🚩🚩
+		public void XoaTheoCachGoi<T>(DanhSachHinhHoc danhSachHinhHoc, TypeMinMax typeMinMax)
+		{
+			List<HinhHoc> list = DanhSachTheoKieuHinh<HinhHoc>(danhSachHinhHoc);
+			foreach (var item in list)
+			{
+				switch (typeMinMax)
+				{
+					case TypeMinMax.MaxChuVi:
+					case TypeMinMax.MinChuVi:
+						if (item.TinhChuVi().Equals(MinMaxTheoKieuGoi<T>(danhSachHinhHoc, typeMinMax)))
+							danhSachHinhHoc.ListHinhHoc.Remove(item);
+						break;
+					case TypeMinMax.MaxDienTich:
+					case TypeMinMax.MinDienTich:
+						if (item.TinhDienTich().Equals(MinMaxTheoKieuGoi<T>(danhSachHinhHoc, typeMinMax)))
+							danhSachHinhHoc.ListHinhHoc.Remove(item);
+						break;
+				}
+			}
+		}
+		public void XoaHinhTaiViTri(DanhSachHinhHoc danhSachHinhHoc, int location) => danhSachHinhHoc.ListHinhHoc.RemoveAt(location);
 		#endregion
 		#region Một số chức năng khác 👀👀👀
+		public int DemTheoHinh<T>(DanhSachHinhHoc danhSachHinhHoc) => DanhSachTheoKieuHinh<T>(danhSachHinhHoc).Count();
+		public void ThemHinhTaiViTri(DanhSachHinhHoc danhSachHinhHoc, TypeList typeList, int location)
+		{
+			HinhHoc hh = new HinhHoc();
+			switch (typeList)
+			{
+				case TypeList.HinhVuong:
+					WriteLine("\nHinh Vuong >>");
+					hh = new HinhTron();
+					break;
+				case TypeList.HinhTron:
+					WriteLine("\nHinh Vuong >>");
+					hh = new HinhVuong();
+					break;
+				case TypeList.HinhChuNhat:
+					WriteLine("\nHinh chu nhat >>");
+					hh = new HinhChuNhat();
+					break;
+			}
+			danhSachHinhHoc.ListHinhHoc.Insert(location, hh.Nhap());
+		}
 		#endregion
 		#region Các hàm chức năng ghi danh sách các hình xuống file riêng 👨‍💻👨‍💻👨‍💻
+		public void GhiFile<T>(DanhSachHinhHoc danhSachHinhHoc, TypeList typeList)
+		{
+			StringBuilder str = new StringBuilder();
+			StringBuilder filename = new StringBuilder();
+			StringBuilder kq = new StringBuilder();
+			DanhSachHinhHoc result = new DanhSachHinhHoc();
+			switch (typeList)
+			{
+				case TypeList.HinhVuong:
+					str.Append("hinhvuong");
+					filename.Append(str + ".txt");
+					result.ListHinhHoc = DanhSachTheoKieuHinh<T>(danhSachHinhHoc);
+					kq.Append($"\n\n\t\t\tDANH SACH {str.ToString().ToUpper()}\n{result}\n");
+					break;
+				case TypeList.HinhTron:
+					str.Append("hinhtron");
+					filename.Append(str + ".txt");
+					result.ListHinhHoc = DanhSachTheoKieuHinh<T>(danhSachHinhHoc);
+					kq.Append($"\n\n\t\t\tDANH SACH {str.ToString().ToUpper()}\n{result}\n");
+					break;
+				case TypeList.HinhChuNhat:
+					str.Append("hinhchunhat");
+					filename.Append(str + ".txt");
+					result.ListHinhHoc = DanhSachTheoKieuHinh<T>(danhSachHinhHoc);
+					kq.Append($"\n\n\t\t\tDANH SACH {str.ToString().ToUpper()}\n{result}\n");
+					break;
+				case TypeList.TatCaHinh:
+					str.Append("tatcahinh");
+					filename.Append(str + ".txt");
+					kq.Append($"\t\t\tBANG TONG HOP THONG TIN\n1) Tong so cac doi tuong hinh hoc la: {DemTheoHinh<HinhHoc>(danhSachHinhHoc)}\n");
+					kq.Append($"2) Tong so hinh tron la: {DemTheoHinh<HinhTron>(danhSachHinhHoc)}\n");
+					kq.Append($"3) Tong so hinh vuong la: {DemTheoHinh<HinhVuong>(danhSachHinhHoc)}\n");
+					kq.Append($"4) Tong so hinh chu nhat la {DemTheoHinh<HinhChuNhat>(danhSachHinhHoc)}\n");
+					result.ListHinhHoc = DanhSachTheoKieuHinh<HinhTron>(danhSachHinhHoc);
+					kq.Append($"\nA. Danh sach hinh tron\n{result}");
+					result.ListHinhHoc = DanhSachTheoKieuHinh<HinhVuong>(danhSachHinhHoc);
+					kq.Append($"\n\nB. Danh sach hinh vuong\n{result}");
+					result.ListHinhHoc = DanhSachTheoKieuHinh<HinhChuNhat>(danhSachHinhHoc);
+					kq.Append($"\n\nC. Danh sach hinh chu nhat\n{result}\n");
+					break;
+			}
+			using (StreamWriter file = new StreamWriter(filename.ToString(), append: false)) // FileMode.Append, FileAccess.Write)
+			{
+				file.Write(kq);
+			}
+		}
 		#endregion
 	}
 }
