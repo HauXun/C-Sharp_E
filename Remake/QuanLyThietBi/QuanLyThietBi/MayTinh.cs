@@ -46,19 +46,7 @@ namespace QuanLyThietBi
 		}
 		#endregion
 		#region Truy vấn dữ liệu danh sách 👀👀👀
-		private float TinhTongGia() => listTB.Sum(x => x.Gia);
-		private float TinhTongThuocTinh<T>(Tinh tinh)
-		{
-			switch (tinh)
-			{
-				case Tinh.Speed:
-					return listTB.Where(x => x is T).Sum(x => ((CPU)x).TocDo);
-				case Tinh.sCapacity:
-					return listTB.Where(x => x is T).Sum(x => ((RAM)x).DungLuong);
-			}
-			return 0;
-		}
-		protected bool IsEquipment<T>()
+		public bool IsEquipment<T>()
 		{
 			foreach (var item in listTB)
 				if (item is T)
@@ -75,6 +63,17 @@ namespace QuanLyThietBi
 		#endregion
 		#region Phân loại danh sách thiết bị 👮‍♂️👮‍♂️👮‍♂️
 		private List<IThietBi> DanhSachThietBiTheoLoai<T>() => listTB.Where(x => x is T).ToList();
+		public float TinhTongThuocTinh<T>(Tinh tinh)
+		{
+			switch (tinh)
+			{
+				case Tinh.Speed:
+					return listTB.Where(x => x is T).Sum(x => ((CPU)x).TocDo);
+				case Tinh.sCapacity:
+					return listTB.Where(x => x is T).Sum(x => ((RAM)x).DungLuong);
+			}
+			return 0;
+		}
 		public float TruyXuatThuocTinhThietBi(Tinh tinh)
 		{
 			foreach (var item in listTB)

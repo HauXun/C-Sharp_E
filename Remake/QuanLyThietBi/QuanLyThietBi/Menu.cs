@@ -46,8 +46,7 @@ namespace QuanLyThietBi
 			"Sắp xếp danh sách máy tính tăng dần theo dung lượng RAM(Gb)",
 			"Sắp xếp danh sách máy tính giảm dần theo dung lượng RAM(Gb)",
 			"Sắp xếp danh sách máy tính tăng dần theo tốc độ CPU(Ghz)",
-			"Sắp xếp danh sách máy tính giảm dần theo tốc độ CPU(Ghz)",
-			"Sắp xếp hình tròn tăng theo chu vi"
+			"Sắp xếp danh sách máy tính giảm dần theo tốc độ CPU(Ghz)"
 		};
 
 		public readonly string[] other = new string[]
