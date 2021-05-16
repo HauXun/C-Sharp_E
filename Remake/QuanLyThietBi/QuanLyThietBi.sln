@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyThietBi", "QuanLyThietBi\QuanLyThietBi.csproj", "{526B8A87-B289-4334-B839-2EC8F45A8D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThuVienDungChung", "ThuVienDungChung\ThuVienDungChung.csproj", "{220E8505-A4E0-4017-8AF5-4D031C71A64E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{526B8A87-B289-4334-B839-2EC8F45A8D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{526B8A87-B289-4334-B839-2EC8F45A8D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{526B8A87-B289-4334-B839-2EC8F45A8D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{526B8A87-B289-4334-B839-2EC8F45A8D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{220E8505-A4E0-4017-8AF5-4D031C71A64E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{220E8505-A4E0-4017-8AF5-4D031C71A64E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{220E8505-A4E0-4017-8AF5-4D031C71A64E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{220E8505-A4E0-4017-8AF5-4D031C71A64E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E82EF5A3-74E6-4DE9-8029-CF4A4EE10B29}
+	EndGlobalSection
+EndGlobal
