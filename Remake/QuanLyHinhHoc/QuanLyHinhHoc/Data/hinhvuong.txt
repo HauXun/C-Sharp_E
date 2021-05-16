@@ -1,0 +1,8 @@
+
+
+			DANH SACH HINHVUONG
+
+Hinh Vuong >> Canh = 7, Dien tich = 49, Chu vi = 28
+Hinh Vuong >> Canh = 9, Dien tich = 81, Chu vi = 36
+Hinh Vuong >> Canh = 5.6, Dien tich = 31, Chu vi = 22
+Hinh Vuong >> Canh = 10.2, Dien tich = 104, Chu vi = 41

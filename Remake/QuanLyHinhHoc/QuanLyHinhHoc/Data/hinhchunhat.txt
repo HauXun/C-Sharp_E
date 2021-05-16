@@ -1,0 +1,8 @@
+
+
+			DANH SACH HINHCHUNHAT
+
+Hinh Chu Nhat >> Chieu dai = 5, Chieu rong = 1, Dien tich = 5, Chu vi = 11
+Hinh Chu Nhat >> Chieu dai = 7, Chieu rong = 5, Dien tich = 35, Chu vi = 19
+Hinh Chu Nhat >> Chieu dai = 8, Chieu rong = 4, Dien tich = 32, Chu vi = 20
+Hinh Chu Nhat >> Chieu dai = 4.7, Chieu rong = 3.6, Dien tich = 17, Chu vi = 13

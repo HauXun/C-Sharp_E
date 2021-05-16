@@ -1,0 +1,8 @@
+
+
+			DANH SACH HINHTRON
+
+Hinh Tron >> Ban kinh = 5, Dien tich = 79,  Chu vi = 31
+Hinh Tron >> Ban kinh = 8, Dien tich = 201,  Chu vi = 50
+Hinh Tron >> Ban kinh = 4.5, Dien tich = 64,  Chu vi = 28
+Hinh Tron >> Ban kinh = 7.3, Dien tich = 167,  Chu vi = 46

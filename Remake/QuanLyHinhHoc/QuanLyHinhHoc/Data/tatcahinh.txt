@@ -1,0 +1,26 @@
+			BANG TONG HOP THONG TIN
+1) Tong so cac doi tuong hinh hoc la: 12
+2) Tong so hinh tron la: 4
+3) Tong so hinh vuong la: 4
+4) Tong so hinh chu nhat la 4
+
+A. Danh sach hinh tron
+
+Hinh Tron >> Ban kinh = 5, Dien tich = 79,  Chu vi = 31
+Hinh Tron >> Ban kinh = 8, Dien tich = 201,  Chu vi = 50
+Hinh Tron >> Ban kinh = 4.5, Dien tich = 64,  Chu vi = 28
+Hinh Tron >> Ban kinh = 7.3, Dien tich = 167,  Chu vi = 46
+
+B. Danh sach hinh vuong
+
+Hinh Vuong >> Canh = 7, Dien tich = 49, Chu vi = 28
+Hinh Vuong >> Canh = 9, Dien tich = 81, Chu vi = 36
+Hinh Vuong >> Canh = 5.6, Dien tich = 31, Chu vi = 22
+Hinh Vuong >> Canh = 10.2, Dien tich = 104, Chu vi = 41
+
+C. Danh sach hinh chu nhat
+
+Hinh Chu Nhat >> Chieu dai = 5, Chieu rong = 1, Dien tich = 5, Chu vi = 11
+Hinh Chu Nhat >> Chieu dai = 7, Chieu rong = 5, Dien tich = 35, Chu vi = 19
+Hinh Chu Nhat >> Chieu dai = 8, Chieu rong = 4, Dien tich = 32, Chu vi = 20
+Hinh Chu Nhat >> Chieu dai = 4.7, Chieu rong = 3.6, Dien tich = 17, Chu vi = 13
