@@ -273,10 +273,18 @@ namespace Ex1
 						case 2:
 							Clear();
 							WriteLine("\nXóa phần tử đầu tiên");
+							xuLyMang.Xuat(a);
+							Write("Mảng sau khi xóa");
+							xuLyMang.XoaDau(a);
+							xuLyMang.Xuat(a);
 							break;
 						case 3:
 							Clear();
 							WriteLine("\nXóa phần tử cuối");
+							xuLyMang.Xuat(a);
+							Write("Mảng sau khi xóa");
+							xuLyMang.XoaCuoi(a);
+							xuLyMang.Xuat(a);
 							break;
 						case 4:
 							Clear();
@@ -285,6 +293,10 @@ namespace Ex1
 						case 5:
 							Clear();
 							WriteLine("\nXóa tất cả số dương");
+							xuLyMang.Xuat(a);
+							Write("Mảng sau khi xóa");
+							xuLyMang.XoaSoDuong(a);
+							xuLyMang.Xuat(a);
 							break;
 						case 6:
 							Clear();
@@ -305,16 +317,32 @@ namespace Ex1
 						case 10:
 							Clear();
 							WriteLine("\nXóa phần tử xuất hiện nhiều nhất");
+							xuLyMang.Xuat(a);
+							Write("Mảng sau khi xóa");
+							xuLyMang.XoaNhieuNhat(a);
+							xuLyMang.Xuat(a);
 							break;
 						case 11:
 							Clear();
 							WriteLine("\nXóa tất cả số nguyên tố");
+							xuLyMang.Xuat(a);
+							Write("Mảng sau khi xóa");
+							xuLyMang.XoaSoNguyen(a);
+							xuLyMang.Xuat(a);
 							break;
 						case 12:
 							Clear();
 							WriteLine("\nXóa phần tử trong mảng b có trong mảng a");
 							Write("\nMảng b chưa được xác định! Bắt đầu nhập dữ liệu...");
-							Write("\nNhập số lượng phần tử của mảng b >> ");
+							b = new List<int>();
+							xuLyMang.NhapTuDong(b);
+							Write("Mảng A là:");
+							xuLyMang.Xuat(a);
+							Write("Mảng B là:");
+							xuLyMang.Xuat(b);
+							xuLyMang.XoaMangTrongMang(a, b);
+							Write("Mảng sau khi xóa");
+							xuLyMang.Xuat(a);
 							break;
 						case 13:
 							Clear();
@@ -371,6 +399,10 @@ namespace Ex1
 						case 2:
 							Clear();
 							WriteLine("\nThêm phần tử đầu danh sách");
+							xuLyMang.Xuat(a);
+							Write("Mảng sau khi thêm");
+							xuLyMang.ThemDau(a, 10);
+							xuLyMang.Xuat(a);
 							break;
 						case 3:
 							Clear();
@@ -384,7 +416,15 @@ namespace Ex1
 							Clear();
 							WriteLine("\nThêm 1 mảng mới vào đầu danh sách");
 							Write("\nMảng cần thêm chưa được xác định! Bắt đầu nhập dữ liệu...");
-							Write("\nNhập số lượng phần tử của mảng mới >> ");
+							b = new List<int>();
+							xuLyMang.NhapTuDong(b);
+							Write("Mảng A là:");
+							xuLyMang.Xuat(a);
+							Write("Mảng B là:");
+							xuLyMang.Xuat(b);
+							xuLyMang.ThemMangVaoDau(a, b);
+							Write("Mảng sau khi thêm");
+							xuLyMang.Xuat(a);
 							break;
 						case 6:
 							Clear();
@@ -396,7 +436,18 @@ namespace Ex1
 							Clear();
 							WriteLine("\nThêm 1 mảng vào danh sách tại vị trí");
 							Write("\nMảng cần thêm chưa được xác định! Bắt đầu nhập dữ liệu...");
-							Write("\nNhập số lượng phần tử của mảng mới >> ");
+							Write("\nMảng cần thêm chưa được xác định! Bắt đầu nhập dữ liệu...");
+							b = new List<int>();
+							xuLyMang.NhapTuDong(b);
+							Write("Mảng A là:");
+							xuLyMang.Xuat(a);
+							Write("Mảng B là:");
+							xuLyMang.Xuat(b);
+							Write("Nhập vị trí cần thêm >> ");
+							location = int.Parse(ReadLine());
+							xuLyMang.ThemMangVaoViTri(a, b, location);
+							Write("Mảng sau khi thêm");
+							xuLyMang.Xuat(a);
 							break;
 					}
 					break;

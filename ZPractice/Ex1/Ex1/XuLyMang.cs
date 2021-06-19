@@ -51,7 +51,13 @@ namespace Ex1
 			//	Write("{0, 6}\t", item);
 			//}
 
-			a.ForEach(x => Write("{0, 6}\t", x));
+			int i = 0;
+			a.ForEach((x) =>
+			{
+				if ((++i + 1) % 10 == 0)
+					Write('\n');
+				Write("{0, 6}\t", x);
+			});
 
 			//a.Count lấy ra số lượng phần tử trong list(danh sách)
 			WriteLine(" \nKích của mảng là >> " + a.Count);
@@ -218,6 +224,129 @@ namespace Ex1
 					result.Add(item);
 			}
 			return result;
+		}
+
+		public void XoaDau(List<int> a)
+		{
+			try
+			{
+				a.RemoveAt(0);
+			}
+			catch (Exception e)
+			{
+				Write(e.Message);
+			}
+			finally
+			{
+				Write("Sau khi thực hiện");
+			}
+		}
+
+		public void XoaCuoi(List<int> a)
+		{
+			try
+			{
+				a.RemoveAt(a.Count - 1);
+			}
+			catch (Exception e)
+			{
+				Write(e.Message);
+			}
+			finally
+			{
+				Write("Sau khi thực hiện");
+			}
+		}
+
+		public void XoaSoDuong(List<int> a)
+		{
+			List<int> b = new List<int>(a);
+			foreach (int item in b)
+			{
+				if (item > 0)
+				{
+					a.Remove(item);
+				}
+			}
+		}
+
+		public void XoaNhieuNhat(List<int> a)
+		{
+			int max = XuatHienNhieuNhat(a);
+			List<int> b = new List<int>(a);
+			foreach (var item in b)
+			{
+				if (DemPhanTu(a, item) == max && TonTaiX(a, item))
+				{
+					a.RemoveAll((x) => x == item);
+				}
+			}
+		}
+
+		public bool LaSoNguyenTo(int a)
+		{
+			if (a < 2)
+				return false;
+			for (int i = 2; i <= a / 2; i++)
+				if (a % i == 0)
+					return false;
+			return true;
+		}
+
+		public void XoaSoNguyen(List<int> a) => a.RemoveAll((x) => LaSoNguyenTo(x));
+		//{
+		//	a.RemoveAll((x) => LaSoNguyenTo(x));
+		//}
+
+		public void XoaMangTrongMang(List<int> a, List<int> b)
+		{
+			// Đếm xem có bao nhiêu phần tử a ở trong cái mảng b
+			int size = a.Count(x => b.Contains(x));
+			if (size == a.Count)
+				return;
+			List<int> copy = new List<int>(a);
+			copy.ForEach((x) =>
+			{
+				if (b.Contains(x))
+					a.Remove(x);
+			});
+		}
+
+		public void ThemDau(List<int> a, int x)
+		{
+			a.Insert(0, x);
+		}
+
+		public void ThemTaiViTri(List<int> a, int x, int vitri)
+		{
+			a.Insert(vitri, x);
+		}
+
+		public void ThemMangVaoDau(List<int> a, List<int> b)
+		{
+			int n = b.Count;
+			for (int i =  n - 1; i >= 0; i--)
+			{
+				ThemDau(a, b[i]);
+			}
+		}
+
+		public void ThemMangVaoCuoi(List<int> a, List<int> b)
+		{
+			int n = b.Count;
+			for (int i = 0; i < n; i++)
+			{
+				ThemDau(a, b[i]);
+			}
+		}
+
+		public void ThemMangVaoViTri(List<int> a, List<int> b, int vitri)
+		{
+			int n = b.Count;
+			for (int i = 0; i < n; i++)
+			{
+				ThemTaiViTri(a, b[i], vitri);
+			}
 		}
 	}
 }
